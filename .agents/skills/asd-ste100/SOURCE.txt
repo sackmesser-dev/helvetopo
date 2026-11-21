@@ -1,0 +1,2 @@
+Quelle: https://github.com/danyuchn/asd-ste100-skill @ fd86652 (MIT-Lizenz, siehe LICENSE), unverändert übernommen.
+Die Übertragung auf Deutsch und die Prüfung für Helvetopo stehen in docs/schreibregeln.md.

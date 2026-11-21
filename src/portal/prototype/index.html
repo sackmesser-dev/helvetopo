@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Helvetopo für Garmin</title>
+<meta name="description" content="Kostenlose topografische Karte der Schweiz und Liechtensteins für Garmin-Handhelds, routingfähig, auf Basis von swisstopo-Daten.">
+<link rel="alternate" hreflang="de" href="?lang=de">
+<link rel="alternate" hreflang="fr" href="?lang=fr">
+<link rel="alternate" hreflang="it" href="?lang=it">
+<link rel="alternate" hreflang="en" href="?lang=en">
+<link rel="alternate" hreflang="x-default" href="./">
+<script src="lang.js"></script>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<div class="proto-note" data-i18n="proto.note">Prototyp mit Beispieldaten: Versionen, Dateigrössen und Prüfsummen sind Platzhalter. Screenshots aus BaseCamp (Testbuild).</div>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" data-i18n-attr="aria-label:nav.top" aria-label="Zum Seitenanfang">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="var(--forest)"/><path d="M5 24 L13 11 L17 17 L20 13 L27 24 Z" fill="#fff"/><path d="M13 11 L15.4 14.8 L13.6 14 L11.6 15.4 Z" fill="var(--forest)" opacity=".35"/></svg>
+      <span class="brand-name" data-i18n="brand.name">Helvetopo für Garmin</span>
+    </a>
+    <nav class="links">
+      <a href="#downloads" data-i18n="nav.downloads">Downloads</a>
+      <a href="#features" data-i18n="nav.features">Features</a>
+      <a href="#screenshots" data-i18n="nav.screenshots">Screenshots</a>
+      <a href="#installation" data-i18n="nav.installation">Installation</a>
+      <a href="#faq" data-i18n="nav.faq">FAQ</a>
+    </nav>
+    <div class="nav-tools">
+      <div class="lang" role="group" id="langSwitch" data-i18n-attr="aria-label:nav.lang" aria-label="Sprache">
+        <button type="button" data-lang="de" lang="de" title="Deutsch">DE</button>
+        <button type="button" data-lang="fr" lang="fr" title="Français">FR</button>
+        <button type="button" data-lang="it" lang="it" title="Italiano">IT</button>
+        <button type="button" data-lang="en" lang="en" title="English">EN</button>
+      </div>
+      <button class="theme-toggle" id="themeToggle" data-i18n-attr="aria-label:nav.theme;title:nav.theme" aria-label="Hell/Dunkel umschalten" title="Hell/Dunkel umschalten">◐</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap">
+      <div class="hero-inner">
+        <p class="eyebrow" data-i18n="hero.eyebrow">Garmin-Karte · Kostenlos · Routingfähig</p>
+        <h1 id="hero-title" data-i18n="hero.title">Basierend auf der swisstopo‑Landeskarte&nbsp;– für dein Garmin</h1>
+        <p class="lead" data-i18n="hero.lead">Kostenlose topografische Karte der Schweiz und Liechtensteins für Garmin GPSMAP, Montana, eTrex, epix, fēnix und andere<sup>1</sup> sowie BaseCamp, auf Basis der offenen Daten von swisstopo, mit Wanderwegen, Höhenlinien, Adresssuche und Routing für Fuss und Velo.</p>
+
+        <div class="cta">
+          <a class="btn btn-primary" href="#downloads">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+            <span data-i18n="hero.cta">Karten herunterladen</span>
+          </a>
+          <a class="btn btn-secondary" href="#screenshots">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+            <span data-i18n="shots.title">So sieht sie aus</span>
+          </a>
+        </div>
+        <p class="meta" id="dlMeta" data-i18n="hero.loading">Lade Release-Informationen …</p>
+        <p class="footnote" data-i18n="hero.footnote"><sup>1</sup> Getestet bisher nur auf dem GPSMAP und in BaseCamp.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="downloads" aria-labelledby="d-title">
+    <div class="wrap">
+      <h2 id="d-title" data-i18n="dl.title">Downloads</h2>
+      <p class="section-lead" data-i18n="dl.lead">Für den Anfang reicht die Vektorkarte. Die Pixelkarte zeigt das gewohnte Kartenbild und gibt es in drei Detailstufen.</p>
+      <div class="groups" id="groups"></div>
+      <div id="dlFoot"></div>
+    </div>
+  </section>
+
+  <section id="features" aria-labelledby="f-title">
+    <div class="wrap">
+      <h2 id="f-title" data-i18n="features.title">Was die Karte kann</h2>
+      <p class="section-lead" data-i18n="features.lead">Gebaut aus den offenen Geodaten von swisstopo, für die Schweiz und Liechtenstein, im Stil der Landeskarte 1:25'000.</p>
+      <div class="features">
+        <div class="feature"><div class="ic ic-accent"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><path d="M9 3v15M15 6v15"/></svg></div><h3 data-i18n="f1.h">Im Stil der Landeskarte</h3><p data-i18n="f1.p">Farben, Linien und Beschriftung im Stil der Landeskarte 1:25'000.</p></div>
+        <div class="feature"><div class="ic ic-lake"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M8 19h7a4 4 0 0 0 0-8H9a4 4 0 0 1 0-8h7"/></svg></div><h3 data-i18n="f2.h">Routing</h3><p data-i18n="f2.p">Routen zu Fuss und mit dem Velo, berechnet direkt auf deinem Garmin.</p></div>
+        <div class="feature"><div class="ic ic-accent"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 4a1 1 0 1 0 2 0 1 1 0 0 0-2 0"/><path d="m9 21 3-7 3 3v4M7 12l3-4 4 1 3 3"/></svg></div><h3 data-i18n="f3.h">Wanderwege &amp; Routen</h3><p data-i18n="f3.p">Wanderwege nach Kategorie sowie Velo-, Mountainbike- und Skating-Routen von SchweizMobil.</p></div>
+        <div class="feature"><div class="ic ic-contour"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 18c3-1 5-5 9-5s6 4 9 5"/><path d="M6 13c2-1 3.5-4 6-4s4 3 6 4"/><path d="M9.5 8.5C10.3 7.6 11 6 12 6s1.7 1.6 2.5 2.5"/></svg></div><h3 data-i18n="f4.h">Höhenlinien</h3><p data-i18n="f4.p">Höhenlinien und Koten aus dem Höhenmodell swissALTI3D, als zuschaltbares Overlay.</p></div>
+        <div class="feature"><div class="ic ic-forest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></div><h3 data-i18n="f5.h">Adresse &amp; Ort finden</h3><p data-i18n="f5.p">Suche nach Strasse und Hausnummer (Schweiz), Ortschaften, Gipfeln, Pässen und Bahnhöfen.</p></div>
+        <div class="feature"><div class="ic ic-forest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 9 9"/><path d="M21 3v6h-6"/><path d="M21 3l-6.5 6.5"/></svg></div><h3 data-i18n="f6.h">Kostenlos &amp; aktuell</h3><p data-i18n="f6.p">Kostenlos und ohne Konto. Jedes Release folgt den neuen Datenständen von swisstopo, und der Datenstand steht bei jedem Download.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt" id="screenshots" aria-labelledby="s-title">
+    <div class="wrap">
+      <h2 id="s-title" data-i18n="shots.title">So sieht sie aus</h2>
+      <p class="section-lead" data-i18n="shots.lead">Ausschnitte aus BaseCamp. Tippe auf ein Bild für die grosse Ansicht.</p>
+      <div class="gallery" id="gallery">
+        <figure class="shot big"><img src="img/t18-zermatt.jpg" data-i18n-attr="alt:shot1.alt" alt="Karte um Zermatt mit Höhenlinien, Wald und Gewässern" loading="lazy"><figcaption data-i18n="shot1.cap">Zermatt: Gelände, Wald und Gewässer</figcaption></figure>
+        <figure class="shot big"><img src="img/t18-zuerich.jpg" data-i18n-attr="alt:shot2.alt" alt="Stadtkarte Zürich mit Strassen, Gebäuden und Bahnlinien" loading="lazy"><figcaption data-i18n="shot2.cap">Zürich: Strassen, Gebäude, Bahn und ÖV-Haltestellen</figcaption></figure>
+        <figure class="shot small"><img src="img/t11-saentis-nah.jpg" data-i18n-attr="alt:shot3.alt" alt="Säntisgipfel mit markierter Wanderroute" loading="lazy"><figcaption data-i18n="shot3.cap">Säntis: Wanderroute zum Gipfel</figcaption></figure>
+        <figure class="shot small"><img src="img/t18-route-wandern-zermatt-riffelalp-info.jpg" data-i18n-attr="alt:shot4.alt" alt="Berechnete Wanderroute von Zermatt zur Riffelalp mit Distanz und Höhenmetern" loading="lazy"><figcaption data-i18n="shot4.cap">Wanderroute mit Distanz und Höhenmetern</figcaption></figure>
+        <figure class="shot small"><img src="img/t18-suche-matterhorn.jpg" data-i18n-attr="alt:shot5.alt" alt="Suchergebnis für das Matterhorn" loading="lazy"><figcaption data-i18n="shot5.cap">Suche nach Gipfeln</figcaption></figure>
+      </div>
+
+      <h3 class="cmp-title" data-i18n="cmp.title">Vektor- oder Pixelkarte?</h3>
+      <p class="section-lead cmp-lead" data-i18n="cmp.lead">Ziehe den Regler: links die schlanke Vektorkarte mit Routing, rechts die Pixelkarte 1:25'000. St. Gallen, gleicher Ausschnitt.</p>
+      <div class="compare" id="compare">
+        <img src="img/vgl-raster.jpg" data-i18n-attr="alt:cmp.altRaster" alt="Pixelkarte St. Gallen" loading="lazy">
+        <img class="top" src="img/vgl-vektor.jpg" data-i18n-attr="alt:cmp.altVektor" alt="Vektorkarte St. Gallen" loading="lazy">
+        <span class="lbl l" data-i18n="cmp.lblVektor">Vektorkarte</span><span class="lbl r" data-i18n="cmp.lblRaster">Pixelkarte</span>
+        <div class="handle"><div class="knob"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m9 6-6 6 6 6M15 6l6 6-6 6"/></svg></div></div>
+        <input type="range" min="0" max="100" value="50" data-i18n-attr="aria-label:cmp.aria" aria-label="Vergleichsregler">
+      </div>
+    </div>
+  </section>
+
+  <section id="installation" aria-labelledby="i-title">
+    <div class="wrap">
+      <h2 id="i-title" data-i18n="inst.title">In drei Schritten auf dein Garmin</h2>
+      <p class="section-lead" data-i18n="inst.lead">Für GPSMAP, Montana, eTrex, epix, fēnix und andere Garmin-Geräte mit Kartenunterstützung.</p>
+      <div class="tabs" role="tablist">
+        <button role="tab" aria-selected="true" data-tab="usb" data-i18n="tab.usb">Garmin per USB</button>
+        <button role="tab" aria-selected="false" data-tab="basecamp" data-i18n="tab.basecamp">BaseCamp</button>
+        <button role="tab" aria-selected="false" data-tab="pixel" data-i18n="tab.pixel">Pixelkarte und Luftbild</button>
+      </div>
+      <div data-panel="usb"><ol class="steps">
+        <li><div><b data-i18n="usb1.h">Datei für dein Garmin herunterladen</b><span data-i18n="usb1.p">Unter <a href="#downloads">Downloads</a> die IMG-Datei der Vektorkarte speichern, für Wanderwege und Velorouten dazu das Routen-Overlay. Umbenennen ist nicht nötig.</span></div></li>
+        <li><div><b data-i18n="usb2.h">Dein Garmin anschliessen</b><span data-i18n="usb2.p">Per USB verbinden. Es erscheint als Laufwerk; am besten die microSD-Karte verwenden.</span></div></li>
+        <li><div><b data-i18n="usb3.h">In den Ordner <code>Garmin</code> kopieren</b><span data-i18n="usb3.p">Dein Garmin auswerfen und neu starten. Unter Karteneinstellungen nur eine Hintergrundkarte aktivieren (Vektorkarte, Pixelkarte oder Luftbild) und dazu das Routen-Overlay. Sind mehrere Hintergrundkarten aktiv, zeichnet dein Garmin alle übereinander, und die Anzeige wird langsam.</span></div></li>
+      </ol></div>
+      <div data-panel="basecamp" hidden><ol class="steps">
+        <li><div><b data-i18n="bc1.h">BaseCamp-Paket herunterladen</b><span data-i18n="bc1.p">Unter <a href="#downloads">Downloads</a> das BaseCamp-Paket (ZIP) wählen und entpacken.</span></div></li>
+        <li><div><b data-i18n="bc2.h">Kartenordner kopieren</b><span data-i18n="bc2.p">Den Ordner mit der Endung <code>.gmap</code> kopieren: unter Windows nach <code>C:\ProgramData\Garmin\Maps\</code>, unter macOS nach <code>~/Library/Application Support/Garmin/Maps/</code>.</span></div></li>
+        <li><div><b data-i18n="bc3.h">BaseCamp neu starten</b><span data-i18n="bc3.p">Die Karte erscheint danach unter „Karten“. Routen planen und an dein Garmin senden.</span></div></li>
+      </ol></div>
+      <div data-panel="pixel" hidden><ol class="steps">
+        <li><div><b data-i18n="pix1.h">Variante wählen</b><span data-i18n="pix1.p">Pixelkarte oder Luftbild, dann die Variante je nach Speicher und Detailstufe. Ist eine Variante in Regionen aufgeteilt, nur die benötigten Regionen herunterladen.</span></div></li>
+        <li><div><b data-i18n="pix2.h">In den Ordner <code>Garmin</code> kopieren</b><span data-i18n="pix2.p">Die IMG-Datei(en) unverändert auf dein Garmin oder seine microSD-Karte kopieren.</span></div></li>
+        <li><div><b data-i18n="pix3.h">Einblenden</b><span data-i18n="pix3.p">Dein Garmin neu starten. Unter Karteneinstellungen die Pixelkarte oder das Luftbild aktivieren und die anderen Hintergrundkarten ausschalten. Das Routen-Overlay kann eingeschaltet bleiben.</span></div></li>
+      </ol></div>
+    </div>
+  </section>
+
+  <section class="alt" id="faq" aria-labelledby="q-title">
+    <div class="wrap">
+      <h2 id="q-title" data-i18n="faq.title">Häufige Fragen</h2>
+      <details><summary data-i18n="q1.q">Ist das eine offizielle Karte von swisstopo oder Garmin?</summary><p data-i18n="q1.a">Nein. Es ist ein unabhängiges Projekt, das die offenen Geodaten von swisstopo (OGD) und SchweizMobil (Open Data) im Garmin-Kartenformat (IMG) bereitstellt. Inoffizielle Umwandlung, nicht von swisstopo herausgegeben.</p></details>
+      <details><summary data-i18n="q7.q">Hat das etwas mit Garmin TOPO Schweiz zu tun?</summary><p data-i18n="q7.a">Nein. Diese Karte ist ein unabhängiges Projekt und hat nichts mit den kostenpflichtigen Karten von Garmin zu tun, etwa <a href="https://www.garmin.com/de-CH/p/730051/" rel="noopener">TOPO Schweiz v2 PRO</a>. Sie ist kostenlos, und jedes Release nennt den Datenstand der verwendeten swisstopo-Daten.</p></details>
+      <details><summary data-i18n="q10.q">Warum gibt es Helvetopo?</summary><p data-i18n="q10.a">Die Geodaten von swisstopo sind offen und gratis. Deshalb machen wir daraus eine Karte für Garmin-Geräte und geben sie ebenfalls gratis weiter. Helvetopo nutzt den aktuellen Datenstand von swisstopo und nennt ihn bei jedem Release. Die Vektorkarte hat Strassennamen, Adresssuche und Routing für Fuss und Velo. Die Pixelkarte wechselt beim Zoomen auf den passenden Massstab, von der Detailkarte bis 1:1 Mio.</p></details>
+      <details><summary data-i18n="q11.q">Wo ist der Haken? Gratis gibt es doch nichts.</summary><p data-i18n="q11.a">Es gibt keinen Haken. Helvetopo verfolgt kein kommerzielles Interesse: keine Werbung, keine Tracker oder Analyse-Dienste, keine Cookies, kein Konto, keine Bezahlversion. Webserver und Download-Speicher protokollieren nur, was der Betrieb technisch braucht (Details in der Datenschutzerklärung). Das Projekt entsteht aus Freude an guten Karten und am Kartenwerk von swisstopo.</p></details>
+      <details><summary data-i18n="q13.q">Brauche ich GitHub oder einen Dienst ausserhalb Europas?</summary><p data-i18n="q13.a">Nein. Zum Herunterladen und Benutzen der Karten läuft alles auf Servern in Europa (Schweiz und EU): das Portal, die Downloads und die Dokumentation zu jedem Release. GitHub brauchst du nur, wenn du Helvetopo selbst bauen oder mitentwickeln willst. Dort liegt der Quellcode. Die Kartendateien liegen nie auf GitHub.</p></details>
+      <details><summary data-i18n="q8.q">Ist Liechtenstein enthalten?</summary><p data-i18n="q8.a">Ja. Die swisstopo-Daten decken auch Liechtenstein ab: Gelände, Strassen, Wege, Namen und Höhenlinien. Die Adresssuche gibt es jedoch nur für die Schweiz, weil das amtliche Gebäudeadressverzeichnis nur Schweizer Adressen enthält.</p></details>
+      <details><summary data-i18n="q2.q">Welche Geräte werden unterstützt?</summary><p data-i18n="q2.a">Getestet ist die Karte bisher nur auf dem GPSMAP und in BaseCamp. Montana, eTrex, epix, fēnix und andere Garmin-Geräte mit Kartenunterstützung lesen dasselbe IMG-Format und sollten ebenfalls funktionieren.</p></details>
+      <details><summary data-i18n="q3.q">Was ist der Unterschied zwischen Vektor- und Pixelkarte?</summary><p data-i18n="q3.a">Die Vektorkarte ist kompakt, durchsuchbar und routingfähig. Die Pixelkarte zeigt das Kartenbild der Landeskarte in mehreren Massstäben, je nach Variante ab 1:10'000, 1:25'000 oder 1:50'000 bis 1:1 Mio. Beim Zoomen wechselt sie automatisch auf den passenden Massstab. Routen kann sie nicht.</p></details>
+      <details><summary data-i18n="q9.q">Wann zeigt mein Garmin welchen Massstab der Pixelkarte?</summary><div class="faq-a" data-i18n="q9.a"><p>Jede Pixelkarte enthält mehrere Massstäbe. Beim Zoomen wechselt dein Garmin automatisch auf den passenden Massstab. Mit der Einstellung Kartendetail „Normal“ gilt ungefähr diese Zuordnung (Zoomanzeige am Garmin, gemessen am GPSMAP 67):</p><div class="tablewrap"><table class="zoomtab"><thead><tr><th>Zoom</th><th>10-1000</th><th>25-1000</th><th>50-1000</th></tr></thead><tbody><tr><td>bis ca. 120 m</td><td>1:10'000</td><td>1:25'000</td><td>1:50'000</td></tr><tr><td>ca. 200–300 m</td><td>1:25'000</td><td>1:25'000</td><td>1:50'000</td></tr><tr><td>ca. 500–800 m</td><td>1:50'000</td><td>1:50'000</td><td>1:50'000</td></tr><tr><td>ca. 1,2 km</td><td>1:100'000</td><td>1:100'000</td><td>1:100'000</td></tr><tr><td>ca. 2–3 km</td><td>1:200'000</td><td>1:200'000</td><td>1:200'000</td></tr><tr><td>ca. 5 km</td><td>1:500'000</td><td>1:500'000</td><td>1:500'000</td></tr><tr><td>ca. 8 km</td><td>1:1 Mio.</td><td>1:1 Mio.</td><td>1:1 Mio.</td></tr></tbody></table></div><p>Unterhalb von ca. 120 m kennt Garmin keine weiteren Stufen. Beim weiteren Hineinzoomen vergrössert dein Garmin nur das Bild. Deshalb erscheint 1:10'000 erst bei sehr starkem Zoom.</p><p>Die Einstellung Kartendetail verschiebt die Wechsel um eine Stufe:</p><ul><li>„Weniger“: Dein Garmin wechselt früher auf den gröberen Massstab. Das hilft, wenn dir die Karte zu klein oder zu fein ist.</li><li>„Mehr“: Der feinere Massstab bleibt länger stehen.</li></ul><p>Am GPSMAP 66/67 liegt die Einstellung laut Handbuch unter Kartenseite → MENU → Karte einrichten → Erweiterte Einrichtung → Kartendetail. Die Bezeichnungen können je nach Gerät und Sprache abweichen.</p><p>Das geplante Luftbild verhält sich gleich. Weil das Foto sehr fein ist (ca. 0,6 m pro Pixel), bleibt es beim Vergrössern länger scharf.</p></div></details>
+      <details><summary data-i18n="q14.q">Warum sehe ich die ÖV-Haltestellen auf dem GPSMAP erst beim Hineinzoomen (ca. 80 m)?</summary><p data-i18n="q14.a">Dein Garmin entscheidet selbst, ab welchem Zoom es einen Punkt zeigt. Diese Grenze hängt von der Art des Punkts ab. Für die Haltestellen im Routen-Overlay liegt sie am GPSMAP 67 bei ca. 80 m. Wir haben andere Punktarten und Einstellungen geprüft. Damit erschienen die Haltestellen am Gerät nicht zuverlässig früher. Bei 80 m ist auch genug Platz für die Namen der Haltestellen. BaseCamp am Computer zeigt die Haltestellen schon früher. Die Bahnhöfe zeigt die Vektorkarte ab ca. 200 m.</p></details>
+      <details><summary data-i18n="q12.q">Warum gibt es Pixelkarte und Luftbild nicht in einer Datei für die ganze Schweiz?</summary><p data-i18n="q12.a">Dein Garmin liest Karten von Speicherkarten im Format FAT32. Dort darf eine einzelne Datei höchstens 4 GB gross sein. Kompakt und das Luftbild Standard passen in eine Datei. Die feineren Varianten sind für die ganze Schweiz grösser, deshalb gibt es sie in zwei Hälften (West und Ost) oder je Region. Lade die Gebiete herunter, die du brauchst, und kopiere sie alle in den Ordner <code>Garmin</code>. BaseCamp am Computer kennt diese Grenze nicht. Darum gibt es dafür ein Paket für die ganze Schweiz.</p></details>
+      <details><summary data-i18n="q4.q">Kann ich damit im Auto navigieren?</summary><p data-i18n="q4.a">Nur eingeschränkt. Die Karte kennt Strassen und Strassenklassen, aber keine Abbiegeverbote. Für Fuss und Velo ist das Routing gedacht, für das Auto taugt es höchstens zur groben Orientierung.</p></details>
+      <details><summary data-i18n="q5.q">Wie aktuell sind die Daten?</summary><p data-i18n="q5.a">Jedes Release nennt den Datenstand der verwendeten Datensätze. Neue Releases erscheinen, wenn swisstopo neue Daten veröffentlicht.</p></details>
+      <details><summary data-i18n="q6.q">Ich habe einen Fehler gefunden.</summary><p data-i18n="q6.a">Schreib eine E-Mail an <a href="mailto:blog_papyri8c@icloud.com">blog_papyri8c@icloud.com</a>. Nenne den Ort und die Zoomstufe und füge einen Screenshot an. Wenn du ein Konto bei GitHub hast, kannst du auch ein Issue eröffnen.</p></details>
+    </div>
+  </section>
+  <section id="datenschutz" aria-labelledby="p-title">
+    <div class="wrap">
+      <details id="priv"><summary><h2 id="p-title" data-i18n="priv.title">Datenschutzerklärung</h2></summary><div class="priv" data-i18n="priv.body"><p>Helvetopo ist ein privates, nicht kommerzielles Projekt. Hier steht, welche Daten beim Besuch dieser Seite und beim Herunterladen der Karten anfallen.</p><h3>Kontakt</h3><p>Verantwortlich ist der Betreiber von Helvetopo. Kontakt: <a href="mailto:blog_papyri8c@icloud.com">blog_papyri8c@icloud.com</a></p><p>Die Kontaktadresse liegt bei iCloud Mail von Apple, einem Anbieter ausserhalb Europas (USA). Wenn du eine E-Mail schreibst, verarbeitet Apple diese Nachricht. Für das Herunterladen und Benutzen der Karten brauchst du keine E-Mail.</p><h3>Wo die Daten liegen</h3><p>Portal, Downloads und die Dokumentation zu jedem Release laufen ausschliesslich auf Servern in Europa. Der Webserver steht bei einem Hosting-Anbieter in Deutschland. Die Kartendateien liegen auf einem Speicher in der Schweiz und gehen verschlüsselt über den Webserver an dich.</p><h3>Was der Webserver protokolliert</h3><p>Bei jedem Aufruf speichert der Webserver:</p><ul><li>die gekürzte IP-Adresse (IPv4 ohne die letzte Zahl, IPv6 nur die ersten 48 Bit)</li><li>Datum und Uhrzeit</li><li>die aufgerufene Adresse, den Statuscode und die übertragene Datenmenge</li><li>die verweisende Seite (Referrer) und die Kennung des Browsers (User-Agent)</li></ul><p>Bei technischen Fehlern schreibt der Webserver zusätzlich ein Fehlerprotokoll. Es kann die vollständige IP-Adresse enthalten.</p><p>Zweck ist der sichere Betrieb: Fehler finden und Missbrauch abwehren. Rechtsgrundlage ist das berechtigte Interesse am sicheren Betrieb (Art. 6 Abs. 1 lit. f DSGVO). Alle Protokolle werden nach 7 Tagen automatisch gelöscht. Wir werten sie nicht zu Profilen aus und geben sie nicht weiter.</p><h3>Was nicht stattfindet</h3><ul><li>keine Cookies</li><li>keine Tracker und keine Analyse-Dienste</li><li>keine Schriften, Skripte oder Bilder von fremden Servern</li><li>kein Konto und keine Anmeldung</li></ul><p>Deine Wahl von Sprache und Farbschema speichert dein Browser lokal (localStorage). Diese Angabe verlässt dein Gerät nicht.</p><h3>Hosting</h3><p>Den Webserver betreibt ein Hosting-Anbieter in Deutschland in unserem Auftrag (Auftragsverarbeiter). Er nutzt die Daten nicht für eigene Zwecke.</p><h3>Links zu anderen Diensten</h3><p>Der Link „Quellcode (GitHub)“ führt zu GitHub in den USA. Diesen Dienst brauchen nur Personen, die Helvetopo selbst bauen oder mitentwickeln. Links zu Garmin führen ebenfalls zu Diensten ausserhalb dieser Seite, teils in den USA. Dort gelten deren Datenschutzbestimmungen. Diese Seite lädt nichts von dort.</p><h3>Deine Rechte</h3><p>Du kannst Auskunft, Berichtigung, Löschung und Einschränkung verlangen und der Verarbeitung widersprechen. Schreib dafür an die Kontaktadresse. Weil die IP-Adressen gekürzt sind, können wir Protokolleinträge meist keiner Person zuordnen. Du kannst dich auch bei einer Aufsichtsbehörde beschweren, in der Schweiz beim EDÖB.</p><p class="fineprint">Stand: November 2026</p></div></details>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap cols">
+    <div>
+      <h4 data-i18n="footer.sources">Quellen</h4>
+      <p class="attr" data-i18n="footer.attribution">Kartendaten: ©swisstopo. Routen: Bundesamt für Strassen, Kanton, Stiftung SchweizMobil.</p>
+      <p class="disc" data-i18n="footer.disclaimer">Inoffizielle Umwandlung, nicht von swisstopo herausgegeben. Auch nicht von SchweizMobil oder Garmin herausgegeben. Garmin®, GPSMAP®, Montana®, eTrex® und fēnix® sind Marken von Garmin Ltd. oder ihren Tochtergesellschaften, eingetragen in den USA und anderen Ländern. BaseCamp™ und epix™ sind Marken von Garmin Ltd. oder ihren Tochtergesellschaften.</p>
+    </div>
+    <div>
+      <h4 data-i18n="footer.project">Projekt</h4>
+      <ul><li><a href="#" class="lic" data-i18n="footer.license">Lizenz</a></li><li><a href="#" class="gh" rel="noopener" data-i18n="footer.source">Quellcode (GitHub)</a></li></ul>
+    </div>
+    <div>
+      <h4 data-i18n="footer.legal">Rechtliches</h4>
+      <ul><li><a href="#datenschutz" data-i18n="footer.privacy">Datenschutz</a></li></ul>
+      <p class="hosting" data-i18n="footer.hosting">Portal, Downloads und Dokumentation laufen ausschliesslich auf Servern in Europa (Schweiz und EU). GitHub brauchst du nur, wenn du Helvetopo selbst bauen willst.</p>
+    </div>
+  </div>
+  <div class="wrap made" data-i18n="footer.made">Swiss made von <a href="https://sackmesser.dev/">sackmesser.dev</a></div>
+</footer>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" data-i18n-attr="aria-label:lb.aria" aria-label="Bildansicht">
+  <button data-i18n-attr="aria-label:lb.close" aria-label="Schliessen">×</button>
+  <div><img alt=""><p></p></div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

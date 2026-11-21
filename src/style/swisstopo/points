@@ -1,0 +1,221 @@
+# -------------------------------------------------------------------
+# Helvetopo – Punkte (mkgmap-Style "swisstopo")
+# Eigene Symbole im Stil der Landeskarte in der TYP-Datei (keine Kopie der DKM-Symbolschrift).
+# Annahmen (Abgleich mit docs/daten/tag-schema.md offen):
+#   swisstopo:objektart  swissNAMES3D/TLM-Objektart, z. B. 'Hauptgipfel', 'Gipfel', 'Huegel',
+#                        'Hoehenkote', 'Flurname', 'Gebiet', 'Kapelle', 'Gipfelkreuz', 'Bildstock'
+# -------------------------------------------------------------------
+
+# Orte (Beschriftung ohne Symbol; Grösse wie LK: Stadt > Dorf > Weiler)
+# Adresspunkte ohne eigenes Symbol trotzdem durch die Finalize-Regeln schicken (Hausnummernsuche)
+addr:housenumber=* { set mkgmap:execute_finalize_rules=true }
+
+
+# City-Typen (Ortssuche, Adressen, MDR) nur in Auflösung 24; in 20–23 zeichnen die Beschriftungspunkte
+# 0x1150d/0x1150e den Ortsnamen (Etappe 22, sonst doppelt). Grössenrang nach population
+# (Einwohnerzahl aus swissBOUNDARIES3D) wie im mkgmap-Default-Style; ohne population nach place.
+# Schreibweise normal: Garmin/BaseCamp wandelt reine Grossbuchstaben in Titelschreibung um.
+(place=city | place=town) & population>=50000 { name '${name}' } [0x0500 resolution 24 continue]
+(place=city | place=town) & population>=20000 & population<50000 { name '${name}' } [0x0700 resolution 24 continue]
+(place=city | place=town) & population>=10000 & population<20000 { name '${name}' } [0x0800 resolution 24 continue]
+place=city & (population!=* | population<10000) { name '${name}' } [0x0400 resolution 24 continue]
+place=town & (population!=* | population<10000) { name '${name}' } [0x0800 resolution 24 continue]
+place=village & population>=3000 { name '${name}' } [0x0a00 resolution 24 continue]
+place=village & (population!=* | population<3000) { name '${name}' } [0x0c00 resolution 24 continue]
+# Beschriftungspunkte für Ortsnamen: Städte/Kleinstädte 0x1150d ab Auflösung 16 (auch Übersicht,
+# Etappe 24), Dörfer 0x1150e ab 21, je bis 23, mit 4×4-Ortsring (BaseCamp verwirft Punkte mit
+# 1×1-Symbol); Städte LargeFont, Dörfer NormalFont. Kein zweiter City-Typ: mkgmap legt je City-Punkt
+# einen eigenen Städte-Eintrag an (unique), Einträge ohne Level-0-Punkt stören die Ortssuche.
+# Erweiterter Typ, nicht im Suchindex.
+# Etappe 28 (Test 22): in der Übersicht gestaffelt nach Einwohnern, sonst verdrängen mittlere Orte
+# die Grossstädte (alle Städte hatten dieselbe Stufe, BaseCamp wählt dann beliebig).
+(place=city | place=town) & population>=100000 { name '${name}' } [0x1150d resolution 12-23]
+(place=city | place=town) & population>=30000 & population<100000 { name '${name}' } [0x1150d resolution 16-23]
+(place=city | place=town) & population>=10000 & population<30000 { name '${name}' } [0x1150d resolution 18-23]
+# Review 2 (Übersicht 3–5 km zu leer, Mass SMR200): ohne population über swissNAMES3D-Einwohnerkategorie;
+# Dörfer ab 2000 Einwohnern ab 18, ab 1000 ab 19 (LK200 zeigt fast alle Dörfer).
+(place=city | place=town) & swisstopo:einwohnerkategorie~'.*(10|50|100).000.*' { name '${name}' } [0x1150d resolution 18-23]
+place=city | place=town  { name '${name}' } [0x1150d resolution 20-23]
+place=village & swisstopo:einwohnerkategorie~'2.000 bis.*' { name '${name}' } [0x1150e resolution 18-23]
+place=village & swisstopo:einwohnerkategorie~'1.000 bis.*' { name '${name}' } [0x1150e resolution 19-23]
+place=village            { name '${name}' } [0x1150e resolution 20-23]
+place=hamlet             { name '${name}' } [0x0e00 resolution 22]
+# Quartiere, die als Ortszentrum mit dem Ortsnamen konkurrieren (Test 15: „Innenstadt“ verdrängt
+# „ST. GALLEN“), erst ab Auflösung 23; alle übrigen ab 22.
+(place=suburb | place=quarter | place=neighbourhood) & name~'(?i)(Innenstadt|Altstadt|Stadtzentrum|Zentrum|Dorfzentrum|Dorfkern|Dorf|Stadt|City)'
+    { name '${name}' } [0x2800 resolution 23]
+place=suburb | place=quarter { name '${name}' } [0x0f00 resolution 22]
+place=neighbourhood      { name '${name}' } [0x2800 resolution 22]
+place=isolated_dwelling | place=farm { name '${name}' } [0x1100 resolution 23]
+# Namen von Plätzen und Kreiseln (vector-convert: Namenpunkt aus TLM-Strassennamen), wie LK ab 1:25 000
+place=square | swisstopo:namenpunkt=platz { name '${name}' } [0x2800 resolution 23]
+# Test 24: swissNAMES3D-Namen, die die LK25 nicht beschriftet (vector-convert: swisstopo:lk_text=no; mit
+# LK-Text an die SMV25-Textposition verschoben, lk_text=yes), erst in Auflösung 24. So folgt die Karte der
+# Freistellung der LK (Bsp. Flurname „Oberhof“ 17 m neben „Burgruine Helfenberg“). Suche bleibt unverändert.
+# Namenklassen (swisstopo:namenklasse, src/vector/labelclass.py): 1 = SMV1000, 2 = SMV500, 3 = swissTLMRegio.
+# Vor den lk_text-Regeln: ein Name aus den kleineren Massstäben erscheint auch ohne LK25-Text früh.
+swisstopo:namenklasse=1 & name=* & (place=region | place=area) { name '${name}' } [0x6602 resolution 16]
+swisstopo:namenklasse=1 & name=* & natural=valley { name '${name}' } [0x6617 resolution 16]
+swisstopo:namenklasse=1 & name=* & (natural=ridge | natural=arete) { name '${name}' } [0x6613 resolution 16]
+swisstopo:namenklasse=1 & name=* & natural=mountain_range { name '${name}' } [0x6611 resolution 16]
+swisstopo:namenklasse=2 & name=* & (place=region | place=area) { name '${name}' } [0x6602 resolution 18]
+swisstopo:namenklasse=2 & name=* & natural=valley { name '${name}' } [0x6617 resolution 18]
+swisstopo:namenklasse=2 & name=* & (natural=ridge | natural=arete) { name '${name}' } [0x6613 resolution 18]
+swisstopo:namenklasse=2 & name=* & natural=mountain_range { name '${name}' } [0x6611 resolution 18]
+swisstopo:namenklasse=3 & name=* & (place=region | place=area) { name '${name}' } [0x6602 resolution 20]
+swisstopo:namenklasse=3 & name=* & natural=valley { name '${name}' } [0x6617 resolution 20]
+swisstopo:namenklasse=3 & name=* & (natural=ridge | natural=arete) { name '${name}' } [0x6613 resolution 20]
+swisstopo:namenklasse=3 & name=* & natural=mountain_range { name '${name}' } [0x6611 resolution 20]
+swisstopo:lk_text=no & (place=locality | swisstopo:objektart=Flurname) { name '${name}' } [0x2800 resolution 24]
+swisstopo:lk_text=no & (place=region | place=area | swisstopo:objektart=Gebiet | swisstopo:objektart=Landschaftsname) { name '${name}' } [0x6602 resolution 24]
+swisstopo:lk_text=no & natural=valley { name '${name}' } [0x6617 resolution 24]
+swisstopo:lk_text=no & (natural=ridge | natural=arete) { name '${name}' } [0x6613 resolution 24]
+place=locality | swisstopo:objektart=Flurname { name '${name}' } [0x2800 resolution 23]
+place=region | place=area | swisstopo:objektart=Gebiet | swisstopo:objektart=Landschaftsname { name '${name}' } [0x6602 resolution 21]
+natural=valley           { name '${name}' } [0x6617 resolution 22]
+natural=mountain_range   { name '${name}' } [0x6611 resolution 20]
+
+# Massiv mit Hauptgipfel (src/vector/names.py): Suchpunkt am höchsten Gipfel, eigener unsichtbarer Typ
+# ohne Schrift, nur in 24 (die Suche findet ihn). In 20–21 verdrängte er auf dem GPSMAP 67 trotz NoLabel
+# den Namen des Gipfels am selben Ort (Gerätetest 7794-klassen2: Säntis nur mit Kote).
+swisstopo:objektart=Massiv & swisstopo:hauptgipfel=* { name '${name}' } [0x6612 resolution 24]
+
+# Gipfel, Pässe, Höhenkoten (LK: schwarzer Punkt mit Kote)
+# Etappe 29: Label nur der Name (sauberer Suchindex; „Matterhorn\x1f14692“ fand BaseCamp nicht).
+# Die Höhe steht als eigene Kote (0x11510 Klassen 1 und 2, sonst 0x1150f), siehe Gipfelklassen.
+# SMV25-Koten liegen praktisch nie auf dem Gipfelpunkt (CH: 7 von 12 529 Gipfeln/Pässen mit Kote
+# < 100 m, Matterhorn 280 m), deshalb ohne Doppelprüfung.
+# Gipfelklassen (swisstopo:gipfelklasse aus src/vector/peaks.py, nach den Landeskarten-Massstäben):
+# 1 = in SMV1000, 2 = in SMV500, 3 = in swissTLMRegio, 4 = übrige. Name ab 18/20/21/22 (Hügel 4: 23).
+# Klasse 1 hat in 18–21, Klasse 2 in 20–21, Klasse 3 in 21 die Kote im Label des Gipfels („Säntis 2502“).
+# Als eigener Punkt lag die Kote oft in einer anderen Unterteilung als der Name. Das GPSMAP 67 zeichnete
+# dann die Kote und verwarf den Namen (Gerätetest 7794-klassen2). Die Suche liest nur die Punkte der
+# Auflösung 24, dort ist das Label nur der Name. Ein Punkt nur mit Namen in 18 geht nicht: mkgmap legt
+# ihn mit dem gleichen Punkt ab 22 zusammen (gleicher Typ, Name und Ort), und Auflösung 18 bleibt leer.
+# Ab 22 ist die Kote ein eigener Punkt (swisstopo:gipfelkote=r, 12 Einheiten unter dem Gipfel; am selben
+# Punkt zeigte das GPSMAP 67 nur den Namen), Klassen 1 und 2 mit grosser Schrift (0x11510). Die
+# Kotenpunkte 19–21 bleiben ohne Regel.
+swisstopo:gipfelkote=22 & (swisstopo:gipfelklasse=1 | swisstopo:gipfelklasse=2) { name '${ele}' } [0x11510 resolution 22-22]
+swisstopo:gipfelkote=22 { name '${ele}' } [0x1150f resolution 22-22]
+swisstopo:gipfelkote=23 & (swisstopo:gipfelklasse=1 | swisstopo:gipfelklasse=2) { name '${ele}' } [0x11510 resolution 23-23]
+swisstopo:gipfelkote=23 { name '${ele}' } [0x1150f resolution 23-23]
+swisstopo:gipfelkote=24 & (swisstopo:gipfelklasse=1 | swisstopo:gipfelklasse=2) { name '${ele}' } [0x11510 resolution 24]
+swisstopo:gipfelkote=24 { name '${ele}' } [0x1150f resolution 24]
+# Gipfel ohne Namen: Kote am Gipfelpunkt
+(natural=peak | natural=hill) & name!=* & ele=* { name '${ele}' } [0x1150f resolution 22]
+# Pässe mit Namen: Kote als eigener Punkt (swisstopo:gipfelkote, wie Gipfel), hier nur Pässe ohne Namen
+(natural=saddle | mountain_pass=yes) & ele=* & name!=* & natural!=peak & natural!=hill
+    { name '${ele}' } [0x1150f resolution 22 continue]
+(natural=peak | natural=hill) & name=* & ele=* & swisstopo:gipfelklasse=1 { name '${name} ${ele}' } [0x6616 resolution 18-21 continue]
+(natural=peak | natural=hill) & name=* & ele=* & swisstopo:gipfelklasse=2 { name '${name} ${ele}' } [0x6616 resolution 20-21 continue]
+(natural=peak | natural=hill) & name=* & ele=* & swisstopo:gipfelklasse=3 { name '${name} ${ele}' } [0x6616 resolution 21-21 continue]
+(natural=peak | natural=hill) & name=* & ele=* & (swisstopo:gipfelklasse=1 | swisstopo:gipfelklasse=2 | swisstopo:gipfelklasse=3)
+    { name '${name}' } [0x6616 resolution 22]
+(natural=peak | natural=hill) & name=* & swisstopo:gipfelklasse=1 { name '${name}' } [0x6616 resolution 18]
+(natural=peak | natural=hill) & name=* & swisstopo:gipfelklasse=2 { name '${name}' } [0x6616 resolution 20]
+(natural=peak | natural=hill) & name=* & swisstopo:gipfelklasse=3 { name '${name}' } [0x6616 resolution 21]
+natural=peak & name=*    { name '${name}' } [0x6616 resolution 22]
+natural=hill & name=*    { name '${name}' } [0x6616 resolution 23]
+natural=ridge | natural=arete { name '${name}' } [0x6613 resolution 22]
+# Passklassen (swisstopo:passklasse, src/vector/peaks.py): 1 = SMV1000, 2 = SMV500, 3 = swissTLMRegio, 4 = übrige
+# Grundstufe Klasse 1 ab 19, 2 ab 20, 3 ab 21, übrige ab 22. Ein Pass darf einen Gipfel der Klasse 1 nicht
+# verdrängen: Das GPSMAP 67 zeichnet den Pass oft zuerst, und sein Label reicht weit nach rechts
+# (Gerätetest 7794-klassen3: „Schwägalp Passhöhe“, 3 km vom Säntis, verdeckte ihn). Darum erscheint ein
+# Pass erst, wenn der Abstand zum nächsten Gipfel der Klasse 1 (swisstopo:gipfelabstand, Meter) grösser
+# ist als die Labelbreite: 19 18 km, 20 9 km, 21 4,5 km. Ab 22 gilt keine Grenze. Je Pass genau eine
+# Regel mit offenem Bereich (mkgmap legt gleiche Punkte verschiedener Stufen zusammen).
+(natural=saddle | mountain_pass=yes) & name=* & swisstopo:passklasse=1 & (swisstopo:gipfelabstand!=* | swisstopo:gipfelabstand>=18000) { name '${name}' } [0x660b resolution 19]
+(natural=saddle | mountain_pass=yes) & name=* & swisstopo:passklasse=1 & swisstopo:gipfelabstand>=9000 { name '${name}' } [0x660b resolution 20]
+(natural=saddle | mountain_pass=yes) & name=* & swisstopo:passklasse=1 & swisstopo:gipfelabstand>=4500 { name '${name}' } [0x660b resolution 21]
+(natural=saddle | mountain_pass=yes) & name=* & swisstopo:passklasse=2 & (swisstopo:gipfelabstand!=* | swisstopo:gipfelabstand>=9000) { name '${name}' } [0x660b resolution 20]
+(natural=saddle | mountain_pass=yes) & name=* & swisstopo:passklasse=2 & swisstopo:gipfelabstand>=4500 { name '${name}' } [0x660b resolution 21]
+(natural=saddle | mountain_pass=yes) & name=* & swisstopo:passklasse=3 & (swisstopo:gipfelabstand!=* | swisstopo:gipfelabstand>=4500) { name '${name}' } [0x660b resolution 21]
+(natural=saddle | mountain_pass=yes) & name=* { name '${name}' } [0x660b resolution 22]
+# Höhenkoten als erweiterter Typ 0x1150f (Punkt + Zahl in Metern wie die LK). 0x6300 zeichnete
+# BaseCamp weder mit 0x1f-Höhenfeld noch mit reiner Fusszahl (Test 11/11b).
+# Höhenkoten gestaffelt (swisstopo:koten_rang aus src/dem/smv25_heights.py): Rang 1 ≥ 2,5 km Abstand,
+# Rang 2 ≥ 1 km, Rang 3 alle übrigen (LK25-Dichte ~4,8 je km²)
+# Reine Koten nach den Gipfelkoten: Rang 1 ab 21, Rang 2 ab 22, übrige ab 23 (Gerätetest 7794-klassen)
+natural=spot_height & swisstopo:koten_rang=1 { name '${ele}' } [0x1150f resolution 21]
+natural=spot_height & swisstopo:koten_rang=2 { name '${ele}' } [0x1150f resolution 22]
+swisstopo:objektart=Hoehenkote | swisstopo:objektart='Höhenkote' | (natural=spot_height) { name '${ele}' } [0x1150f resolution 23]
+natural=cave_entrance    { name '${name}' } [0x6601 resolution 22]  # Review 1: früher (Salpeterhöhle)
+natural=stone | swisstopo:objektart=Felsblock { name '${name}' } [0x6614 resolution 24]
+natural=tree             [0x1150c resolution 23]
+# Gletschernamen nach Namenklasse: 1 ab 18, 2 ab 19, 3 ab 20, übrige ab 21. Ohne Namen kein Punkt
+# (sonst leere „Gletschername“-Treffer in der Suche aus --add-pois-to-areas)
+natural=glacier & name=* & swisstopo:namenklasse=1 { name '${name}' } [0x650a resolution 18]
+natural=glacier & name=* & swisstopo:namenklasse=2 { name '${name}' } [0x650a resolution 19]
+natural=glacier & name=* & swisstopo:namenklasse=3 { name '${name}' } [0x650a resolution 20]
+natural=glacier & name=* { name '${name}' } [0x650a resolution 21]
+
+# Gewässer (blau)
+natural=spring           { name '${name}' } [0x6511 resolution 23]
+waterway=waterfall       { name '${name}' } [0x6508 resolution 22]
+amenity=drinking_water | amenity=fountain | man_made=water_well { name '${name}' } [0x5000 resolution 24]
+# Seenamen nach Namenklasse (Punkte place=lake aus swissNAMES3D): 1 ab 16, 2 ab 18, 3 ab 20, übrige ab 22
+place=lake & name=* & swisstopo:namenklasse=1 { name '${name}' } [0x650d resolution 16-23]
+place=lake & name=* & swisstopo:namenklasse=2 { name '${name}' } [0x650d resolution 18-23]
+place=lake & name=* & swisstopo:namenklasse=3 { name '${name}' } [0x650d resolution 20-23]
+place=lake & name=* & swisstopo:namenklasse=* { name '${name}' } [0x650d resolution 22-23]
+(place=lake | swisstopo:namenpunkt=see) & name=* { name '${name}' } [0x650d resolution 16-23]
+# Seefläche mit Namen: Label kommt vom Seepunkt (place=lake), kein zweiter Punkt aus der Fläche
+natural=water & name=* & swisstopo:namenklasse!=* & mkgmap:area2poi!=true { name '${name}' } [0x650d resolution 22]
+
+# Bauten und Einzelobjekte
+summit:cross=yes | man_made=cross | swisstopo:objektart=Gipfelkreuz [0x11503 resolution 23]
+amenity=place_of_worship & (building=chapel | swisstopo:objektart=Kapelle) { name '${name}' } [0x2c0b resolution 23]
+amenity=place_of_worship { name '${name}' } [0x6404 resolution 22]
+historic=wayside_shrine | historic=wayside_cross | swisstopo:objektart=Bildstock [0x11504 resolution 24]
+historic=memorial | historic=monument | swisstopo:objektart=Denkmal { name '${name}' } [0x11505 resolution 24]
+historic=castle | historic=ruins { name '${name}' } [0x2c02 resolution 22]
+# Review 1: Burgruinen und Burgen kommen aus TLM als Historisches Areal (historic=yes) mit Namen.
+historic=yes & name ~ '.*([Rr]uine|[Bb]urg|Schloss|Château|Castello).*' { name '${name}' } [0x2c02 resolution 22]
+man_made=tower & tower:type=observation { name '${name}' } [0x2c04 resolution 22]
+man_made=tower & tower:type=bell_tower { name '${name}' } [0x6404 resolution 22]
+man_made=tower & tower:type=communication | man_made=mast | man_made=antenna [0x11501 resolution 23]
+man_made=water_tower     [0x11507 resolution 24]
+man_made=chimney         [0x11506 resolution 24]
+man_made=tower           { name '${name}' } [0x6411 resolution 23]
+power=generator & generator:source=wind [0x11502 resolution 23]
+man_made=survey_point    { name '${ele}' } [0x11508 resolution 24]
+tourism=viewpoint        { name '${name}' } [0x5200 resolution 22]
+historic=boundary_stone  [0x1150b resolution 24]
+highway=motorway_junction { name '${ref} ${name}' | '${name}' | '${ref}' } [0x2000 resolution 22]
+
+# Die Basiskarte zeigt nur Punkte, die auch die LK 1:25'000 zeigt (Entscheid des Benutzers). Hotels,
+# Parkplätze, Toiletten und die Haltestellen von Bus, Schiff und Seilbahn stehen im Routen-Overlay.
+# Gastgewerbe nur „Gasthof abgelegen“ (LK-Fahne), Berghütten und Camping wie die LK.
+tourism=alpine_hut | tourism=wilderness_hut { name '${name}' } [0x2b04 resolution 21]
+tourism=camp_site        { name '${name}' } [0x2b03 resolution 22]
+(amenity=restaurant | amenity=cafe | amenity=pub) & swisstopo:nutzung='Gasthof abgelegen' { name '${name}' } [0x2a00 resolution 23]
+
+# Bahnhöfe erst ab 24 (etwa 200 m): ab 22 erschienen sie zu früh und verdrängten Ortsnamen (Gerätetest
+# 7794-klassen3: „Appenzell Meistersrüte“ bei 3 km so früh wie Gais; 7794-klassen4: noch zu früh).
+# Haltestellen von Bus, Postauto, Schiff und Seilbahn stehen im Routen-Overlay, nicht in der Basiskarte.
+# swissTLM3D trennt die Haltestellen nach Objektart (Bahn, Bus, Schiff, Seilbahn, übrige Bahnen).
+# Tramhalte (swisstopo:oev=tram aus vector-convert) gehören wie Bushalte ins Overlay.
+(railway=station | railway=halt) & swisstopo:oev!=tram { name '${name}' } [0x2f08 resolution 24]
+aeroway=aerodrome        { name '${name}' } [0x5902 resolution 20]
+aeroway=helipad | aeroway=heliport { name '${name}' } [0x5904 resolution 23]
+barrier=gate | barrier=lift_gate | barrier=bollard | swisstopo:objektart=Durchfahrtssperre [0x1150a resolution 24]
+
+# Versorgung
+amenity=hospital         { name '${name}' } [0x3002 resolution 22]
+
+# Objektnamen als 0x2800 (Standardtyp „Label“, zeichnet BaseCamp nachweislich; 0x6402 mit
+# unsichtbarem Symbol wurde verworfen, Test 16).
+# LK-Beschriftungen aus den SMV25-Annotation-Layern (T07 Gebäude, T08/T10 Bauten, T25–T27 Areale),
+# von vector-convert als Namenpunkt mit swisstopo:anno=<layer> geliefert (Text wie in der LK:
+# „Eishalle“, „Kloster“, „Burgstelle“, „KW“). Haben Vorrang vor den amtlichen Areal-Namen.
+swisstopo:anno=* & name=* { name '${name}' } [0x2800 resolution 23]
+# Namen von Arealen (Namenpunkte aus TLM-Arealen: Schule, Kloster, Historisches Areal, Bad,
+# Kraftwerk, ARA, Messe …) wie die LK nur als Schrift; ARA wie in der LK nur mit „ARA“.
+man_made=wastewater_plant & swisstopo:layer~'tlm_areale_.*' { name 'ARA' } [0x2800 resolution 23]
+name=* & swisstopo:layer~'tlm_areale_.*'  { name '${name}' } [0x2800 resolution 23]
+# Namen von Gebäuden (swissNAMES3D-Gebäudepunkte), nur Schrift
+building=* & name=*      { name '${name}' } [0x2800 resolution 23]
+
+<finalize>
+# Läuft für jedes Element, für das oben ein Typ gefunden wurde (bzw. execute_finalize_rules=true)
+include 'inc/address';

@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Fehler in den Quelldaten (swisstopo)
+    url: https://www.swisstopo.admin.ch/de/kontakt
+    about: Falsche Wege, Namen oder Gebäude in den swisstopo-Daten direkt dort melden.

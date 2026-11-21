@@ -1,0 +1,67 @@
+# Routing-Präferenz Wanderwege / Veloland (docs/vektor/routing.md)
+# Eingebunden in lines direkt nach Abschnitt 1 (road-class/road-speed aus highway).
+#
+# Garmin kennt je Kante nur EINE Strassenklasse und EINE Geschwindigkeitsklasse für alle
+# Verkehrsmittel. Damit das Auto-Routing unverändert bleibt, ändern die Standardregeln
+# Klasse/Geschwindigkeit nur auf Kanten, die für Autos gesperrt sind (mkgmap:car=no, aus inc/access),
+# und setzen auf Strassen mit Autoverkehr höchstens das Maut-Flag (A5, wirkt nur bei „Maut vermeiden“).
+#
+# Schalter (mkgmap --style-option, Build-Variable STYLE_OPTIONS):
+#   routing_pref=off    alle Regeln aus (Stand vor dem Prototyp, Vergleichsbuild)
+#   routing_pref=velo   zusätzlich Velo-Variante: verändert auch Strassen mit Autoverkehr,
+#                       nur für eine eigene Velo-Karte (eigene FID), nicht für die Basiskarte
+#   velo_toll=off       kein Maut-Flag (A4 Fusswege, A5 Hauptstrassen ohne Veloroute)
+#   velo_toll=stark     zusätzlich A5b: Maut-Flag auf tertiary ohne Veloroute
+
+# --- A. Autofreie Kanten (wirkt nicht aufs Auto-Routing) -------------------------------------
+# A1: Veloland/Mountainbikeland national/regional: schneller und eine Klasse höher, damit Garmin
+#     sie auch auf längeren Routen (Klassenhierarchie) nutzt.
+mkgmap:option:routing_pref!=off & mkgmap:car=no & highway=* & highway!=steps & highway!=via_ferrata
+  & (route_bicycle=national | route_bicycle=regional | route_mtb=national | route_mtb=regional)
+  { set mkgmap:road-speed-class=3; set mkgmap:road-class=1; set tmp:rp=velo }
+# A2: lokale Velo-/MTB-Routen und Velowege ohne Route
+mkgmap:option:routing_pref!=off & mkgmap:car=no & tmp:rp!=* & highway=* & highway!=steps & highway!=via_ferrata
+  & (route_bicycle=* | route_mtb=* | highway=cycleway)
+  { set mkgmap:road-speed-class=2; set tmp:rp=velo }
+# A3: markierte Wander- und Bergwanderwege vor unmarkierten Pfaden (Stufe 0 → 1). Fahrwege
+#     (track, schon Stufe 1) bleiben, sonst zögen sie Velos gleich stark an wie Veloland.
+mkgmap:option:routing_pref!=off & mkgmap:car=no & tmp:rp!=*
+  & (swisstopo:wanderweg=Wanderweg | swisstopo:wanderweg=Bergwanderweg)
+  & (highway=path | highway=footway | highway=bridleway | highway=pedestrian)
+  { set mkgmap:road-speed-class=1; set tmp:rp=wander }
+# A4: Maut-Flag auf autofreien Pfaden ohne Velo-/MTB-Route (Wanderwege, Fusswege, Treppen).
+#     Im Velo-/MTB-Profil „Mautstrassen vermeiden“ einschalten → Velo bleibt auf Velorouten,
+#     Strassen und Fahrwegen. Fuss-/Wanderprofil ohne diese Vermeidung bleibt unberührt.
+#     Autos dürfen diese Kanten ohnehin nicht befahren (keine Wirkung aufs Auto-Routing).
+mkgmap:option:routing_pref!=off & mkgmap:option:velo_toll!=off & mkgmap:car=no & tmp:rp!=velo
+  & (highway=path | highway=footway | highway=steps | highway=via_ferrata | highway=bridleway)
+  { set mkgmap:toll=yes }
+
+# --- A5. Maut-Flag auf Hauptstrassen ohne Velo-/MTB-Route (Strassen MIT Autoverkehr) ------------
+# Wirkt nur in Profilen mit „Mautstrassen vermeiden“ (Velo/MTB). Das Auto-Routing ändert sich nur,
+# wenn jemand im Auto-Profil Maut meidet (swissTLM3D kennt keine Maut; Gr. St. Bernhard/Munt la Schera ungekennzeichnet),
+# README/Kartenbeschreibung sagen: im Auto- und Wanderprofil „Maut vermeiden“ ausschalten.
+mkgmap:option:routing_pref!=off & mkgmap:option:velo_toll!=off & route_bicycle!=* & route_mtb!=*
+  & highway~'trunk|trunk_link|primary|primary_link|secondary|secondary_link'
+  { set mkgmap:toll=yes }
+# A5b (nur velo_toll=stark, Vorschlag nach BaseCamp-Test 25): auch Verbindungsstrassen (tertiary) ohne
+# Velo-/MTB-Route. Im Testgebiet 195 km. Velo bleibt dann zwischen den Orten auf dem V-Netz statt auf
+# Kantonsstrassen; Start/Ziel an solchen Strassen bleiben erreichbar (Vermeidung, kein Verbot).
+mkgmap:option:routing_pref!=off & mkgmap:option:velo_toll=stark & route_bicycle!=* & route_mtb!=*
+  & highway~'tertiary|tertiary_link'
+  { set mkgmap:toll=yes }
+
+# --- A6. Veloland ohne Unpaved-Flag -------------------------------------------------------------
+# Steht in lines direkt nach der Belag-Regel (Abschnitt 2), weil mkgmap:unpaved erst dort gesetzt wird.
+# Grund: BaseCamp hat im Velo-Profil „unbefestigt vermeiden“ standardmässig aktiv; 19 % des Velolands
+# im Testgebiet sind Naturbelag. Mit Flag wich die Route St. Gallen → Wil auf 53 km aus (Test 2026-11-04).
+
+# --- B. Velo-Variante (nur mit --style-option=routing_pref=velo, eigene Karte) ----------------
+# B1: Velorouten auf Strassen mit Autoverkehr eine Stufe schneller (max. 4)
+mkgmap:option:routing_pref=velo & mkgmap:car!=no & route_bicycle=* & highway~'residential|service|unclassified|track|living_street'
+  { set mkgmap:road-speed-class=3 }
+mkgmap:option:routing_pref=velo & mkgmap:car!=no & route_bicycle=* & highway~'tertiary|tertiary_link'
+  { set mkgmap:road-speed-class=4 }
+# B2: Hauptstrassen ohne Veloroute langsamer und mit Maut-Flag (Velo meidet sie)
+mkgmap:option:routing_pref=velo & route_bicycle!=* & route_mtb!=* & highway~'primary|secondary|primary_link|secondary_link'
+  { set mkgmap:road-speed-class=2; set mkgmap:toll=yes }

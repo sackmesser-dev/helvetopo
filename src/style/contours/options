@@ -1,0 +1,3 @@
+# Zoomstufen der Höhenlinien-Overlay-Karte (FID 7703).
+# Level 0 (24) volle Dichte, Level 1 (22) 50/100 m, Level 2 (20) nur 100-m-Zählkurven.
+levels = 0:24, 1:22, 2:20

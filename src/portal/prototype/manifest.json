@@ -1,0 +1,747 @@
+{
+ "_hinweis": "Beispieldaten (Prototyp). Die Pipeline schreibt diese Datei beim Release, Struktur siehe docs/build/portal.md. Die Grössen der Geräte-IMGs stammen aus dem Schweiz-Build 2026-11. BaseCamp-Grössen, Prüfsummen und Ausgaben sind Platzhalter. Texte stehen nicht hier, sondern in i18n/<sprache>.json.",
+ "schema": 2,
+ "release": "2026-11",
+ "date": "2026-11-04",
+ "prefix": "Helvetopo",
+ "baseUrl": "files/2026-11/",
+ "repo": {
+  "url": "https://github.com/sackmesser-dev/helvetopo",
+  "ref": "v2026-11"
+ },
+ "checksums": "Helvetopo_2026-11_SHA256SUMS.txt",
+ "attribution": {
+  "swisstopo": "©swisstopo",
+  "astra": "Bundesamt für Strassen, Kanton, Stiftung SchweizMobil"
+ },
+ "sources": [
+  {
+   "id": "swisstlm3d",
+   "title": "swissTLM3D",
+   "edition": "2026",
+   "date": "2026-02-01",
+   "stac": "ch.swisstopo.swisstlm3d",
+   "prominent": true
+  },
+  {
+   "id": "swissnames3d",
+   "title": "swissNAMES3D",
+   "edition": "2026",
+   "date": "2026-02-01",
+   "stac": "ch.swisstopo.swissnames3d",
+   "prominent": true
+  },
+  {
+   "id": "gebaeudeadressen",
+   "title": "Amtliches Gebäudeadressverzeichnis",
+   "date": "2026-10-28",
+   "stac": "ch.swisstopo.amtliches-gebaeudeadressverzeichnis",
+   "prominent": true
+  },
+  {
+   "id": "strassenverzeichnis",
+   "title": "Amtliches Strassenverzeichnis",
+   "date": "2026-10-28",
+   "stac": "ch.swisstopo.amtliches-strassenverzeichnis",
+   "prominent": true
+  },
+  {
+   "id": "smr10",
+   "title": "Swiss Map Raster 10",
+   "edition": "2019–2025",
+   "stac": "ch.swisstopo.landeskarte-farbe-10",
+   "prominent": true
+  },
+  {
+   "id": "smr25",
+   "title": "Swiss Map Raster 25",
+   "edition": "2019–2025",
+   "stac": "ch.swisstopo.pixelkarte-farbe-pk25.noscale",
+   "prominent": true
+  },
+  {
+   "id": "smr50",
+   "title": "Swiss Map Raster 50",
+   "edition": "2019–2025",
+   "stac": "ch.swisstopo.pixelkarte-farbe-pk50.noscale",
+   "prominent": true
+  },
+  {
+   "id": "smr100",
+   "title": "Swiss Map Raster 100",
+   "edition": "2022",
+   "stac": "ch.swisstopo.pixelkarte-farbe-pk100.noscale",
+   "prominent": true
+  },
+  {
+   "id": "smr200",
+   "title": "Swiss Map Raster 200",
+   "edition": "2022",
+   "stac": "ch.swisstopo.pixelkarte-farbe-pk200.noscale",
+   "prominent": true
+  },
+  {
+   "id": "smr500",
+   "title": "Swiss Map Raster 500",
+   "edition": "2022",
+   "stac": "ch.swisstopo.pixelkarte-farbe-pk500.noscale",
+   "prominent": true
+  },
+  {
+   "id": "smr1000",
+   "title": "Swiss Map Raster 1000",
+   "edition": "2022",
+   "stac": "ch.swisstopo.pixelkarte-farbe-pk1000.noscale",
+   "prominent": true
+  },
+  {
+   "id": "swissimage",
+   "title": "SWISSIMAGE 10 cm",
+   "edition": "2025",
+   "stac": "ch.swisstopo.swissimage-dop10",
+   "prominent": true
+  },
+  {
+   "id": "swissalti3d",
+   "title": "swissALTI3D",
+   "edition": "2024",
+   "date": "2024-12-01",
+   "stac": "ch.swisstopo.swissalti3d"
+  },
+  {
+   "id": "smv25",
+   "title": "Swiss Map Vector 25",
+   "edition": "2025",
+   "stac": "ch.swisstopo.swiss-map-vector25"
+  },
+  {
+   "id": "swissboundaries3d",
+   "title": "swissBOUNDARIES3D",
+   "edition": "2026",
+   "date": "2026-01-01",
+   "stac": "ch.swisstopo.swissboundaries3d"
+  },
+  {
+   "id": "schweizmobil",
+   "title": "SchweizMobil",
+   "date": "2026-10-30",
+   "stac": "ch.astra.wanderland"
+  }
+ ],
+ "regions": [
+  {
+   "id": "ostschweiz"
+  },
+  {
+   "id": "zuerich"
+  },
+  {
+   "id": "zentralschweiz"
+  },
+  {
+   "id": "graubuenden"
+  },
+  {
+   "id": "tessin"
+  },
+  {
+   "id": "nordwestschweiz"
+  },
+  {
+   "id": "bern"
+  },
+  {
+   "id": "genfersee"
+  },
+  {
+   "id": "wallis"
+  },
+  {
+   "id": "west",
+   "members": [
+    "genfersee",
+    "bern",
+    "nordwestschweiz",
+    "wallis"
+   ]
+  },
+  {
+   "id": "ost",
+   "members": [
+    "zuerich",
+    "ostschweiz",
+    "graubuenden",
+    "zentralschweiz",
+    "tessin"
+   ]
+  },
+  {
+   "id": "genfersee-west"
+  },
+  {
+   "id": "genfersee-ost"
+  },
+  {
+   "id": "bern-west"
+  },
+  {
+   "id": "bern-mitte"
+  },
+  {
+   "id": "bern-ost"
+  },
+  {
+   "id": "luftbild-nordwestschweiz"
+  },
+  {
+   "id": "wallis-west"
+  },
+  {
+   "id": "wallis-ost"
+  },
+  {
+   "id": "zuerich-west"
+  },
+  {
+   "id": "zuerich-ost"
+  },
+  {
+   "id": "luftbild-ostschweiz"
+  },
+  {
+   "id": "graubuenden-nord"
+  },
+  {
+   "id": "graubuenden-mitte"
+  },
+  {
+   "id": "graubuenden-sued"
+  },
+  {
+   "id": "zentralschweiz-west"
+  },
+  {
+   "id": "zentralschweiz-ost"
+  },
+  {
+   "id": "tessin-nord"
+  },
+  {
+   "id": "tessin-sued"
+  },
+  {
+   "id": "pixel10-west",
+   "members": [
+    "genfersee",
+    "bern",
+    "nordwestschweiz"
+   ]
+  },
+  {
+   "id": "pixel10-sued",
+   "members": [
+    "wallis",
+    "tessin"
+   ]
+  },
+  {
+   "id": "pixel10-mitte",
+   "members": [
+    "zuerich",
+    "zentralschweiz"
+   ]
+  },
+  {
+   "id": "pixel10-ost",
+   "members": [
+    "ostschweiz",
+    "graubuenden"
+   ]
+  }
+ ],
+ "groups": [
+  {
+   "id": "vektor",
+   "recommended": true
+  },
+  {
+   "id": "routen"
+  },
+  {
+   "id": "pixel",
+   "experimental": true
+  },
+  {
+   "id": "luftbild",
+   "experimental": true
+  }
+ ],
+ "products": [
+  {
+   "id": "vektor",
+   "group": "vektor",
+   "kind": "vektor",
+   "fid": 7701,
+   "area": "schweiz",
+   "sources": [
+    "swisstlm3d",
+    "swissnames3d",
+    "gebaeudeadressen",
+    "strassenverzeichnis",
+    "swissalti3d",
+    "smv25",
+    "swissboundaries3d",
+    "schweizmobil"
+   ],
+   "docs": {
+    "readme": "info/vektor/README.md",
+    "license": "info/LICENSE-KARTEN.md",
+    "sources": "info/vektor/QUELLSTAND.md"
+   },
+   "files": [
+    {
+     "target": "device",
+     "format": "img",
+     "name": "Helvetopo_Vektor_Schweiz_2026-11.img",
+     "size": 1104412672,
+     "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+     "primary": true
+    },
+    {
+     "target": "basecamp",
+     "format": "zip",
+     "os": [
+      "windows",
+      "macos"
+     ],
+     "name": "Helvetopo_Vektor_Schweiz_2026-11_BaseCamp.zip",
+     "size": 1530000000,
+     "sha256": "0101010101010101010101010101010101010101010101010101010101010101"
+    }
+   ]
+  },
+  {
+   "id": "routen",
+   "group": "routen",
+   "kind": "overlay",
+   "fid": 7702,
+   "area": "schweiz",
+   "sources": [
+    "schweizmobil",
+    "swisstlm3d"
+   ],
+   "docs": {
+    "readme": "info/vektor/README.md",
+    "license": "info/LICENSE-KARTEN.md",
+    "sources": "info/vektor/QUELLSTAND.md"
+   },
+   "files": [
+    {
+     "target": "device",
+     "format": "img",
+     "name": "Helvetopo_Routen_Schweiz_2026-11.img",
+     "size": 18532352,
+     "sha256": "4444444444444444444444444444444444444444444444444444444444444444",
+     "primary": true
+    }
+   ]
+  },
+  {
+   "id": "pixel-50-1000",
+   "group": "pixel",
+   "kind": "pixel",
+   "fid": 7704,
+   "scale": {
+    "min": 50000,
+    "max": 1000000
+   },
+   "area": "schweiz",
+   "experimental": true,
+   "sources": [
+    "smr50",
+    "smr100",
+    "smr200",
+    "smr500",
+    "smr1000",
+    "swissboundaries3d"
+   ],
+   "docs": {
+    "readme": "info/pixel/README.md",
+    "license": "info/LICENSE-KARTEN.md",
+    "sources": "info/pixel/QUELLSTAND.md"
+   },
+   "files": [
+    {
+     "target": "device",
+     "format": "img",
+     "name": "Helvetopo_Pixel_50-1000_Schweiz_2026-11.img",
+     "size": 3869179904,
+     "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+     "primary": true
+    },
+    {
+     "target": "basecamp",
+     "format": "zip",
+     "os": [
+      "windows",
+      "macos"
+     ],
+     "name": "Helvetopo_Pixel_50-1000_Schweiz_2026-11_BaseCamp.zip",
+     "size": 3900000000,
+     "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    }
+   ]
+  },
+  {
+   "id": "pixel-25-1000",
+   "group": "pixel",
+   "kind": "pixel",
+   "fid": 7705,
+   "scale": {
+    "min": 25000,
+    "max": 1000000
+   },
+   "area": "haelften",
+   "experimental": true,
+   "sources": [
+    "smr25",
+    "smr50",
+    "smr100",
+    "smr200",
+    "smr500",
+    "smr1000",
+    "swissboundaries3d"
+   ],
+   "docs": {
+    "readme": "info/pixel/README.md",
+    "license": "info/LICENSE-KARTEN.md",
+    "sources": "info/pixel/QUELLSTAND.md"
+   },
+   "files": [
+    {
+     "target": "device",
+     "format": "img",
+     "region": "west",
+     "name": "Helvetopo_Pixel_25-1000_West_2026-11.img",
+     "size": 2410020864,
+     "sha256": "5555555555555555555555555555555555555555555555555555555555555555",
+     "primary": true
+    },
+    {
+     "target": "device",
+     "format": "img",
+     "region": "ost",
+     "name": "Helvetopo_Pixel_25-1000_Ost_2026-11.img",
+     "size": 3239706624,
+     "sha256": "6666666666666666666666666666666666666666666666666666666666666666",
+     "primary": true
+    },
+    {
+     "target": "basecamp",
+     "format": "zip",
+     "os": [
+      "windows",
+      "macos"
+     ],
+     "name": "Helvetopo_Pixel_25-1000_Schweiz_2026-11_BaseCamp.zip",
+     "size": 6200000000,
+     "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    }
+   ]
+  },
+  {
+   "id": "pixel-10-1000",
+   "group": "pixel",
+   "kind": "pixel",
+   "fid": 7706,
+   "scale": {
+    "min": 10000,
+    "max": 1000000
+   },
+   "area": "regionen",
+   "experimental": true,
+   "sources": [
+    "smr10",
+    "smr25",
+    "smr50",
+    "smr100",
+    "smr200",
+    "smr500",
+    "smr1000",
+    "swissboundaries3d"
+   ],
+   "docs": {
+    "readme": "info/pixel/README.md",
+    "license": "info/LICENSE-KARTEN.md",
+    "sources": "info/pixel/QUELLSTAND.md"
+   },
+   "files": [
+    {
+     "target": "device",
+     "format": "img",
+     "region": "pixel10-west",
+     "name": "Helvetopo_Pixel_10-1000_West_2026-11.img",
+     "size": 3996057600,
+     "sha256": "7777777777777777777777777777777777777777777777777777777777777777",
+     "primary": true
+    },
+    {
+     "target": "device",
+     "format": "img",
+     "region": "pixel10-sued",
+     "name": "Helvetopo_Pixel_10-1000_Sued_2026-11.img",
+     "size": 3517972480,
+     "sha256": "7777777777777777777777777777777777777777777777777777777777777777",
+     "primary": true
+    },
+    {
+     "target": "device",
+     "format": "img",
+     "region": "pixel10-mitte",
+     "name": "Helvetopo_Pixel_10-1000_Mitte_2026-11.img",
+     "size": 2835546112,
+     "sha256": "7777777777777777777777777777777777777777777777777777777777777777",
+     "primary": true
+    },
+    {
+     "target": "device",
+     "format": "img",
+     "region": "pixel10-ost",
+     "name": "Helvetopo_Pixel_10-1000_Ost_2026-11.img",
+     "size": 3701473280,
+     "sha256": "7777777777777777777777777777777777777777777777777777777777777777",
+     "primary": true
+    },
+    {
+     "target": "basecamp",
+     "format": "zip",
+     "os": [
+      "windows",
+      "macos"
+     ],
+     "name": "Helvetopo_Pixel_10-1000_Schweiz_2026-11_BaseCamp.zip",
+     "size": 14000000000,
+     "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    }
+   ]
+  },
+  {
+   "id": "luftbild-standard",
+   "group": "luftbild",
+   "kind": "luftbild",
+   "fid": 7708,
+   "area": "schweiz",
+   "sources": [
+    "swissimage",
+    "swissboundaries3d"
+   ],
+   "docs": {
+    "readme": "info/luftbild/README.md",
+    "license": "info/LICENSE-KARTEN.md",
+    "sources": "info/luftbild/QUELLSTAND.md"
+   },
+   "files": [
+    {
+     "target": "device",
+     "format": "img",
+     "name": "Helvetopo_Luftbild_Standard_Schweiz_2026-11.img",
+     "size": 3154313216,
+     "sha256": "8888888888888888888888888888888888888888888888888888888888888888",
+     "primary": true
+    }
+   ]
+  },
+  {
+   "id": "luftbild-detail",
+   "group": "luftbild",
+   "kind": "luftbild",
+   "fid": 7707,
+   "area": "regionen",
+   "sources": [
+    "swissimage",
+    "swissboundaries3d"
+   ],
+   "docs": {
+    "readme": "info/luftbild/README.md",
+    "license": "info/LICENSE-KARTEN.md",
+    "sources": "info/luftbild/QUELLSTAND.md"
+   },
+   "files": [
+    {
+     "target": "device",
+     "format": "img",
+     "region": "genfersee-west",
+     "name": "Helvetopo_Luftbild_Detail_Genfersee-West_2026-11.img",
+     "size": 2221146112,
+     "sha256": "9999999999999999999999999999999999999999999999999999999999999999",
+     "primary": true
+    },
+    {
+     "target": "device",
+     "format": "img",
+     "region": "genfersee-ost",
+     "name": "Helvetopo_Luftbild_Detail_Genfersee-Ost_2026-11.img",
+     "size": 2068905984,
+     "sha256": "9999999999999999999999999999999999999999999999999999999999999999",
+     "primary": true
+    },
+    {
+     "target": "device",
+     "format": "img",
+     "region": "bern-west",
+     "name": "Helvetopo_Luftbild_Detail_Bern-West_2026-11.img",
+     "size": 2003042304,
+     "sha256": "9999999999999999999999999999999999999999999999999999999999999999",
+     "primary": true
+    },
+    {
+     "target": "device",
+     "format": "img",
+     "region": "bern-mitte",
+     "name": "Helvetopo_Luftbild_Detail_Bern-Mitte_2026-11.img",
+     "size": 3685351424,
+     "sha256": "9999999999999999999999999999999999999999999999999999999999999999",
+     "primary": true
+    },
+    {
+     "target": "device",
+     "format": "img",
+     "region": "bern-ost",
+     "name": "Helvetopo_Luftbild_Detail_Bern-Ost_2026-11.img",
+     "size": 3174301696,
+     "sha256": "9999999999999999999999999999999999999999999999999999999999999999",
+     "primary": true
+    },
+    {
+     "target": "device",
+     "format": "img",
+     "region": "luftbild-nordwestschweiz",
+     "name": "Helvetopo_Luftbild_Detail_Nordwestschweiz_2026-11.img",
+     "size": 3067936768,
+     "sha256": "9999999999999999999999999999999999999999999999999999999999999999",
+     "primary": true
+    },
+    {
+     "target": "device",
+     "format": "img",
+     "region": "wallis-west",
+     "name": "Helvetopo_Luftbild_Detail_Wallis-West_2026-11.img",
+     "size": 2898001920,
+     "sha256": "9999999999999999999999999999999999999999999999999999999999999999",
+     "primary": true
+    },
+    {
+     "target": "device",
+     "format": "img",
+     "region": "wallis-ost",
+     "name": "Helvetopo_Luftbild_Detail_Wallis-Ost_2026-11.img",
+     "size": 3945725952,
+     "sha256": "9999999999999999999999999999999999999999999999999999999999999999",
+     "primary": true
+    },
+    {
+     "target": "device",
+     "format": "img",
+     "region": "zuerich-west",
+     "name": "Helvetopo_Luftbild_Detail_Zuerich-West_2026-11.img",
+     "size": 2553741312,
+     "sha256": "9999999999999999999999999999999999999999999999999999999999999999",
+     "primary": true
+    },
+    {
+     "target": "device",
+     "format": "img",
+     "region": "zuerich-ost",
+     "name": "Helvetopo_Luftbild_Detail_Zuerich-Ost_2026-11.img",
+     "size": 2509897728,
+     "sha256": "9999999999999999999999999999999999999999999999999999999999999999",
+     "primary": true
+    },
+    {
+     "target": "device",
+     "format": "img",
+     "region": "luftbild-ostschweiz",
+     "name": "Helvetopo_Luftbild_Detail_Ostschweiz_2026-11.img",
+     "size": 3864854528,
+     "sha256": "9999999999999999999999999999999999999999999999999999999999999999",
+     "primary": true
+    },
+    {
+     "target": "device",
+     "format": "img",
+     "region": "graubuenden-nord",
+     "name": "Helvetopo_Luftbild_Detail_Graubuenden-Nord_2026-11.img",
+     "size": 3929997312,
+     "sha256": "9999999999999999999999999999999999999999999999999999999999999999",
+     "primary": true
+    },
+    {
+     "target": "device",
+     "format": "img",
+     "region": "graubuenden-mitte",
+     "name": "Helvetopo_Luftbild_Detail_Graubuenden-Mitte_2026-11.img",
+     "size": 3146055680,
+     "sha256": "9999999999999999999999999999999999999999999999999999999999999999",
+     "primary": true
+    },
+    {
+     "target": "device",
+     "format": "img",
+     "region": "graubuenden-sued",
+     "name": "Helvetopo_Luftbild_Detail_Graubuenden-Sued_2026-11.img",
+     "size": 1441988608,
+     "sha256": "9999999999999999999999999999999999999999999999999999999999999999",
+     "primary": true
+    },
+    {
+     "target": "device",
+     "format": "img",
+     "region": "zentralschweiz-west",
+     "name": "Helvetopo_Luftbild_Detail_Zentralschweiz-West_2026-11.img",
+     "size": 2550988800,
+     "sha256": "9999999999999999999999999999999999999999999999999999999999999999",
+     "primary": true
+    },
+    {
+     "target": "device",
+     "format": "img",
+     "region": "zentralschweiz-ost",
+     "name": "Helvetopo_Luftbild_Detail_Zentralschweiz-Ost_2026-11.img",
+     "size": 2756182016,
+     "sha256": "9999999999999999999999999999999999999999999999999999999999999999",
+     "primary": true
+    },
+    {
+     "target": "device",
+     "format": "img",
+     "region": "tessin-nord",
+     "name": "Helvetopo_Luftbild_Detail_Tessin-Nord_2026-11.img",
+     "size": 3346268160,
+     "sha256": "9999999999999999999999999999999999999999999999999999999999999999",
+     "primary": true
+    },
+    {
+     "target": "device",
+     "format": "img",
+     "region": "tessin-sued",
+     "name": "Helvetopo_Luftbild_Detail_Tessin-Sued_2026-11.img",
+     "size": 1350696960,
+     "sha256": "9999999999999999999999999999999999999999999999999999999999999999",
+     "primary": true
+    },
+    {
+     "target": "basecamp",
+     "format": "zip",
+     "os": [
+      "windows",
+      "macos"
+     ],
+     "name": "Helvetopo_Luftbild_Detail_Schweiz_2026-11_BaseCamp.zip",
+     "size": 50324841510,
+     "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    }
+   ]
+  }
+ ],
+ "older": []
+}

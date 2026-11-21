@@ -1,0 +1,40 @@
+# ---- Höhenlinien (Landeskarte 1:25'000) -------------------------------------------
+# Garmin-Standardtypen 0x20/0x21/0x22 bekommen den Namen in Fuss, weil die Geräte
+# diese Typen als Höhenlinien kennen und die Zahl in die eingestellte Einheit umrechnen.
+# Die Zusatztypen (0x11001–0x11006) kennt das Gerät nicht als Höhenlinie: Name in Metern.
+#
+# Typ          Bedeutung                              Farbe (TYP)
+# 0x20         Normalkurve braun                      #D7963C
+# 0x21         50-m-Kurve braun (nur Zoomsteuerung)    #D7963C
+# 0x22         Zählkurve braun (100 m)                #D7963C, breiter
+# 0x11005      Zwischenkurve braun (gestrichelt)      #D7963C
+# 0x11001      Normalkurve Fels/Geröll                #3E3E3E
+# 0x11002      Zählkurve Fels/Geröll                  #3E3E3E, breiter
+# 0x11006      Zwischenkurve Fels (gestrichelt)       #3E3E3E
+# 0x11003      Normalkurve Gletscher                  #0088D0
+# 0x11004      Zählkurve Gletscher                    #0088D0, breiter
+
+contour=elevation & contour_surface=glacier & contour_ext=elevation_major
+	{ name '${ele}' } [0x11004 resolution 20]
+contour=elevation & contour_surface=glacier & contour_ext=elevation_medium
+	{ name '${ele}' } [0x11003 resolution 22]
+contour=elevation & contour_surface=glacier
+	{ name '${ele}' } [0x11003 resolution 24]
+
+contour=elevation & contour_surface=rock & contour_ext=elevation_major
+	{ name '${ele}' } [0x11002 resolution 20]
+contour=elevation & contour_surface=rock & contour_aux=yes
+	{ name '${ele}' } [0x11006 resolution 24]
+contour=elevation & contour_surface=rock & contour_ext=elevation_medium
+	{ name '${ele}' } [0x11001 resolution 22]
+contour=elevation & contour_surface=rock
+	{ name '${ele}' } [0x11001 resolution 24]
+
+contour=elevation & contour_ext=elevation_major
+	{ name '${ele|conv:m=>ft}' } [0x22 resolution 20]
+contour=elevation & contour_aux=yes
+	{ name '${ele}' } [0x11005 resolution 24]
+contour=elevation & contour_ext=elevation_medium
+	{ name '${ele|conv:m=>ft}' } [0x21 resolution 22]
+contour=elevation
+	{ name '${ele|conv:m=>ft}' } [0x20 resolution 24]

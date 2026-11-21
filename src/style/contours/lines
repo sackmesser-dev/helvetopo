@@ -1,0 +1,4 @@
+# Höhenlinien aus src/dem/build_dem.py (Tags: contour=elevation, ele, contour_ext,
+# contour_surface=rock|glacier, contour_aux=yes). Regeln stehen in inc/contours,
+# damit die Basiskarte sie mit "include" übernehmen kann.
+include 'inc/contours';

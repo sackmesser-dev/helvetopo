@@ -1,0 +1,4 @@
+CH Höhenlinien, Stand @VERSION@ (inoffiziell, keine Karte von swisstopo).
+Höhenlinien abgeleitet aus swissALTI3D, Fels/Gletscher aus swissTLM3D: ©swisstopo
+(Open Government Data, https://www.swisstopo.admin.ch/ogd-conditions).
+Erstellt mit mkgmap @MKGMAP@ (GPL).

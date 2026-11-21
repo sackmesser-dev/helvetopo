@@ -1,0 +1,31 @@
+# Adressregeln für Index und Hausnummernsuche (--index, --housenumbers).
+# Nach dem Vorbild von mkgmap r4924 examples/styles/default/inc/address, reduziert auf die Schweiz.
+# Eingabe nach docs/daten/tag-schema.md (vector-convert): is_in:country=CH, is_in:county=<Kanton>,
+# is_in:city=<Gemeinde>; Adresspunkte mit addr:street, addr:housenumber, addr:city (= Gemeinde),
+# addr:postcode. Eingebunden im <finalize>-Abschnitt von points, lines und polygons.
+
+# Land
+mkgmap:country!=* & mkgmap:admin_level2=* { set mkgmap:country='${mkgmap:admin_level2}' }
+mkgmap:country!=* & addr:country=*        { set mkgmap:country='${addr:country|country-ISO:}' }
+mkgmap:country!=* & is_in:country=*       { set mkgmap:country='${is_in:country|country-ISO:}' }
+
+# Region = Kanton
+mkgmap:region!=* & is_in:county=*         { set mkgmap:region='${is_in:county}' }
+mkgmap:region!=* & mkgmap:admin_level4=*  { set mkgmap:region='${mkgmap:admin_level4}' }
+
+# Ort = politische Gemeinde (passt zu addr:city der Adresspunkte)
+mkgmap:city!=* & is_in:city=*             { set mkgmap:city='${is_in:city}' }
+mkgmap:city!=* & addr:city=*              { set mkgmap:city='${addr:city}' }
+mkgmap:city!=* & mkgmap:admin_level8=*    { set mkgmap:city='${mkgmap:admin_level8}' }
+
+# Postleitzahl
+mkgmap:postal_code!=* & mkgmap:postcode=* { set mkgmap:postal_code='${mkgmap:postcode}' }
+mkgmap:postal_code!=* & addr:postcode=*   { set mkgmap:postal_code='${addr:postcode}' }
+
+# Strasse und Hausnummer
+mkgmap:street!=* & addr:street=*          { set mkgmap:street='${addr:street}' }
+mkgmap:street!=* & addr:housename=*       { set mkgmap:street='${addr:housename}' }
+mkgmap:housenumber!=* & addr:housenumber=* { set mkgmap:housenumber='${addr:housenumber}' }
+
+mkgmap:phone!=* & phone=*                 { set mkgmap:phone='${phone}' }
+mkgmap:is_in!=* & is_in=*                 { set mkgmap:is_in='${is_in}' }

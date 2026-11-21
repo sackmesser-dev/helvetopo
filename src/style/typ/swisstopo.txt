@@ -1,0 +1,4334 @@
+; -*- coding: utf-8 -*-
+; Helvetopo – TYP-Quelle (mkgmap-TYP-Textformat), erzeugt von src/style/tools/make_typ.py.
+; Nicht von Hand ändern, sondern das Skript anpassen und neu erzeugen.
+; Farben nach Swiss Map Vector 25 (swisstopo, OGD). Eigene Symbole, keine swisstopo-Logos.
+; Daten der Karte: ©swisstopo
+
+[_id]
+FID=7701
+ProductCode=1
+CodePage=1252
+[end]
+
+[_drawOrder]
+Type=0x4b,1
+Type=0x1100e,2
+Type=0x1100f,2
+Type=0x11009,2
+Type=0x50,3
+Type=0x1a,4
+Type=0x17,4
+Type=0x11005,4
+Type=0xb,4
+Type=0xc,4
+Type=0x11006,4
+Type=0x4e,4
+Type=0x11007,4
+Type=0x11003,4
+Type=0x18,4
+Type=0x5,5
+Type=0x1100a,5
+Type=0x19,6
+Type=0xe,6
+Type=0x11008,6
+Type=0x1100b,6
+Type=0x11004,6
+Type=0x1100d,6
+Type=0x11002,7
+Type=0x11001,7
+Type=0x3c,8
+Type=0x3d,8
+Type=0x3e,8
+Type=0x3f,8
+Type=0x41,8
+Type=0x48,8
+Type=0x4c,8
+Type=0x11000,9
+Type=0x4f,9
+Type=0x51,9
+Type=0x11010,9
+Type=0x11011,9
+Type=0x13,10
+Type=0x1100c,10
+Type=0x4d,10
+[end]
+
+[_line]
+Type=0x1
+String=0x02,Autobahn
+String=0x01,Autoroute
+String=0x05,Autostrada
+String=0x04,Motorway
+FontStyle=NormalFont
+LineWidth=5
+BorderWidth=2
+Xpm="0 0 4 0"
+"a c #FBBF39"
+"b c #000000"
+"c c #775F2A"
+"d c #C8C8C8"
+[end]
+
+[_line]
+Type=0x2
+String=0x02,Autostrasse
+String=0x01,Semi-autoroute
+String=0x05,Semiautostrada
+String=0x04,Expressway
+FontStyle=NormalFont
+LineWidth=5
+BorderWidth=2
+Xpm="0 0 4 0"
+"a c #FBBF39"
+"b c #000000"
+"c c #775F2A"
+"d c #C8C8C8"
+[end]
+
+[_line]
+Type=0x9
+String=0x02,Ausfahrt
+String=0x01,Bretelle
+String=0x05,Rampa
+String=0x04,Ramp
+FontStyle=NormalFont
+LineWidth=4
+BorderWidth=2
+Xpm="0 0 4 0"
+"a c #FBBF39"
+"b c #000000"
+"c c #775F2A"
+"d c #C8C8C8"
+[end]
+
+[_line]
+Type=0x3
+String=0x02,Hauptstrasse
+String=0x01,Route principale
+String=0x05,Strada principale
+String=0x04,Main road
+FontStyle=NormalFont
+LineWidth=6
+BorderWidth=2
+Xpm="0 0 4 0"
+"a c #F5AE95"
+"b c #000000"
+"c c #745851"
+"d c #C8C8C8"
+[end]
+
+[_line]
+Type=0x4
+String=0x02,Strasse
+String=0x01,Route
+String=0x05,Strada
+String=0x04,Road
+FontStyle=NormalFont
+LineWidth=5
+BorderWidth=2
+Xpm="0 0 4 0"
+"a c #FFF582"
+"b c #000000"
+"c c #797549"
+"d c #C8C8C8"
+[end]
+
+[_line]
+Type=0x5
+String=0x02,Strasse
+String=0x01,Route
+String=0x05,Strada
+String=0x04,Road
+FontStyle=NormalFont
+LineWidth=5
+BorderWidth=2
+Xpm="0 0 4 0"
+"a c #FFFFFF"
+"b c #000000"
+"c c #797A7D"
+"d c #C8C8C8"
+[end]
+
+[_line]
+Type=0x6
+String=0x02,Nebenstrasse
+String=0x01,Route secondaire
+String=0x05,Strada secondaria
+String=0x04,Minor road
+FontStyle=NormalFont
+LineWidth=4
+BorderWidth=2
+Xpm="0 0 4 0"
+"a c #FFFFFF"
+"b c #000000"
+"c c #797A7D"
+"d c #C8C8C8"
+[end]
+
+[_line]
+Type=0x7
+String=0x02,Nebenstrasse
+String=0x01,Route secondaire
+String=0x05,Strada secondaria
+String=0x04,Minor road
+FontStyle=NormalFont
+LineWidth=3
+BorderWidth=2
+Xpm="0 0 4 0"
+"a c #FFFFFF"
+"b c #000000"
+"c c #797A7D"
+"d c #C8C8C8"
+[end]
+
+[_line]
+Type=0x8
+String=0x02,Gasse
+String=0x01,Ruelle
+String=0x05,Vicolo
+String=0x04,Lane
+FontStyle=NormalFont
+LineWidth=2
+BorderWidth=2
+Xpm="0 0 4 0"
+"a c #FFFFFF"
+"b c #000000"
+"c c #797A7D"
+"d c #C8C8C8"
+[end]
+
+[_line]
+Type=0xa
+String=0x02,Naturstrasse
+String=0x01,Route non revêtue
+String=0x05,Strada sterrata
+String=0x04,Track
+FontStyle=NormalFont
+UseOrientation=Y
+Xpm="32 7 4 1"
+"x c #000000"
+". c #FFFFFF"
+"X c #C8C8C8"
+"o c #797A7D"
+"xxx...xxxx...xxx...xxx....xxx..."
+"xxx...xxxx...xxx...xxx....xxx..."
+"................................"
+"................................"
+"................................"
+"xxx...xxxx...xxx...xxx....xxx..."
+"xxx...xxxx...xxx...xxx....xxx..."
+[end]
+
+[_line]
+Type=0xe
+String=0x02,Feldstrasse
+String=0x01,Chemin de campagne
+String=0x05,Strada campestre
+String=0x04,Track
+FontStyle=SmallFont
+LineWidth=2
+Xpm="0 0 2 0"
+"a c #000000"
+"c c #C8C8C8"
+[end]
+
+[_line]
+Type=0x10
+String=0x02,Wegstrecke
+String=0x01,Chemin
+String=0x05,Sentiero
+String=0x04,Path
+FontStyle=NormalFont
+UseOrientation=Y
+Xpm="32 2 4 1"
+"x c #000000"
+". c none"
+"X c #C8C8C8"
+"o c none"
+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxx..."
+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxx..."
+[end]
+
+[_line]
+Type=0x16
+String=0x02,Pfadstrecke
+String=0x01,Sentier
+String=0x05,Sentiero
+String=0x04,Path
+FontStyle=NormalFont
+UseOrientation=Y
+Xpm="32 2 4 1"
+"x c #000000"
+". c none"
+"X c #C8C8C8"
+"o c none"
+"xxxxxxxxxxxxx...xxxxxxxxxxxxx..."
+"xxxxxxxxxxxxx...xxxxxxxxxxxxx..."
+[end]
+
+[_line]
+Type=0xf
+String=0x02,Wegspur
+String=0x01,Trace
+String=0x05,Traccia
+String=0x04,Trace
+FontStyle=NormalFont
+UseOrientation=Y
+Xpm="32 3 4 1"
+"x c #000000"
+". c none"
+"X c #C8C8C8"
+"o c none"
+"xxx........xxx.......xxxx......."
+"xxx........xxx.......xxxx......."
+"xxx........xxx.......xxxx......."
+[end]
+
+[_line]
+Type=0x11
+String=0x02,Treppe
+String=0x01,Escalier
+String=0x05,Scala
+String=0x04,Steps
+FontStyle=NoLabel
+UseOrientation=Y
+Xpm="32 4 4 1"
+"x c #000000"
+". c none"
+"X c #C8C8C8"
+"o c none"
+"x.x.x.x.x.x.x.x.x.x.x.x.x.x.x.x."
+"x.x.x.x.x.x.x.x.x.x.x.x.x.x.x.x."
+"x.x.x.x.x.x.x.x.x.x.x.x.x.x.x.x."
+"x.x.x.x.x.x.x.x.x.x.x.x.x.x.x.x."
+[end]
+
+[_line]
+Type=0x12
+String=0x02,Kletterroute
+String=0x01,Via ferrata
+String=0x05,Via ferrata
+String=0x04,Via ferrata
+FontStyle=NormalFont
+UseOrientation=Y
+Xpm="32 3 4 1"
+"x c #000000"
+". c none"
+"X c #C8C8C8"
+"o c none"
+"...x.......x.......x.......x...."
+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+"...x.......x.......x.......x...."
+[end]
+
+[_line]
+Type=0x13
+String=0x02,Tunnelstrecke
+String=0x01,Tunnel
+String=0x05,Galleria
+String=0x04,Tunnel
+FontStyle=NormalFont
+UseOrientation=Y
+Xpm="32 7 4 1"
+"x c #000000"
+". c none"
+"X c #C8C8C8"
+"o c none"
+"xxxxxxxxxx......xxxxxxxxxx......"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"xxxxxxxxxx......xxxxxxxxxx......"
+[end]
+
+[_line]
+Type=0x10a01
+String=0x02,Autobahn
+String=0x01,Autoroute
+String=0x05,Autostrada
+String=0x04,Motorway
+FontStyle=NormalFont
+LineWidth=2
+BorderWidth=1
+Xpm="0 0 4 0"
+"a c #FBBF39"
+"b c #000000"
+"c c #775F2A"
+"d c #C8C8C8"
+[end]
+
+[_line]
+Type=0x10a02
+String=0x02,Autostrasse
+String=0x01,Semi-autoroute
+String=0x05,Semiautostrada
+String=0x04,Expressway
+FontStyle=NormalFont
+LineWidth=2
+BorderWidth=1
+Xpm="0 0 4 0"
+"a c #FBBF39"
+"b c #000000"
+"c c #775F2A"
+"d c #C8C8C8"
+[end]
+
+[_line]
+Type=0x10a09
+String=0x02,Ausfahrt
+String=0x01,Bretelle
+String=0x05,Rampa
+String=0x04,Ramp
+FontStyle=SmallFont
+LineWidth=2
+BorderWidth=1
+Xpm="0 0 4 0"
+"a c #FBBF39"
+"b c #000000"
+"c c #775F2A"
+"d c #C8C8C8"
+[end]
+
+[_line]
+Type=0x10a03
+String=0x02,Hauptstrasse
+String=0x01,Route principale
+String=0x05,Strada principale
+String=0x04,Main road
+FontStyle=NormalFont
+LineWidth=3
+BorderWidth=1
+Xpm="0 0 4 0"
+"a c #F5AE95"
+"b c #000000"
+"c c #745851"
+"d c #C8C8C8"
+[end]
+
+[_line]
+Type=0x10a04
+String=0x02,Strasse
+String=0x01,Route
+String=0x05,Strada
+String=0x04,Road
+FontStyle=NormalFont
+LineWidth=2
+BorderWidth=1
+Xpm="0 0 4 0"
+"a c #FFF582"
+"b c #000000"
+"c c #797549"
+"d c #C8C8C8"
+[end]
+
+[_line]
+Type=0x10a05
+String=0x02,Strasse
+String=0x01,Route
+String=0x05,Strada
+String=0x04,Road
+FontStyle=NormalFont
+LineWidth=2
+BorderWidth=1
+Xpm="0 0 4 0"
+"a c #FFFFFF"
+"b c #000000"
+"c c #797A7D"
+"d c #C8C8C8"
+[end]
+
+[_line]
+Type=0x10a06
+String=0x02,Nebenstrasse
+String=0x01,Route secondaire
+String=0x05,Strada secondaria
+String=0x04,Minor road
+FontStyle=NormalFont
+LineWidth=2
+BorderWidth=1
+Xpm="0 0 4 0"
+"a c #FFFFFF"
+"b c #000000"
+"c c #797A7D"
+"d c #C8C8C8"
+[end]
+
+[_line]
+Type=0x10a07
+String=0x02,Nebenstrasse
+String=0x01,Route secondaire
+String=0x05,Strada secondaria
+String=0x04,Minor road
+FontStyle=NormalFont
+LineWidth=1
+BorderWidth=1
+Xpm="0 0 4 0"
+"a c #FFFFFF"
+"b c #000000"
+"c c #797A7D"
+"d c #C8C8C8"
+[end]
+
+[_line]
+Type=0x10a08
+String=0x02,Gasse
+String=0x01,Ruelle
+String=0x05,Vicolo
+String=0x04,Lane
+FontStyle=NormalFont
+LineWidth=1
+BorderWidth=1
+Xpm="0 0 4 0"
+"a c #FFFFFF"
+"b c #000000"
+"c c #797A7D"
+"d c #C8C8C8"
+[end]
+
+[_line]
+Type=0x10a0a
+String=0x02,Naturstrasse
+String=0x01,Route non revêtue
+String=0x05,Strada sterrata
+String=0x04,Track
+FontStyle=SmallFont
+UseOrientation=Y
+Xpm="32 3 4 1"
+"x c #000000"
+". c #FFFFFF"
+"X c #C8C8C8"
+"o c #797A7D"
+"xx.xx.xx..x..x..xx.xx.xx..x..x.."
+"................................"
+"xx.xx.xx..x..x..xx.xx.xx..x..x.."
+[end]
+
+[_line]
+Type=0x10a0e
+String=0x02,Feldstrasse
+String=0x01,Chemin de campagne
+String=0x05,Strada campestre
+String=0x04,Track
+FontStyle=SmallFont
+LineWidth=1
+Xpm="0 0 2 0"
+"a c #000000"
+"c c #C8C8C8"
+[end]
+
+[_line]
+Type=0x10a10
+String=0x02,Wegstrecke
+String=0x01,Chemin
+String=0x05,Sentiero
+String=0x04,Path
+FontStyle=SmallFont
+UseOrientation=Y
+Xpm="32 1 4 1"
+"x c #000000"
+". c none"
+"X c #C8C8C8"
+"o c none"
+"xxxxxxxxxxxxxxx.xxxxxxxxxxxxxxx."
+[end]
+
+[_line]
+Type=0x10a16
+String=0x02,Pfadstrecke
+String=0x01,Sentier
+String=0x05,Sentiero
+String=0x04,Path
+FontStyle=SmallFont
+UseOrientation=Y
+Xpm="32 1 4 1"
+"x c #000000"
+". c none"
+"X c #C8C8C8"
+"o c none"
+"xxxxxxxxx..xxxxxxxx..xxxxxxxxx.."
+[end]
+
+[_line]
+Type=0x10a0f
+String=0x02,Wegspur
+String=0x01,Trace
+String=0x05,Traccia
+String=0x04,Trace
+FontStyle=SmallFont
+UseOrientation=Y
+Xpm="32 2 4 1"
+"x c #000000"
+". c none"
+"X c #C8C8C8"
+"o c none"
+"xx...xx....x....xx...xx....x...."
+"xx...xx....x....xx...xx....x...."
+[end]
+
+[_line]
+Type=0x10a11
+String=0x02,Treppe
+String=0x01,Escalier
+String=0x05,Scala
+String=0x04,Steps
+FontStyle=NoLabel
+UseOrientation=Y
+Xpm="32 4 4 1"
+"x c #000000"
+". c none"
+"X c #C8C8C8"
+"o c none"
+"x.x.x.x.x.x.x.x.x.x.x.x.x.x.x.x."
+"x.x.x.x.x.x.x.x.x.x.x.x.x.x.x.x."
+"x.x.x.x.x.x.x.x.x.x.x.x.x.x.x.x."
+"x.x.x.x.x.x.x.x.x.x.x.x.x.x.x.x."
+[end]
+
+[_line]
+Type=0x10a12
+String=0x02,Kletterroute
+String=0x01,Via ferrata
+String=0x05,Via ferrata
+String=0x04,Via ferrata
+FontStyle=SmallFont
+UseOrientation=Y
+Xpm="32 3 4 1"
+"x c #000000"
+". c none"
+"X c #C8C8C8"
+"o c none"
+"...x.......x.......x.......x...."
+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+"...x.......x.......x.......x...."
+[end]
+
+[_line]
+Type=0x10a13
+String=0x02,Tunnelstrecke
+String=0x01,Tunnel
+String=0x05,Galleria
+String=0x04,Tunnel
+FontStyle=SmallFont
+UseOrientation=Y
+Xpm="32 3 4 1"
+"x c #000000"
+". c none"
+"X c #C8C8C8"
+"o c none"
+"xxxxx...xxxxx...xxxxx...xxxxx..."
+"................................"
+"xxxxx...xxxxx...xxxxx...xxxxx..."
+[end]
+
+[_line]
+Type=0x10901
+String=0x02,Autobahn
+String=0x01,Autoroute
+String=0x05,Autostrada
+String=0x04,Motorway
+FontStyle=NormalFont
+LineWidth=2
+BorderWidth=1
+Xpm="0 0 4 0"
+"a c #FBBF39"
+"b c #000000"
+"c c #775F2A"
+"d c #C8C8C8"
+[end]
+
+[_line]
+Type=0x10902
+String=0x02,Autostrasse
+String=0x01,Semi-autoroute
+String=0x05,Semiautostrada
+String=0x04,Expressway
+FontStyle=NormalFont
+LineWidth=2
+BorderWidth=1
+Xpm="0 0 4 0"
+"a c #FBBF39"
+"b c #000000"
+"c c #775F2A"
+"d c #C8C8C8"
+[end]
+
+[_line]
+Type=0x10903
+String=0x02,Hauptstrasse
+String=0x01,Route principale
+String=0x05,Strada principale
+String=0x04,Main road
+FontStyle=SmallFont
+LineWidth=3
+BorderWidth=1
+Xpm="0 0 4 0"
+"a c #F5AE95"
+"b c #000000"
+"c c #745851"
+"d c #C8C8C8"
+[end]
+
+[_line]
+Type=0x10904
+String=0x02,Strasse
+String=0x01,Route
+String=0x05,Strada
+String=0x04,Road
+FontStyle=SmallFont
+LineWidth=2
+BorderWidth=1
+Xpm="0 0 4 0"
+"a c #FFF582"
+"b c #000000"
+"c c #797549"
+"d c #C8C8C8"
+[end]
+
+[_line]
+Type=0x10905
+String=0x02,Strasse
+String=0x01,Route
+String=0x05,Strada
+String=0x04,Road
+FontStyle=NormalFont
+LineWidth=2
+BorderWidth=1
+Xpm="0 0 4 0"
+"a c #FBBF39"
+"b c #000000"
+"c c #775F2A"
+"d c #C8C8C8"
+[end]
+
+[_line]
+Type=0x10906
+String=0x02,Nebenstrasse
+String=0x01,Route secondaire
+String=0x05,Strada secondaria
+String=0x04,Minor road
+FontStyle=NormalFont
+LineWidth=2
+BorderWidth=1
+Xpm="0 0 4 0"
+"a c #FBBF39"
+"b c #000000"
+"c c #775F2A"
+"d c #C8C8C8"
+[end]
+
+[_line]
+Type=0x10907
+String=0x02,Nebenstrasse
+String=0x01,Route secondaire
+String=0x05,Strada secondaria
+String=0x04,Minor road
+FontStyle=NoLabel
+LineWidth=1
+BorderWidth=1
+Xpm="0 0 4 0"
+"a c #FFFFFF"
+"b c #000000"
+"c c #797A7D"
+"d c #C8C8C8"
+[end]
+
+[_line]
+Type=0x10b06
+String=0x02,Nebenstrasse
+String=0x01,Route secondaire
+String=0x05,Strada secondaria
+String=0x04,Minor road
+FontStyle=SmallFont
+LineWidth=1
+BorderWidth=1
+Xpm="0 0 4 0"
+"a c #FFFFFF"
+"b c #000000"
+"c c #797A7D"
+"d c #C8C8C8"
+[end]
+
+[_line]
+Type=0x10b07
+String=0x02,Nebenstrasse
+String=0x01,Route secondaire
+String=0x05,Strada secondaria
+String=0x04,Minor road
+FontStyle=NoLabel
+LineWidth=1
+Xpm="0 0 2 0"
+"a c #000000"
+"c c #C8C8C8"
+[end]
+
+[_line]
+Type=0x10b08
+String=0x02,Gasse
+String=0x01,Ruelle
+String=0x05,Vicolo
+String=0x04,Lane
+FontStyle=NoLabel
+LineWidth=1
+Xpm="0 0 2 0"
+"a c #000000"
+"c c #C8C8C8"
+[end]
+
+[_line]
+Type=0x10b0a
+String=0x02,Naturstrasse
+String=0x01,Route non revêtue
+String=0x05,Strada sterrata
+String=0x04,Track
+FontStyle=NoLabel
+UseOrientation=Y
+Xpm="32 1 4 1"
+"x c #000000"
+". c none"
+"X c #C8C8C8"
+"o c none"
+"xxxxxxx....xxxxxxx...xxxxxxx...."
+[end]
+
+[_line]
+Type=0x10b0e
+String=0x02,Feldstrasse
+String=0x01,Chemin de campagne
+String=0x05,Strada campestre
+String=0x04,Track
+FontStyle=NoLabel
+UseOrientation=Y
+Xpm="32 1 4 1"
+"x c #000000"
+". c none"
+"X c #C8C8C8"
+"o c none"
+"xxxxxxx....xxxxxxx...xxxxxxx...."
+[end]
+
+[_line]
+Type=0x10b10
+String=0x02,Wegstrecke
+String=0x01,Chemin
+String=0x05,Sentiero
+String=0x04,Path
+FontStyle=NoLabel
+UseOrientation=Y
+Xpm="32 1 4 1"
+"x c #000000"
+". c none"
+"X c #C8C8C8"
+"o c none"
+"xxxxxxx....xxxxxxx...xxxxxxx...."
+[end]
+
+[_line]
+Type=0x10b16
+String=0x02,Pfadstrecke
+String=0x01,Sentier
+String=0x05,Sentiero
+String=0x04,Path
+FontStyle=NoLabel
+UseOrientation=Y
+Xpm="32 1 4 1"
+"x c #000000"
+". c none"
+"X c #C8C8C8"
+"o c none"
+"xxxxxxx....xxxxxxx...xxxxxxx...."
+[end]
+
+[_line]
+Type=0x1a
+String=0x02,Autofähre
+String=0x01,Bac pour voitures
+String=0x05,Traghetto per auto
+String=0x04,Car ferry
+FontStyle=NormalFont
+UseOrientation=Y
+Xpm="32 1 4 1"
+"x c #000000"
+". c none"
+"X c #C8C8C8"
+"o c none"
+"xxxxxxxxxxx.....xxxxxxxxxxx....."
+[end]
+
+[_line]
+Type=0x1b
+String=0x02,Fähre
+String=0x01,Bac
+String=0x05,Traghetto
+String=0x04,Ferry
+FontStyle=NormalFont
+UseOrientation=Y
+Xpm="32 1 4 1"
+"x c #000000"
+". c none"
+"X c #C8C8C8"
+"o c none"
+"xxxxxxxxxxxxxxxxxxxxxxx........."
+[end]
+
+[_line]
+Type=0x27
+String=0x02,Piste
+String=0x01,Piste
+String=0x05,Pista
+String=0x04,Runway
+FontStyle=NoLabel
+LineWidth=3
+BorderWidth=1
+Xpm="0 0 4 0"
+"a c #FFFFFF"
+"b c #262626"
+"c c #797A7D"
+"d c #A2A2A2"
+[end]
+
+[_line]
+Type=0x14
+String=0x02,Normalspur
+String=0x01,Voie normale
+String=0x05,Scartamento normale
+String=0x04,Railway
+FontStyle=NoLabel
+LineWidth=2
+Xpm="0 0 2 0"
+"a c #DD1919"
+"c c #6A191D"
+[end]
+
+[_line]
+Type=0x10e00
+String=0x02,Normalspur, mehrspurig
+String=0x01,Voie normale, plusieurs voies
+String=0x05,Scartamento normale, più binari
+String=0x04,Railway, multi-track
+FontStyle=NoLabel
+UseOrientation=Y
+Xpm="32 3 4 1"
+"x c #DD1919"
+". c #FFFFFF"
+"X c #6A191D"
+"o c #797A7D"
+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+"................................"
+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+[end]
+
+[_line]
+Type=0x10e01
+String=0x02,Schmalspur, Standseilbahn
+String=0x01,Voie étroite, funiculaire
+String=0x05,Scartamento ridotto, funicolare
+String=0x04,Narrow gauge, funicular
+FontStyle=NoLabel
+LineWidth=1
+Xpm="0 0 2 0"
+"a c #DD1919"
+"c c #6A191D"
+[end]
+
+[_line]
+Type=0x10e02
+String=0x02,Anschlussgleis
+String=0x01,Voie de raccordement
+String=0x05,Binario di raccordo
+String=0x04,Siding
+FontStyle=NoLabel
+LineWidth=1
+Xpm="0 0 2 0"
+"a c #DD1919"
+"c c #6A191D"
+[end]
+
+[_line]
+Type=0x10e03
+String=0x02,Tram
+String=0x01,Tram
+String=0x05,Tram
+String=0x04,Tram
+FontStyle=NoLabel
+LineWidth=1
+Xpm="0 0 2 0"
+"a c #DD1919"
+"c c #6A191D"
+[end]
+
+[_line]
+Type=0x10e07
+String=0x02,Bahntunnel
+String=0x01,Tunnel ferroviaire
+String=0x05,Galleria ferroviaria
+String=0x04,Railway tunnel
+FontStyle=NoLabel
+UseOrientation=Y
+Xpm="32 2 4 1"
+"x c #DD1919"
+". c none"
+"X c #6A191D"
+"o c none"
+"xxxxx...xxxxx...xxxxx...xxxxx..."
+"xxxxx...xxxxx...xxxxx...xxxxx..."
+[end]
+
+[_line]
+Type=0x10e04
+String=0x02,Luftseilbahn, Gondelbahn, Sesselbahn
+String=0x01,Téléphérique, télécabine, télésiège
+String=0x05,Funivia, cabinovia, seggiovia
+String=0x04,Aerial cableway
+FontStyle=SmallFont
+DayCustomColor=#DD1919
+NightCustomColor=#EA7575
+UseOrientation=Y
+Xpm="32 3 4 1"
+"x c #DD1919"
+". c none"
+"X c #6A191D"
+"o c none"
+"........x...............x......."
+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+"........x...............x......."
+[end]
+
+[_line]
+Type=0x10e05
+String=0x02,Skilift
+String=0x01,Téléski
+String=0x05,Sciovia
+String=0x04,Ski lift
+FontStyle=SmallFont
+DayCustomColor=#D7963C
+NightCustomColor=#E7C08A
+UseOrientation=Y
+Xpm="32 3 4 1"
+"x c #D7963C"
+". c none"
+"X c #684E2B"
+"o c none"
+"......x...........x...........x."
+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+"......x...........x...........x."
+[end]
+
+[_line]
+Type=0x10e08
+String=0x02,Transportseilbahn
+String=0x01,Téléphérique de service
+String=0x05,Teleferica di servizio
+String=0x04,Goods cableway
+FontStyle=NoLabel
+UseOrientation=Y
+Xpm="32 3 4 1"
+"x c #333333"
+". c none"
+"X c #969696"
+"o c none"
+".....x.........x.........x......"
+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+".....x.........x.........x......"
+[end]
+
+[_line]
+Type=0x1f
+String=0x02,Fluss
+String=0x01,Rivière
+String=0x05,Fiume
+String=0x04,River
+FontStyle=NormalFont
+DayCustomColor=#0088D0
+NightCustomColor=#66B7E2
+LineWidth=2
+Xpm="0 0 2 0"
+"a c #0088D0"
+"c c #0D4869"
+[end]
+
+[_line]
+Type=0x18
+String=0x02,Bach
+String=0x01,Ruisseau
+String=0x05,Ruscello
+String=0x04,Stream
+FontStyle=SmallFont
+DayCustomColor=#0088D0
+NightCustomColor=#66B7E2
+LineWidth=1
+Xpm="0 0 2 0"
+"a c #0088D0"
+"c c #0D4869"
+[end]
+
+[_line]
+Type=0x10e1b
+String=0x02,Bach (Übersicht)
+String=0x01,Ruisseau (aperçu)
+String=0x05,Ruscello (panoramica)
+String=0x04,Stream (overview)
+FontStyle=NoLabel
+LineWidth=1
+Xpm="0 0 2 0"
+"a c #0088D0"
+"c c #0D4869"
+[end]
+
+[_line]
+Type=0x26
+String=0x02,Trockenrinne
+String=0x01,Ravine sèche
+String=0x05,Canalone asciutto
+String=0x04,Dry stream bed
+FontStyle=SmallFont
+UseOrientation=Y
+Xpm="32 1 4 1"
+"x c #000000"
+". c none"
+"X c #C8C8C8"
+"o c none"
+"xx..xx..xx..xx..xx..xx..xx..xx.."
+[end]
+
+[_line]
+Type=0x10e10
+String=0x02,Druckleitung
+String=0x01,Conduite forcée
+String=0x05,Condotta forzata
+String=0x04,Water pipeline
+FontStyle=NoLabel
+LineWidth=1
+Xpm="0 0 2 0"
+"a c #0088D0"
+"c c #0D4869"
+[end]
+
+[_line]
+Type=0x10e12
+String=0x02,Eingedolter Bach
+String=0x01,Ruisseau sous terre
+String=0x05,Ruscello intubato
+String=0x04,Culvert
+FontStyle=NoLabel
+UseOrientation=Y
+Xpm="32 1 4 1"
+"x c #0088D0"
+". c none"
+"X c #0D4869"
+"o c none"
+"xx..xx..xx..xx..xx..xx..xx..xx.."
+[end]
+
+[_line]
+Type=0x10e11
+String=0x02,Wasserfall
+String=0x01,Cascade
+String=0x05,Cascata
+String=0x04,Waterfall
+FontStyle=SmallFont
+DayCustomColor=#0088D0
+NightCustomColor=#66B7E2
+UseOrientation=Y
+Xpm="32 3 4 1"
+"x c #0088D0"
+". c none"
+"X c #0D4869"
+"o c none"
+"..x...x...x...x...x...x...x...x."
+".x.x.x.x.x.x.x.x.x.x.x.x.x.x.x.x"
+"x...x...x...x...x...x...x...x..."
+[end]
+
+[_line]
+Type=0x1e
+String=0x02,Landesgrenze
+String=0x01,Frontière nationale
+String=0x05,Confine nazionale
+String=0x04,National border
+FontStyle=NoLabel
+UseOrientation=Y
+Xpm="32 11 4 1"
+"x c #C22976"
+". c #ECA8C8"
+"X c #5F2044"
+"o c #715566"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+[end]
+
+[_line]
+Type=0x1c
+String=0x02,Kantonsgrenze
+String=0x01,Limite cantonale
+String=0x05,Confine cantonale
+String=0x04,Canton border
+FontStyle=NoLabel
+UseOrientation=Y
+Xpm="32 5 4 1"
+"x c #C22976"
+". c #ECA8C8"
+"X c #5F2044"
+"o c #715566"
+"................................"
+"................................"
+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+"................................"
+"................................"
+[end]
+
+[_line]
+Type=0x10f04
+String=0x02,Bezirksgrenze
+String=0x01,Limite de district
+String=0x05,Confine distrettuale
+String=0x04,District border
+FontStyle=NoLabel
+LineWidth=3
+Xpm="0 0 2 0"
+"a c #ECA8C8"
+"c c #715566"
+[end]
+
+[_line]
+Type=0x10f05
+String=0x02,Gemeindegrenze
+String=0x01,Limite communale
+String=0x05,Confine comunale
+String=0x04,Municipal border
+FontStyle=NoLabel
+UseOrientation=Y
+Xpm="32 3 4 1"
+"x c #ECA8C8"
+". c none"
+"X c #715566"
+"o c none"
+"xxxxxxxxxxxxxxxxxxxxxxxxxxx....."
+"xxxxxxxxxxxxxxxxxxxxxxxxxxx....."
+"xxxxxxxxxxxxxxxxxxxxxxxxxxx....."
+[end]
+
+[_line]
+Type=0x10f06
+String=0x02,Nationalpark
+String=0x01,Parc national
+String=0x05,Parco nazionale
+String=0x04,National park
+FontStyle=NoLabel
+LineWidth=2
+Xpm="0 0 2 0"
+"a c #A0CF83"
+"c c #516649"
+[end]
+
+[_line]
+Type=0x29
+String=0x02,Hochspannungsleitung
+String=0x01,Ligne à haute tension
+String=0x05,Linea ad alta tensione
+String=0x04,Power line
+FontStyle=NoLabel
+UseOrientation=Y
+Xpm="32 1 4 1"
+"x c #0088D0"
+". c none"
+"X c #0D4869"
+"o c none"
+"xxxxxxxxxxxxxxxxxxxxxxx....x...."
+[end]
+
+[_line]
+Type=0x10f0e
+String=0x02,Gewässerverbauung, Hafensteg
+String=0x01,Aménagement de rive, débarcadère
+String=0x05,Arginatura, pontile
+String=0x04,Embankment, pier
+FontStyle=NoLabel
+LineWidth=1
+Xpm="0 0 2 0"
+"a c #0088D0"
+"c c #0D4869"
+[end]
+
+[_line]
+Type=0x10c14
+String=0x02,Normalspur
+String=0x01,Voie normale
+String=0x05,Scartamento normale
+String=0x04,Railway
+FontStyle=NoLabel
+LineWidth=3
+Xpm="0 0 2 0"
+"a c #DD1919"
+"c c #6A191D"
+[end]
+
+[_line]
+Type=0x10d00
+String=0x02,Normalspur, mehrspurig
+String=0x01,Voie normale, plusieurs voies
+String=0x05,Scartamento normale, più binari
+String=0x04,Railway, multi-track
+FontStyle=NoLabel
+UseOrientation=Y
+Xpm="32 8 4 1"
+"x c #DD1919"
+". c #FFFFFF"
+"X c #6A191D"
+"o c #797A7D"
+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+"................................"
+"................................"
+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+[end]
+
+[_line]
+Type=0x10d01
+String=0x02,Schmalspur, Standseilbahn
+String=0x01,Voie étroite, funiculaire
+String=0x05,Scartamento ridotto, funicolare
+String=0x04,Narrow gauge, funicular
+FontStyle=NoLabel
+LineWidth=2
+Xpm="0 0 2 0"
+"a c #DD1919"
+"c c #6A191D"
+[end]
+
+[_line]
+Type=0x10d02
+String=0x02,Anschlussgleis
+String=0x01,Voie de raccordement
+String=0x05,Binario di raccordo
+String=0x04,Siding
+FontStyle=NoLabel
+LineWidth=1
+Xpm="0 0 2 0"
+"a c #DD1919"
+"c c #6A191D"
+[end]
+
+[_line]
+Type=0x10d03
+String=0x02,Tram
+String=0x01,Tram
+String=0x05,Tram
+String=0x04,Tram
+FontStyle=NoLabel
+LineWidth=1
+Xpm="0 0 2 0"
+"a c #DD1919"
+"c c #6A191D"
+[end]
+
+[_line]
+Type=0x10d07
+String=0x02,Bahntunnel
+String=0x01,Tunnel ferroviaire
+String=0x05,Galleria ferroviaria
+String=0x04,Railway tunnel
+FontStyle=NoLabel
+UseOrientation=Y
+Xpm="32 2 4 1"
+"x c #DD1919"
+". c none"
+"X c #6A191D"
+"o c none"
+"xxxxxxxxxx......xxxxxxxxxx......"
+"xxxxxxxxxx......xxxxxxxxxx......"
+[end]
+
+[_line]
+Type=0x10d04
+String=0x02,Luftseilbahn, Gondelbahn, Sesselbahn
+String=0x01,Téléphérique, télécabine, télésiège
+String=0x05,Funivia, cabinovia, seggiovia
+String=0x04,Aerial cableway
+FontStyle=SmallFont
+DayCustomColor=#DD1919
+NightCustomColor=#EA7575
+UseOrientation=Y
+Xpm="32 3 4 1"
+"x c #DD1919"
+". c none"
+"X c #6A191D"
+"o c none"
+"........x...............x......."
+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+"........x...............x......."
+[end]
+
+[_line]
+Type=0x10d05
+String=0x02,Skilift
+String=0x01,Téléski
+String=0x05,Sciovia
+String=0x04,Ski lift
+FontStyle=SmallFont
+DayCustomColor=#D7963C
+NightCustomColor=#E7C08A
+UseOrientation=Y
+Xpm="32 3 4 1"
+"x c #D7963C"
+". c none"
+"X c #684E2B"
+"o c none"
+"......x...........x...........x."
+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+"......x...........x...........x."
+[end]
+
+[_line]
+Type=0x10d08
+String=0x02,Transportseilbahn
+String=0x01,Téléphérique de service
+String=0x05,Teleferica di servizio
+String=0x04,Goods cableway
+FontStyle=NoLabel
+UseOrientation=Y
+Xpm="32 3 4 1"
+"x c #333333"
+". c none"
+"X c #969696"
+"o c none"
+".....x.........x.........x......"
+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+".....x.........x.........x......"
+[end]
+
+[_line]
+Type=0x10c1f
+String=0x02,Fluss
+String=0x01,Rivière
+String=0x05,Fiume
+String=0x04,River
+FontStyle=NormalFont
+DayCustomColor=#0088D0
+NightCustomColor=#66B7E2
+LineWidth=4
+Xpm="0 0 2 0"
+"a c #0088D0"
+"c c #0D4869"
+[end]
+
+[_line]
+Type=0x10c18
+String=0x02,Bach
+String=0x01,Ruisseau
+String=0x05,Ruscello
+String=0x04,Stream
+FontStyle=SmallFont
+DayCustomColor=#0088D0
+NightCustomColor=#66B7E2
+LineWidth=2
+Xpm="0 0 2 0"
+"a c #0088D0"
+"c c #0D4869"
+[end]
+
+[_line]
+Type=0x10c17
+String=0x02,Bach klein
+String=0x01,Petit ruisseau
+String=0x05,Piccolo ruscello
+String=0x04,Small stream
+FontStyle=SmallFont
+DayCustomColor=#0088D0
+NightCustomColor=#66B7E2
+LineWidth=1
+Xpm="0 0 2 0"
+"a c #0088D0"
+"c c #0D4869"
+[end]
+
+[_line]
+Type=0x10c06
+String=0x02,Trockenrinne
+String=0x01,Ravine sèche
+String=0x05,Canalone asciutto
+String=0x04,Dry stream bed
+FontStyle=SmallFont
+UseOrientation=Y
+Xpm="32 1 4 1"
+"x c #000000"
+". c none"
+"X c #C8C8C8"
+"o c none"
+"xxx.....xxx.....xxx.....xxx....."
+[end]
+
+[_line]
+Type=0x10d10
+String=0x02,Druckleitung
+String=0x01,Conduite forcée
+String=0x05,Condotta forzata
+String=0x04,Water pipeline
+FontStyle=NoLabel
+LineWidth=3
+Xpm="0 0 2 0"
+"a c #0088D0"
+"c c #0D4869"
+[end]
+
+[_line]
+Type=0x10d12
+String=0x02,Eingedolter Bach
+String=0x01,Ruisseau sous terre
+String=0x05,Ruscello intubato
+String=0x04,Culvert
+FontStyle=NoLabel
+UseOrientation=Y
+Xpm="32 1 4 1"
+"x c #0088D0"
+". c none"
+"X c #0D4869"
+"o c none"
+"xx..xx..xx..xx..xx..xx..xx..xx.."
+[end]
+
+[_line]
+Type=0x10d11
+String=0x02,Wasserfall
+String=0x01,Cascade
+String=0x05,Cascata
+String=0x04,Waterfall
+FontStyle=SmallFont
+DayCustomColor=#0088D0
+NightCustomColor=#66B7E2
+UseOrientation=Y
+Xpm="32 3 4 1"
+"x c #0088D0"
+". c none"
+"X c #0D4869"
+"o c none"
+"..x...x...x...x...x...x...x...x."
+".x.x.x.x.x.x.x.x.x.x.x.x.x.x.x.x"
+"x...x...x...x...x...x...x...x..."
+[end]
+
+[_line]
+Type=0x10c1e
+String=0x02,Landesgrenze
+String=0x01,Frontière nationale
+String=0x05,Confine nazionale
+String=0x04,National border
+FontStyle=NoLabel
+UseOrientation=Y
+Xpm="32 21 4 1"
+"x c #C22976"
+". c #ECA8C8"
+"X c #5F2044"
+"o c #715566"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+[end]
+
+[_line]
+Type=0x10c1c
+String=0x02,Kantonsgrenze
+String=0x01,Limite cantonale
+String=0x05,Confine cantonale
+String=0x04,Canton border
+FontStyle=NoLabel
+UseOrientation=Y
+Xpm="32 11 4 1"
+"x c #C22976"
+". c #ECA8C8"
+"X c #5F2044"
+"o c #715566"
+"................................"
+"................................"
+"................................"
+"................................"
+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+[end]
+
+[_line]
+Type=0x11104
+String=0x02,Bezirksgrenze
+String=0x01,Limite de district
+String=0x05,Confine distrettuale
+String=0x04,District border
+FontStyle=NoLabel
+LineWidth=5
+Xpm="0 0 2 0"
+"a c #ECA8C8"
+"c c #715566"
+[end]
+
+[_line]
+Type=0x11105
+String=0x02,Gemeindegrenze
+String=0x01,Limite communale
+String=0x05,Confine comunale
+String=0x04,Municipal border
+FontStyle=NoLabel
+UseOrientation=Y
+Xpm="32 5 4 1"
+"x c #ECA8C8"
+". c none"
+"X c #715566"
+"o c none"
+"xxxxxxxxxxxxxxxxxxxxxxxxxxx....."
+"xxxxxxxxxxxxxxxxxxxxxxxxxxx....."
+"xxxxxxxxxxxxxxxxxxxxxxxxxxx....."
+"xxxxxxxxxxxxxxxxxxxxxxxxxxx....."
+"xxxxxxxxxxxxxxxxxxxxxxxxxxx....."
+[end]
+
+[_line]
+Type=0x11106
+String=0x02,Nationalpark
+String=0x01,Parc national
+String=0x05,Parco nazionale
+String=0x04,National park
+FontStyle=NoLabel
+LineWidth=2
+Xpm="0 0 2 0"
+"a c #A0CF83"
+"c c #516649"
+[end]
+
+[_line]
+Type=0x10c09
+String=0x02,Hochspannungsleitung
+String=0x01,Ligne à haute tension
+String=0x05,Linea ad alta tensione
+String=0x04,Power line
+FontStyle=NoLabel
+UseOrientation=Y
+Xpm="32 1 4 1"
+"x c #0088D0"
+". c none"
+"X c #0D4869"
+"o c none"
+"xxxxxxxxxxxxxxxxxxxxxxx....x...."
+[end]
+
+[_line]
+Type=0x1110e
+String=0x02,Gewässerverbauung, Hafensteg
+String=0x01,Aménagement de rive, débarcadère
+String=0x05,Arginatura, pontile
+String=0x04,Embankment, pier
+FontStyle=NoLabel
+LineWidth=2
+Xpm="0 0 2 0"
+"a c #0088D0"
+"c c #0D4869"
+[end]
+
+[_line]
+Type=0x10e1a
+String=0x02,Fluss
+String=0x01,Rivière
+String=0x05,Fiume
+String=0x04,River
+FontStyle=NormalFont
+DayCustomColor=#0088D0
+NightCustomColor=#66B7E2
+LineWidth=2
+Xpm="0 0 2 0"
+"a c #0088D0"
+"c c #0D4869"
+[end]
+
+[_line]
+Type=0x20
+String=0x02,Höhenkurve 10 m
+String=0x01,Courbe de niveau 10 m
+String=0x05,Curva di livello 10 m
+String=0x04,Contour 10 m
+FontStyle=SmallFont
+DayCustomColor=#D7963C
+NightCustomColor=#E7C08A
+LineWidth=1
+Xpm="0 0 2 0"
+"a c #E5BB80"
+"c c #6E5D48"
+[end]
+
+[_line]
+Type=0x21
+String=0x02,Höhenkurve
+String=0x01,Courbe de niveau
+String=0x05,Curva di livello
+String=0x04,Contour
+FontStyle=SmallFont
+DayCustomColor=#D7963C
+NightCustomColor=#E7C08A
+LineWidth=1
+Xpm="0 0 2 0"
+"a c #E5BB80"
+"c c #6E5D48"
+[end]
+
+[_line]
+Type=0x22
+String=0x02,Zählkurve
+String=0x01,Courbe maîtresse
+String=0x05,Curva direttrice
+String=0x04,Index contour
+FontStyle=SmallFont
+DayCustomColor=#D7963C
+NightCustomColor=#E7C08A
+LineWidth=2
+Xpm="0 0 2 0"
+"a c #D7963C"
+"c c #684E2B"
+[end]
+
+[_line]
+Type=0x10f15
+String=0x02,Zählkurve (grob)
+String=0x01,Courbe maîtresse (aperçu)
+String=0x05,Curva direttrice (panoramica)
+String=0x04,Index contour (coarse)
+FontStyle=SmallFont
+DayCustomColor=#D7963C
+NightCustomColor=#E7C08A
+LineWidth=1
+Xpm="0 0 2 0"
+"a c #D7963C"
+"c c #684E2B"
+[end]
+
+[_line]
+Type=0x10f12
+String=0x02,Höhenkurve Fels 10 m
+String=0x01,Courbe de niveau rocher 10 m
+String=0x05,Curva di livello roccia 10 m
+String=0x04,Contour on rock 10 m
+FontStyle=SmallFont
+DayCustomColor=#3E3E3E
+NightCustomColor=#8B8B8B
+LineWidth=1
+Xpm="0 0 2 0"
+"a c #828282"
+"c c #444549"
+[end]
+
+[_line]
+Type=0x10f00
+String=0x02,Höhenkurve Fels
+String=0x01,Courbe de niveau rocher
+String=0x05,Curva di livello roccia
+String=0x04,Contour on rock
+FontStyle=SmallFont
+DayCustomColor=#3E3E3E
+NightCustomColor=#8B8B8B
+LineWidth=1
+Xpm="0 0 2 0"
+"a c #828282"
+"c c #444549"
+[end]
+
+[_line]
+Type=0x10f01
+String=0x02,Zählkurve Fels
+String=0x01,Courbe maîtresse rocher
+String=0x05,Curva direttrice roccia
+String=0x04,Index contour on rock
+FontStyle=SmallFont
+DayCustomColor=#3E3E3E
+NightCustomColor=#8B8B8B
+LineWidth=2
+Xpm="0 0 2 0"
+"a c #3E3E3E"
+"c c #8A8A8A"
+[end]
+
+[_line]
+Type=0x10f17
+String=0x02,Zählkurve Fels (grob)
+String=0x01,Courbe maîtresse rocher (aperçu)
+String=0x05,Curva direttrice roccia (panoramica)
+String=0x04,Index contour on rock (coarse)
+FontStyle=SmallFont
+DayCustomColor=#3E3E3E
+NightCustomColor=#8B8B8B
+LineWidth=1
+Xpm="0 0 2 0"
+"a c #3E3E3E"
+"c c #8A8A8A"
+[end]
+
+[_line]
+Type=0x10f13
+String=0x02,Höhenkurve Gletscher/See 10 m
+String=0x01,Courbe de niveau glacier/lac 10 m
+String=0x05,Curva di livello ghiacciaio/lago 10 m
+String=0x04,Contour on glacier 10 m
+FontStyle=SmallFont
+DayCustomColor=#0088D0
+NightCustomColor=#66B7E2
+LineWidth=1
+Xpm="0 0 2 0"
+"a c #59B2E0"
+"c c #335970"
+[end]
+
+[_line]
+Type=0x10f02
+String=0x02,Höhenkurve Gletscher/See
+String=0x01,Courbe de niveau glacier/lac
+String=0x05,Curva di livello ghiacciaio/lago
+String=0x04,Contour on glacier
+FontStyle=SmallFont
+DayCustomColor=#0088D0
+NightCustomColor=#66B7E2
+LineWidth=1
+Xpm="0 0 2 0"
+"a c #59B2E0"
+"c c #335970"
+[end]
+
+[_line]
+Type=0x10f03
+String=0x02,Zählkurve Gletscher/See
+String=0x01,Courbe maîtresse glacier/lac
+String=0x05,Curva direttrice ghiacciaio/lago
+String=0x04,Index contour on glacier
+FontStyle=SmallFont
+DayCustomColor=#0088D0
+NightCustomColor=#66B7E2
+LineWidth=2
+Xpm="0 0 2 0"
+"a c #0088D0"
+"c c #0D4869"
+[end]
+
+[_line]
+Type=0x10f19
+String=0x02,Zählkurve Gletscher/See (grob)
+String=0x01,Courbe maîtresse glacier/lac (aperçu)
+String=0x05,Curva direttrice ghiacciaio/lago (panoramica)
+String=0x04,Index contour on glacier (coarse)
+FontStyle=SmallFont
+DayCustomColor=#0088D0
+NightCustomColor=#66B7E2
+LineWidth=1
+Xpm="0 0 2 0"
+"a c #0088D0"
+"c c #0D4869"
+[end]
+
+[_line]
+Type=0x10f10
+String=0x02,Landesgrenze (Übersicht)
+String=0x01,Frontière nationale (aperçu)
+String=0x05,Confine nazionale (panoramica)
+String=0x04,National border (overview)
+FontStyle=NoLabel
+UseOrientation=Y
+Xpm="32 5 4 1"
+"x c #C22976"
+". c #ECA8C8"
+"X c #5F2044"
+"o c #715566"
+"................................"
+"................................"
+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+"................................"
+"................................"
+[end]
+
+[_line]
+Type=0x10f11
+String=0x02,Kantonsgrenze (Übersicht)
+String=0x01,Limite cantonale (aperçu)
+String=0x05,Confine cantonale (panoramica)
+String=0x04,Canton border (overview)
+FontStyle=NoLabel
+UseOrientation=Y
+Xpm="32 3 4 1"
+"x c #C22976"
+". c #ECA8C8"
+"X c #5F2044"
+"o c #715566"
+"................................"
+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+"................................"
+[end]
+
+[_line]
+Type=0x10f07
+String=0x02,Mauer
+String=0x01,Mur
+String=0x05,Muro
+String=0x04,Wall
+FontStyle=NoLabel
+LineWidth=1
+Xpm="0 0 2 0"
+"a c #000000"
+"c c #C8C8C8"
+[end]
+
+[_line]
+Type=0x10f08
+String=0x02,Böschung
+String=0x01,Talus
+String=0x05,Scarpata
+String=0x04,Embankment
+FontStyle=NoLabel
+UseOrientation=Y
+Xpm="32 3 4 1"
+"x c #D7963C"
+". c none"
+"X c #684E2B"
+"o c none"
+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+"x...x...x...x...x...x...x...x..."
+"x...x...x...x...x...x...x...x..."
+[end]
+
+[_line]
+Type=0x10f09
+String=0x02,Felswand
+String=0x01,Paroi rocheuse
+String=0x05,Parete rocciosa
+String=0x04,Cliff
+FontStyle=NoLabel
+UseOrientation=Y
+Xpm="32 4 4 1"
+"x c #3E3E3E"
+". c none"
+"X c #8A8A8A"
+"o c none"
+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+"x..x..x..x..x..x..x..x..x..x..x."
+"x..x..x..x..x..x..x..x..x..x..x."
+"x..x..x..x..x..x..x..x..x..x..x."
+[end]
+
+[_line]
+Type=0x10f0a
+String=0x02,Grat
+String=0x01,Arête
+String=0x05,Cresta
+String=0x04,Ridge
+FontStyle=SmallFont
+LineWidth=1
+Xpm="0 0 2 0"
+"a c #3E3E3E"
+"c c #8A8A8A"
+[end]
+
+[_line]
+Type=0x10f1a
+String=0x02,Felsschraffe
+String=0x01,Hachure de rocher
+String=0x05,Tratteggio roccia
+String=0x04,Rock hatch
+FontStyle=NoLabel
+UseOrientation=Y
+Xpm="32 7 4 1"
+"x c #7A7A7A"
+". c none"
+"X c #414245"
+"o c none"
+"x.....x.....x........x.....x...."
+"x..x..x.....x..x..x..x.....x..x."
+"x..x..x..x..x..x..x..x..x..x..x."
+"x..x..x..x..x..x..x..x..x..x..x."
+"x..x..x..x..x..x..x..x..x..x..x."
+"x.....x.....x..x.....x.....x..x."
+"x...........x..............x...."
+[end]
+
+[_line]
+Type=0x10f1b
+String=0x02,Felsschraffe Schatten
+String=0x01,Hachure de rocher ombrée
+String=0x05,Tratteggio roccia in ombra
+String=0x04,Rock hatch shaded
+FontStyle=NoLabel
+UseOrientation=Y
+Xpm="32 7 4 1"
+"x c #3F3F3F"
+". c none"
+"X c #898989"
+"o c none"
+"x.....x.....x........x.....x...."
+"x..x..x.....x..x..x..x.....x..x."
+"x..x..x..x..x..x..x..x..x..x..x."
+"x..x..x..x..x..x..x..x..x..x..x."
+"x..x..x..x..x..x..x..x..x..x..x."
+"x.....x.....x..x.....x.....x..x."
+"x...........x..............x...."
+[end]
+
+[_line]
+Type=0x10f0b
+String=0x02,Staumauer, Damm
+String=0x01,Barrage, digue
+String=0x05,Diga, argine
+String=0x04,Dam
+FontStyle=NoLabel
+LineWidth=3
+BorderWidth=1
+Xpm="0 0 4 0"
+"a c #CCCCCC"
+"b c #262626"
+"c c #636468"
+"d c #A2A2A2"
+[end]
+
+[_line]
+Type=0x10f0c
+String=0x02,Arealgrenze grün
+String=0x01,Limite de parc
+String=0x05,Limite di parco
+String=0x04,Park outline
+FontStyle=NoLabel
+LineWidth=1
+Xpm="0 0 2 0"
+"a c #70B446"
+"c c #3C5A2F"
+[end]
+
+[_line]
+Type=0x10f0d
+String=0x02,Arealgrenze
+String=0x01,Limite d'aire
+String=0x05,Limite d'area
+String=0x04,Area outline
+FontStyle=NoLabel
+LineWidth=1
+Xpm="0 0 2 0"
+"a c #262626"
+"c c #A2A2A2"
+[end]
+
+[_polygon]
+Type=0x3c
+String=0x02,See gross
+String=0x01,Grand lac
+String=0x05,Lago grande
+String=0x04,Large lake
+FontStyle=NormalFont
+DayCustomColor=#0088D0
+NightCustomColor=#66B7E2
+Xpm="0 0 2 0"
+"a c #D2EEFF"
+"c c #444C55"
+[end]
+
+[_polygon]
+Type=0x3d
+String=0x02,See gross (Übersicht)
+String=0x01,Grand lac (aperçu)
+String=0x05,Lago grande (panoramica)
+String=0x04,Large lake
+FontStyle=NoLabel
+Xpm="0 0 2 0"
+"a c #D2EEFF"
+"c c #444C55"
+[end]
+
+[_polygon]
+Type=0x3f
+String=0x02,See (Übersicht)
+String=0x01,Lac (aperçu)
+String=0x05,Lago (panoramica)
+String=0x04,Lake
+FontStyle=NoLabel
+Xpm="0 0 2 0"
+"a c #D2EEFF"
+"c c #444C55"
+[end]
+
+[_polygon]
+Type=0x3e
+String=0x02,See
+String=0x01,Lac
+String=0x05,Lago
+String=0x04,Lake
+FontStyle=NormalFont
+DayCustomColor=#0088D0
+NightCustomColor=#66B7E2
+Xpm="0 0 2 0"
+"a c #D2EEFF"
+"c c #444C55"
+[end]
+
+[_polygon]
+Type=0x41
+String=0x02,Kleiner See, Weiher
+String=0x01,Petit lac, étang
+String=0x05,Laghetto, stagno
+String=0x04,Pond
+FontStyle=SmallFont
+DayCustomColor=#0088D0
+NightCustomColor=#66B7E2
+Xpm="0 0 2 0"
+"a c #D2EEFF"
+"c c #444C55"
+[end]
+
+[_polygon]
+Type=0x48
+String=0x02,Fluss (Fläche)
+String=0x01,Rivière (surface)
+String=0x05,Fiume (superficie)
+String=0x04,River area
+FontStyle=SmallFont
+DayCustomColor=#0088D0
+NightCustomColor=#66B7E2
+Xpm="0 0 2 0"
+"a c #9CD5F8"
+"c c #374653"
+[end]
+
+[_polygon]
+Type=0x4c
+String=0x02,See mit wechselndem Wasserstand
+String=0x01,Lac à niveau variable
+String=0x05,Lago a livello variabile
+String=0x04,Intermittent lake
+FontStyle=SmallFont
+DayCustomColor=#0088D0
+NightCustomColor=#66B7E2
+Xpm="32 32 4 1"
+"x c #0088D0"
+". c #D2EEFF"
+"X c #0D4869"
+"o c #444C55"
+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+[end]
+
+[_polygon]
+Type=0x11004
+String=0x02,Schwimmbecken
+String=0x01,Piscine
+String=0x05,Piscina
+String=0x04,Swimming pool
+FontStyle=NoLabel
+Xpm="0 0 2 0"
+"a c #0088D0"
+"c c #12344A"
+[end]
+
+[_polygon]
+Type=0x50
+String=0x02,Wald
+String=0x01,Forêt
+String=0x05,Bosco
+String=0x04,Forest
+FontStyle=SmallFont
+DayCustomColor=#70B446
+NightCustomColor=#A9D290
+Xpm="0 0 2 0"
+"a c #CDE6BE"
+"c c #434A45"
+[end]
+
+[_polygon]
+Type=0x11000
+String=0x02,Wald offen
+String=0x01,Forêt clairsemée
+String=0x05,Bosco rado
+String=0x04,Open forest
+FontStyle=NoLabel
+Xpm="32 32 4 1"
+"x c #70B446"
+". c none"
+"X c #3C5A2F"
+"o c none"
+"xx........xx.........xx........."
+"xx........xx.........xx........."
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+".....xx........xx.........xx...."
+".....xx........xx.........xx...."
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"xx........xx.........xx........."
+"xx........xx.........xx........."
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+[end]
+
+[_polygon]
+Type=0x4f
+String=0x02,Gebüschwald
+String=0x01,Broussailles
+String=0x05,Boscaglia
+String=0x04,Scrub
+FontStyle=NoLabel
+Xpm="32 32 4 1"
+"x c #70B446"
+". c none"
+"X c #3C5A2F"
+"o c none"
+"x.......x.......x.......x......."
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"....x.......x.......x.......x..."
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"x.......x.......x.......x......."
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"....x.......x.......x.......x..."
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+[end]
+
+[_polygon]
+Type=0x51
+String=0x02,Feuchtgebiet
+String=0x01,Zone humide
+String=0x05,Zona umida
+String=0x04,Wetland
+FontStyle=NoLabel
+Xpm="32 32 4 1"
+"x c #0088D0"
+". c none"
+"X c #0D4869"
+"o c none"
+"xxxxx...........xxxxx..........."
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"........xxxxx...........xxxxx..."
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"xxxxx...........xxxxx..........."
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"........xxxxx...........xxxxx..."
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+[end]
+
+[_polygon]
+Type=0x11001
+String=0x02,Fels
+String=0x01,Rocher
+String=0x05,Roccia
+String=0x04,Rock
+FontStyle=NoLabel
+Xpm="32 32 4 1"
+"x c #3F3F3F"
+". c none"
+"X c #898989"
+"o c none"
+"...x...x......x.......x......x.."
+".......x.............x.........."
+"......x........................."
+"...............x...........x...."
+"x.........x....x...........x...."
+"x.........x...x.....x.....x....."
+".x.......x...........x.........."
+".x...................x.........."
+"......................x.....x..."
+"...............x.............x.."
+".......x........x............x.."
+".......x........x...x.........x."
+"........x........x..x....x......"
+"x.......x............x....x....."
+".x...................x....x....."
+".x.........................x...."
+"..x..x...x......................"
+".....x...x.......x.............."
+"....x.....x.......x........x...."
+".x........x.......x........x...."
+".x..........x......x.x....x....."
+"x...........x........x.........."
+".............x........x........."
+"....x........x........x........."
+".....x.............x............"
+".....x.............x..........x."
+"......x...........x....x.......x"
+"........x..............x.......x"
+"x.......x...............x......."
+"..x....x.....x..........x..x...."
+"..x..........x..............x..."
+"...x..........x.......x.....x..."
+[end]
+
+[_polygon]
+Type=0x11002
+String=0x02,Geröll
+String=0x01,Éboulis
+String=0x05,Detriti
+String=0x04,Scree
+FontStyle=NoLabel
+Xpm="32 32 4 1"
+"x c #3F3F3F"
+". c none"
+"X c #898989"
+"o c none"
+".........x.................x..x."
+".............x...x...x.........."
+"................................"
+"....x..x..x....................."
+".x............x....x............"
+"............................x..."
+"................................"
+".x..x....x........x............."
+".......................x........"
+"...............x................"
+"...................x...........x"
+"............x.........x.....x..."
+"........x......................."
+".x..............x..............."
+".....x..............x....x......"
+"................................"
+"...........x...................."
+"........x.........x...x..x......"
+"..x..x........x.............x..."
+"................................"
+".........x......................"
+".....x......x..x..x....x....x..."
+"...............................x"
+"................................"
+"..x...................x........."
+"............x.............x....x"
+".......x.........x.............."
+"................................"
+"............x.........x..x......"
+".......x........................"
+"....x..............x............"
+"................................"
+[end]
+
+[_polygon]
+Type=0x11010
+String=0x02,Schatten
+String=0x01,Ombre
+String=0x05,Ombra
+String=0x04,Shade
+FontStyle=NoLabel
+Xpm="32 32 4 1"
+"x c #50647D"
+". c none"
+"X c #2F3947"
+"o c none"
+"x...x...x...x...x...x...x...x..."
+"................................"
+"..x...x...x...x...x...x...x...x."
+"................................"
+"x...x...x...x...x...x...x...x..."
+"................................"
+"..x...x...x...x...x...x...x...x."
+"................................"
+"x...x...x...x...x...x...x...x..."
+"................................"
+"..x...x...x...x...x...x...x...x."
+"................................"
+"x...x...x...x...x...x...x...x..."
+"................................"
+"..x...x...x...x...x...x...x...x."
+"................................"
+"x...x...x...x...x...x...x...x..."
+"................................"
+"..x...x...x...x...x...x...x...x."
+"................................"
+"x...x...x...x...x...x...x...x..."
+"................................"
+"..x...x...x...x...x...x...x...x."
+"................................"
+"x...x...x...x...x...x...x...x..."
+"................................"
+"..x...x...x...x...x...x...x...x."
+"................................"
+"x...x...x...x...x...x...x...x..."
+"................................"
+"..x...x...x...x...x...x...x...x."
+"................................"
+[end]
+
+[_polygon]
+Type=0x11011
+String=0x02,Schatten stark
+String=0x01,Ombre forte
+String=0x05,Ombra forte
+String=0x04,Deep shade
+FontStyle=NoLabel
+Xpm="32 32 4 1"
+"x c #50647D"
+". c none"
+"X c #2F3947"
+"o c none"
+"..x...x...x...x...x...x...x...x."
+"................................"
+"x...x...x...x...x...x...x...x..."
+"................................"
+"..x...x...x...x...x...x...x...x."
+"................................"
+"x...x...x...x...x...x...x...x..."
+"................................"
+"..x...x...x...x...x...x...x...x."
+"................................"
+"x...x...x...x...x...x...x...x..."
+"................................"
+"..x...x...x...x...x...x...x...x."
+"................................"
+"x...x...x...x...x...x...x...x..."
+"................................"
+"..x...x...x...x...x...x...x...x."
+"................................"
+"x...x...x...x...x...x...x...x..."
+"................................"
+"..x...x...x...x...x...x...x...x."
+"................................"
+"x...x...x...x...x...x...x...x..."
+"................................"
+"..x...x...x...x...x...x...x...x."
+"................................"
+"x...x...x...x...x...x...x...x..."
+"................................"
+"..x...x...x...x...x...x...x...x."
+"................................"
+"x...x...x...x...x...x...x...x..."
+"................................"
+[end]
+
+[_polygon]
+Type=0x4d
+String=0x02,Gletscher
+String=0x01,Glacier
+String=0x05,Ghiacciaio
+String=0x04,Glacier
+FontStyle=NormalFont
+DayCustomColor=#0088D0
+NightCustomColor=#66B7E2
+Xpm="32 32 4 1"
+"x c #006BC7"
+". c none"
+"X c #0D3C66"
+"o c none"
+"xxxxxx.........................."
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................xxxxxx.........."
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"xxxxxx.........................."
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+[end]
+
+[_polygon]
+Type=0x11006
+String=0x02,Reben
+String=0x01,Vigne
+String=0x05,Vigneto
+String=0x04,Vineyard
+FontStyle=NoLabel
+Xpm="32 32 4 1"
+"x c #70B446"
+". c none"
+"X c #3C5A2F"
+"o c none"
+"x.....x.....x......x.....x......"
+"x.....x.....x......x.....x......"
+"x.....x.....x......x.....x......"
+"x.....x.....x......x.....x......"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"x.....x.....x......x.....x......"
+"x.....x.....x......x.....x......"
+"x.....x.....x......x.....x......"
+"x.....x.....x......x.....x......"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+[end]
+
+[_polygon]
+Type=0x4e
+String=0x02,Obstanlage
+String=0x01,Verger
+String=0x05,Frutteto
+String=0x04,Orchard
+FontStyle=NoLabel
+Xpm="32 32 4 1"
+"x c #70B446"
+". c none"
+"X c #3C5A2F"
+"o c none"
+".x.......x.......x.......x......"
+"xxx.....xxx.....xxx.....xxx....."
+".x.......x.......x.......x......"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+".x.......x.......x.......x......"
+"xxx.....xxx.....xxx.....xxx....."
+".x.......x.......x.......x......"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+".x.......x.......x.......x......"
+"xxx.....xxx.....xxx.....xxx....."
+".x.......x.......x.......x......"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+".x.......x.......x.......x......"
+"xxx.....xxx.....xxx.....xxx....."
+".x.......x.......x.......x......"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+[end]
+
+[_polygon]
+Type=0x11007
+String=0x02,Baumschule
+String=0x01,Pépinière
+String=0x05,Vivaio
+String=0x04,Plant nursery
+FontStyle=NoLabel
+Xpm="32 32 4 1"
+"x c #70B446"
+". c none"
+"X c #3C5A2F"
+"o c none"
+"x.......x.......x.......x......."
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"x.......x.......x.......x......."
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"x.......x.......x.......x......."
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"x.......x.......x.......x......."
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+"................................"
+[end]
+
+[_polygon]
+Type=0x1a
+String=0x02,Friedhof
+String=0x01,Cimetière
+String=0x05,Cimitero
+String=0x04,Cemetery
+FontStyle=SmallFont
+Xpm="0 0 2 0"
+"a c #E7F3E1"
+"c c #494E4E"
+[end]
+
+[_polygon]
+Type=0x17
+String=0x02,Park, Schrebergarten
+String=0x01,Parc, jardin familial
+String=0x05,Parco, orto urbano
+String=0x04,Park
+FontStyle=SmallFont
+Xpm="0 0 2 0"
+"a c #E7F3E1"
+"c c #494E4E"
+[end]
+
+[_polygon]
+Type=0x11005
+String=0x02,Deponie, Abbau
+String=0x01,Décharge, extraction
+String=0x05,Discarica, cava
+String=0x04,Landfill, quarry
+FontStyle=SmallFont
+Xpm="0 0 2 0"
+"a c #F0DABC"
+"c c #4B4845"
+[end]
+
+[_polygon]
+Type=0xb
+String=0x02,Spitalareal
+String=0x01,Aire d'hôpital
+String=0x05,Area ospedaliera
+String=0x04,Hospital
+FontStyle=SmallFont
+Xpm="0 0 2 0"
+"a c #F2F2F2"
+"c c #4C4D52"
+[end]
+
+[_polygon]
+Type=0xc
+String=0x02,Unterwerk, Kraftwerk
+String=0x01,Sous-station, centrale
+String=0x05,Sottostazione, centrale
+String=0x04,Substation
+FontStyle=NoLabel
+Xpm="0 0 2 0"
+"a c #FFFFFF"
+"c c #4F5055"
+[end]
+
+[_polygon]
+Type=0x11003
+String=0x02,Campingplatz
+String=0x01,Camping
+String=0x05,Campeggio
+String=0x04,Camp site
+FontStyle=SmallFont
+Xpm="0 0 2 0"
+"a c #E7F3E1"
+"c c #494E4E"
+[end]
+
+[_polygon]
+Type=0x18
+String=0x02,Golfplatz
+String=0x01,Terrain de golf
+String=0x05,Campo da golf
+String=0x04,Golf course
+FontStyle=SmallFont
+Xpm="0 0 2 0"
+"a c #E7F3E1"
+"c c #494E4E"
+[end]
+
+[_polygon]
+Type=0x5
+String=0x02,Parkplatz
+String=0x01,Parking
+String=0x05,Parcheggio
+String=0x04,Parking
+FontStyle=NoLabel
+Xpm="0 0 2 0"
+"a c #FFFFFF"
+"c c #4F5055"
+[end]
+
+[_polygon]
+Type=0x1100a
+String=0x02,Verkehrsfläche
+String=0x01,Surface de circulation
+String=0x05,Area di circolazione
+String=0x04,Traffic area
+FontStyle=NoLabel
+Xpm="0 0 2 0"
+"a c #FFFFFF"
+"c c #4F5055"
+[end]
+
+[_polygon]
+Type=0x19
+String=0x02,Sportplatz
+String=0x01,Terrain de sport
+String=0x05,Campo sportivo
+String=0x04,Sports field
+FontStyle=SmallFont
+Xpm="0 0 2 0"
+"a c #E7F3E1"
+"c c #494E4E"
+[end]
+
+[_polygon]
+Type=0xe
+String=0x02,Hartbelagpiste
+String=0x01,Piste en dur
+String=0x05,Pista pavimentata
+String=0x04,Paved runway
+FontStyle=NoLabel
+Xpm="0 0 2 0"
+"a c #FFFFFF"
+"c c #4F5055"
+[end]
+
+[_polygon]
+Type=0x11008
+String=0x02,Graspiste
+String=0x01,Piste en herbe
+String=0x05,Pista erbosa
+String=0x04,Grass runway
+FontStyle=NoLabel
+Xpm="0 0 2 0"
+"a c #E7F3E1"
+"c c #494E4E"
+[end]
+
+[_polygon]
+Type=0x1100b
+String=0x02,Solaranlage
+String=0x01,Installation solaire
+String=0x05,Impianto solare
+String=0x04,Solar panels
+FontStyle=NoLabel
+Xpm="32 32 4 1"
+"x c #000000"
+". c #FFFF9B"
+"X c #C8C8C8"
+"o c #4F503D"
+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+"x.......x.......x.......x......."
+"x.......x.......x.......x......."
+"x.......x.......x.......x......."
+"x.......x.......x.......x......."
+"x.......x.......x.......x......."
+"x.......x.......x.......x......."
+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+"x.......x.......x.......x......."
+"x.......x.......x.......x......."
+"x.......x.......x.......x......."
+"x.......x.......x.......x......."
+"x.......x.......x.......x......."
+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+"x.......x.......x.......x......."
+"x.......x.......x.......x......."
+"x.......x.......x.......x......."
+"x.......x.......x.......x......."
+"x.......x.......x.......x......."
+"x.......x.......x.......x......."
+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+"x.......x.......x.......x......."
+"x.......x.......x.......x......."
+"x.......x.......x.......x......."
+"x.......x.......x.......x......."
+"x.......x.......x.......x......."
+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+"x.......x.......x.......x......."
+"x.......x.......x.......x......."
+"x.......x.......x.......x......."
+"x.......x.......x.......x......."
+"x.......x.......x.......x......."
+[end]
+
+[_polygon]
+Type=0x1100d
+String=0x02,Brücke, Staudamm
+String=0x01,Pont, barrage
+String=0x05,Ponte, diga
+String=0x04,Bridge, dam
+FontStyle=NoLabel
+Xpm="0 0 2 0"
+"a c #CCCCCC"
+"c c #434449"
+[end]
+
+[_polygon]
+Type=0x13
+String=0x02,Gebäude
+String=0x01,Bâtiment
+String=0x05,Edificio
+String=0x04,Building
+FontStyle=NoLabel
+Xpm="0 0 2 0"
+"a c #000000"
+"c c #8C8C8C"
+[end]
+
+[_polygon]
+Type=0x1100c
+String=0x02,Flugdach, Treibhaus
+String=0x01,Avant-toit, serre
+String=0x05,Tettoia, serra
+String=0x04,Roof, greenhouse
+FontStyle=NoLabel
+Xpm="32 32 4 1"
+"x c #000000"
+". c #FFFFFF"
+"X c #C8C8C8"
+"o c #4F5055"
+"x...x...x...x...x...x...x...x..."
+"...x...x...x...x...x...x...x...x"
+"..x...x...x...x...x...x...x...x."
+".x...x...x...x...x...x...x...x.."
+"x...x...x...x...x...x...x...x..."
+"...x...x...x...x...x...x...x...x"
+"..x...x...x...x...x...x...x...x."
+".x...x...x...x...x...x...x...x.."
+"x...x...x...x...x...x...x...x..."
+"...x...x...x...x...x...x...x...x"
+"..x...x...x...x...x...x...x...x."
+".x...x...x...x...x...x...x...x.."
+"x...x...x...x...x...x...x...x..."
+"...x...x...x...x...x...x...x...x"
+"..x...x...x...x...x...x...x...x."
+".x...x...x...x...x...x...x...x.."
+"x...x...x...x...x...x...x...x..."
+"...x...x...x...x...x...x...x...x"
+"..x...x...x...x...x...x...x...x."
+".x...x...x...x...x...x...x...x.."
+"x...x...x...x...x...x...x...x..."
+"...x...x...x...x...x...x...x...x"
+"..x...x...x...x...x...x...x...x."
+".x...x...x...x...x...x...x...x.."
+"x...x...x...x...x...x...x...x..."
+"...x...x...x...x...x...x...x...x"
+"..x...x...x...x...x...x...x...x."
+".x...x...x...x...x...x...x...x.."
+"x...x...x...x...x...x...x...x..."
+"...x...x...x...x...x...x...x...x"
+"..x...x...x...x...x...x...x...x."
+".x...x...x...x...x...x...x...x.."
+[end]
+
+[_polygon]
+Type=0x4b
+String=0x02,Hintergrund
+String=0x01,Arrière-plan
+String=0x05,Sfondo
+String=0x04,Background
+FontStyle=NoLabel
+Xpm="0 0 2 0"
+"a c #FFFFFF"
+"c c #4F5055"
+[end]
+
+[_polygon]
+Type=0x11009
+String=0x02,Flugplatzareal
+String=0x01,Aire d'aérodrome
+String=0x05,Area dell'aerodromo
+String=0x04,Aerodrome
+FontStyle=SmallFont
+Xpm="0 0 2 0"
+"a c #F5F5F5"
+"c c #4D4E53"
+[end]
+
+[_polygon]
+Type=0x1100e
+String=0x02,Siedlung (Übersicht)
+String=0x01,Agglomération (aperçu)
+String=0x05,Insediamento (panoramica)
+String=0x04,Settlement
+FontStyle=NormalFont
+Xpm="0 0 2 0"
+"a c #BEBEBE"
+"c c #3F4145"
+[end]
+
+[_polygon]
+Type=0x1100f
+String=0x02,Siedlung (LK50)
+String=0x01,Agglomération (CN50)
+String=0x05,Insediamento (CN50)
+String=0x04,Settlement
+FontStyle=NoLabel
+Xpm="0 0 2 0"
+"a c #F0F0F0"
+"c c #4B4D51"
+[end]
+
+[_point]
+Type=0xe00
+String=0x02,Weiler
+String=0x01,Hameau
+String=0x05,Frazione
+String=0x04,Hamlet
+FontStyle=LargeFont
+DayXpm="1 1 1 1"
+". c none"
+"."
+NightXpm="1 1 1 1"
+". c none"
+"."
+[end]
+
+[_point]
+Type=0xf00
+String=0x02,Quartier
+String=0x01,Quartier
+String=0x05,Quartiere
+String=0x04,Suburb
+FontStyle=LargeFont
+DayXpm="1 1 1 1"
+". c none"
+"."
+NightXpm="1 1 1 1"
+". c none"
+"."
+[end]
+
+[_point]
+Type=0x6613
+String=0x02,Grat
+String=0x01,Arête
+String=0x05,Cresta
+String=0x04,Ridge
+FontStyle=SmallFont
+DayXpm="1 1 1 1"
+". c none"
+"."
+NightXpm="1 1 1 1"
+". c none"
+"."
+[end]
+
+[_point]
+Type=0x6402
+String=0x02,Gebäudename
+String=0x01,Nom de bâtiment
+String=0x05,Nome di edificio
+String=0x04,Building name
+FontStyle=NormalFont
+DayXpm="1 1 1 1"
+". c none"
+"."
+NightXpm="1 1 1 1"
+". c none"
+"."
+[end]
+
+[_point]
+Type=0x2000
+String=0x02,Autobahnausfahrt
+String=0x01,Sortie d'autoroute
+String=0x05,Uscita autostradale
+String=0x04,Motorway exit
+FontStyle=SmallFont
+DayXpm="1 1 1 1"
+". c none"
+"."
+NightXpm="1 1 1 1"
+". c none"
+"."
+[end]
+
+[_point]
+Type=0x1100
+String=0x02,Einzelhof
+String=0x01,Ferme isolée
+String=0x05,Fattoria isolata
+String=0x04,Farm
+FontStyle=NormalFont
+DayXpm="1 1 1 1"
+". c none"
+"."
+NightXpm="1 1 1 1"
+". c none"
+"."
+[end]
+
+[_point]
+Type=0x2800
+String=0x02,Flurname
+String=0x01,Lieu-dit
+String=0x05,Toponimo
+String=0x04,Locality
+FontStyle=NormalFont
+DayXpm="1 1 1 1"
+". c none"
+"."
+NightXpm="1 1 1 1"
+". c none"
+"."
+[end]
+
+[_point]
+Type=0x6602
+String=0x02,Gebietsname
+String=0x01,Nom de région
+String=0x05,Nome di regione
+String=0x04,Area name
+FontStyle=LargeFont
+DayXpm="1 1 1 1"
+". c none"
+"."
+NightXpm="1 1 1 1"
+". c none"
+"."
+[end]
+
+[_point]
+Type=0x6617
+String=0x02,Talname
+String=0x01,Nom de vallée
+String=0x05,Nome di valle
+String=0x04,Valley
+FontStyle=LargeFont
+DayXpm="1 1 1 1"
+". c none"
+"."
+NightXpm="1 1 1 1"
+". c none"
+"."
+[end]
+
+[_point]
+Type=0x6611
+String=0x02,Gebirge
+String=0x01,Massif
+String=0x05,Massiccio
+String=0x04,Mountain range
+FontStyle=LargeFont
+DayXpm="1 1 1 1"
+". c none"
+"."
+NightXpm="1 1 1 1"
+". c none"
+"."
+[end]
+
+[_point]
+Type=0x6612
+String=0x02,Massiv
+String=0x01,Massif
+String=0x05,Massiccio
+String=0x04,Massif
+FontStyle=NoLabel
+DayXpm="1 1 1 1"
+". c none"
+"."
+NightXpm="1 1 1 1"
+". c none"
+"."
+[end]
+
+[_point]
+Type=0x650a
+String=0x02,Gletschername
+String=0x01,Nom de glacier
+String=0x05,Nome di ghiacciaio
+String=0x04,Glacier name
+FontStyle=NormalFont
+DayCustomColor=#0088D0
+NightCustomColor=#66B7E2
+DayXpm="1 1 1 1"
+". c none"
+"."
+NightXpm="1 1 1 1"
+". c none"
+"."
+[end]
+
+[_point]
+Type=0x650d
+String=0x02,Seename
+String=0x01,Nom de lac
+String=0x05,Nome di lago
+String=0x04,Lake name
+FontStyle=NormalFont
+DayCustomColor=#0088D0
+NightCustomColor=#66B7E2
+DayXpm="1 1 1 1"
+". c none"
+"."
+NightXpm="1 1 1 1"
+". c none"
+"."
+[end]
+
+[_point]
+Type=0x6616
+String=0x02,Gipfel
+String=0x01,Sommet
+String=0x05,Vetta
+String=0x04,Summit
+FontStyle=NormalFont
+DayXpm="7 7 3 1"
+"k c #000000"
+"w c #FFFFFF"
+". c none"
+".wwwww."
+"wwkkkww"
+"wkkkkkw"
+"wkkkkkw"
+"wkkkkkw"
+"wwkkkww"
+".wwwww."
+NightXpm="7 7 3 1"
+"k c #C8C8C8"
+"w c #202020"
+". c none"
+".wwwww."
+"wwkkkww"
+"wkkkkkw"
+"wkkkkkw"
+"wkkkkkw"
+"wwkkkww"
+".wwwww."
+[end]
+
+[_point]
+Type=0x6300
+String=0x02,Höhenkote
+String=0x01,Point coté
+String=0x05,Punto quotato
+String=0x04,Spot height
+FontStyle=NormalFont
+DayXpm="4 4 3 1"
+"k c #000000"
+"w c #FFFFFF"
+". c none"
+"wwww"
+"wkkw"
+"wkkw"
+"wwww"
+NightXpm="4 4 3 1"
+"k c #C8C8C8"
+"w c #202020"
+". c none"
+"wwww"
+"wkkw"
+"wkkw"
+"wwww"
+[end]
+
+[_point]
+Type=0x1150f
+String=0x02,Höhenkote
+String=0x01,Point coté
+String=0x05,Punto quotato
+String=0x04,Spot height
+FontStyle=NormalFont
+DayXpm="4 4 3 1"
+"k c #000000"
+"w c #FFFFFF"
+". c none"
+"wwww"
+"wkkw"
+"wkkw"
+"wwww"
+NightXpm="4 4 3 1"
+"k c #C8C8C8"
+"w c #202020"
+". c none"
+"wwww"
+"wkkw"
+"wkkw"
+"wwww"
+[end]
+
+[_point]
+Type=0x11510
+String=0x02,Gipfelkote
+String=0x01,Altitude du sommet
+String=0x05,Quota della vetta
+String=0x04,Summit height
+FontStyle=LargeFont
+DayXpm="4 4 3 1"
+"k c #000000"
+"w c #FFFFFF"
+". c none"
+"wwww"
+"wkkw"
+"wkkw"
+"wwww"
+NightXpm="4 4 3 1"
+"k c #C8C8C8"
+"w c #202020"
+". c none"
+"wwww"
+"wkkw"
+"wkkw"
+"wwww"
+[end]
+
+[_point]
+Type=0x1150d
+String=0x02,Ortsname
+String=0x01,Nom de localité
+String=0x05,Nome di località
+String=0x04,Town name
+FontStyle=LargeFont
+DayXpm="4 4 2 1"
+"k c #000000"
+". c none"
+".kk."
+"k..k"
+"k..k"
+".kk."
+NightXpm="4 4 2 1"
+"k c #C8C8C8"
+". c none"
+".kk."
+"k..k"
+"k..k"
+".kk."
+[end]
+
+[_point]
+Type=0x1150e
+String=0x02,Dorfname
+String=0x01,Nom de village
+String=0x05,Nome di villaggio
+String=0x04,Village name
+FontStyle=NormalFont
+DayXpm="4 4 2 1"
+"k c #000000"
+". c none"
+".kk."
+"k..k"
+"k..k"
+".kk."
+NightXpm="4 4 2 1"
+"k c #C8C8C8"
+". c none"
+".kk."
+"k..k"
+"k..k"
+".kk."
+[end]
+
+[_point]
+Type=0x660b
+String=0x02,Pass, Sattel
+String=0x01,Col
+String=0x05,Passo, sella
+String=0x04,Pass
+FontStyle=NormalFont
+DayXpm="7 5 2 1"
+"k c #000000"
+". c none"
+"k.....k"
+".k...k."
+".k...k."
+".k...k."
+"k.....k"
+NightXpm="7 5 2 1"
+"k c #C8C8C8"
+". c none"
+"k.....k"
+".k...k."
+".k...k."
+".k...k."
+"k.....k"
+[end]
+
+[_point]
+Type=0x6601
+String=0x02,Höhle
+String=0x01,Grotte
+String=0x05,Grotta
+String=0x04,Cave
+FontStyle=NormalFont
+DayXpm="11 8 3 1"
+"k c #000000"
+"w c #FFFFFF"
+". c none"
+"...kkkkk..."
+".kkkkkkkkk."
+"kkkkkkkkkkk"
+"kkkkwwwkkkk"
+"kkkwwwwwkkk"
+"kkwwwwwwwkk"
+"kkwwwwwwwkk"
+"kkwwwwwwwkk"
+NightXpm="11 8 3 1"
+"k c #C8C8C8"
+"w c #202020"
+". c none"
+"...kkkkk..."
+".kkkkkkkkk."
+"kkkkkkkkkkk"
+"kkkkwwwkkkk"
+"kkkwwwwwkkk"
+"kkwwwwwwwkk"
+"kkwwwwwwwkk"
+"kkwwwwwwwkk"
+[end]
+
+[_point]
+Type=0x6614
+String=0x02,Felsblock
+String=0x01,Bloc de rocher
+String=0x05,Masso
+String=0x04,Boulder
+FontStyle=SmallFont
+DayXpm="5 4 2 1"
+"d c #3E3E3E"
+". c none"
+".ddd."
+"ddddd"
+"ddddd"
+".ddd."
+NightXpm="5 4 2 1"
+"d c #8A8A8A"
+". c none"
+".ddd."
+"ddddd"
+"ddddd"
+".ddd."
+[end]
+
+[_point]
+Type=0x6511
+String=0x02,Quelle
+String=0x01,Source
+String=0x05,Sorgente
+String=0x04,Spring
+FontStyle=SmallFont
+DayXpm="9 5 2 1"
+"b c #0088D0"
+". c none"
+".bbb....."
+"b...b...."
+"b...bbbbb"
+"b...b...."
+".bbb....."
+NightXpm="9 5 2 1"
+"b c #0088D0"
+". c none"
+".bbb....."
+"b...b...."
+"b...bbbbb"
+"b...b...."
+".bbb....."
+[end]
+
+[_point]
+Type=0x6508
+String=0x02,Wasserfall
+String=0x01,Cascade
+String=0x05,Cascata
+String=0x04,Waterfall
+FontStyle=NormalFont
+DayXpm="14 10 2 1"
+"b c #0088D0"
+". c none"
+"bbbbbbbbbbbbbb"
+"bbbbbbbbbbbbbb"
+"....bb..bb...."
+"....bb..bb...."
+"..bb..bb..bb.."
+"..bb..bb..bb.."
+"....bb..bb...."
+"....bb..bb...."
+"..bb..bb..bb.."
+"..bb..bb..bb.."
+NightXpm="14 10 2 1"
+"b c #0088D0"
+". c none"
+"bbbbbbbbbbbbbb"
+"bbbbbbbbbbbbbb"
+"....bb..bb...."
+"....bb..bb...."
+"..bb..bb..bb.."
+"..bb..bb..bb.."
+"....bb..bb...."
+"....bb..bb...."
+"..bb..bb..bb.."
+"..bb..bb..bb.."
+[end]
+
+[_point]
+Type=0x5000
+String=0x02,Brunnen
+String=0x01,Fontaine
+String=0x05,Fontana
+String=0x04,Drinking water
+FontStyle=SmallFont
+DayXpm="5 5 3 1"
+"b c #0088D0"
+"w c #FFFFFF"
+". c none"
+".www."
+"wbbbw"
+"wbwbw"
+"wbbbw"
+".www."
+NightXpm="5 5 3 1"
+"b c #0088D0"
+"w c #202020"
+". c none"
+".www."
+"wbbbw"
+"wbwbw"
+"wbbbw"
+".www."
+[end]
+
+[_point]
+Type=0x11503
+String=0x02,Gipfelkreuz
+String=0x01,Croix sommitale
+String=0x05,Croce di vetta
+String=0x04,Summit cross
+FontStyle=SmallFont
+DayXpm="7 8 2 1"
+"k c #000000"
+". c none"
+"...k..."
+"...k..."
+"kkkkkkk"
+"...k..."
+"...k..."
+"...k..."
+"...k..."
+"..kkk.."
+NightXpm="7 8 2 1"
+"k c #C8C8C8"
+". c none"
+"...k..."
+"...k..."
+"kkkkkkk"
+"...k..."
+"...k..."
+"...k..."
+"...k..."
+"..kkk.."
+[end]
+
+[_point]
+Type=0x2c0b
+String=0x02,Kapelle
+String=0x01,Chapelle
+String=0x05,Cappella
+String=0x04,Chapel
+FontStyle=NormalFont
+DayXpm="10 12 2 1"
+"k c #000000"
+". c none"
+"....kk...."
+"....kk...."
+"..kkkkkk.."
+"..kkkkkk.."
+"....kk...."
+"....kk...."
+"kkkkkkkkkk"
+"kkkkkkkkkk"
+"kkkkkkkkkk"
+"kkkkkkkkkk"
+"kkkkkkkkkk"
+"kkkkkkkkkk"
+NightXpm="10 12 2 1"
+"k c #C8C8C8"
+". c none"
+"....kk...."
+"....kk...."
+"..kkkkkk.."
+"..kkkkkk.."
+"....kk...."
+"....kk...."
+"kkkkkkkkkk"
+"kkkkkkkkkk"
+"kkkkkkkkkk"
+"kkkkkkkkkk"
+"kkkkkkkkkk"
+"kkkkkkkkkk"
+[end]
+
+[_point]
+Type=0x6404
+String=0x02,Kirche
+String=0x01,Église
+String=0x05,Chiesa
+String=0x04,Church
+FontStyle=NormalFont
+DayXpm="14 14 3 1"
+"k c #000000"
+"w c #FFFFFF"
+". c none"
+"......kk......"
+"......kk......"
+"....kkkkkk...."
+"....kkkkkk...."
+"......kk......"
+"......kk......"
+"..kkkkkkkkkk.."
+"..kkkkkkkkkk.."
+"kkkkwwwwwwkkkk"
+"kkkkwwwwwwkkkk"
+"kkkkwwwwwwkkkk"
+"kkkkwwwwwwkkkk"
+"..kkkkkkkkkk.."
+"..kkkkkkkkkk.."
+NightXpm="14 14 3 1"
+"k c #C8C8C8"
+"w c #202020"
+". c none"
+"......kk......"
+"......kk......"
+"....kkkkkk...."
+"....kkkkkk...."
+"......kk......"
+"......kk......"
+"..kkkkkkkkkk.."
+"..kkkkkkkkkk.."
+"kkkkwwwwwwkkkk"
+"kkkkwwwwwwkkkk"
+"kkkkwwwwwwkkkk"
+"kkkkwwwwwwkkkk"
+"..kkkkkkkkkk.."
+"..kkkkkkkkkk.."
+[end]
+
+[_point]
+Type=0x11504
+String=0x02,Bildstock
+String=0x01,Oratoire
+String=0x05,Edicola
+String=0x04,Wayside shrine
+FontStyle=SmallFont
+DayXpm="5 8 3 1"
+"k c #000000"
+"w c #FFFFFF"
+". c none"
+".kkk."
+".kwk."
+".kkk."
+"..k.."
+"..k.."
+"..k.."
+"..k.."
+"kkkkk"
+NightXpm="5 8 3 1"
+"k c #C8C8C8"
+"w c #202020"
+". c none"
+".kkk."
+".kwk."
+".kkk."
+"..k.."
+"..k.."
+"..k.."
+"..k.."
+"kkkkk"
+[end]
+
+[_point]
+Type=0x11505
+String=0x02,Denkmal
+String=0x01,Monument
+String=0x05,Monumento
+String=0x04,Memorial
+FontStyle=SmallFont
+DayXpm="5 5 2 1"
+"k c #000000"
+". c none"
+"..k.."
+".kkk."
+".kkk."
+".kkk."
+"kkkkk"
+NightXpm="5 5 2 1"
+"k c #C8C8C8"
+". c none"
+"..k.."
+".kkk."
+".kkk."
+".kkk."
+"kkkkk"
+[end]
+
+[_point]
+Type=0x2c02
+String=0x02,Burg, Ruine
+String=0x01,Château, ruine
+String=0x05,Castello, rovina
+String=0x04,Castle, ruins
+FontStyle=NormalFont
+DayXpm="14 14 3 1"
+"k c #000000"
+"w c #FFFFFF"
+". c none"
+"kk.kk.kk.kk.kk"
+"kk.kk.kk.kk.kk"
+"kkkkkkkkkkkkkk"
+"..kwwwwwwwwk.."
+"..kwwwwwwwwk.."
+"..kwwwwwwwwk.."
+"..kwwwkkwwwk.."
+"..kwwwkkwwwk.."
+"..kwwkkkkwwk.."
+"..kwwkkkkwwk.."
+"..kwwkkkkwwk.."
+"..kwwkkkkwwk.."
+"..kkkkkkkkkk.."
+"..kkkkkkkkkk.."
+NightXpm="14 14 3 1"
+"k c #C8C8C8"
+"w c #202020"
+". c none"
+"kk.kk.kk.kk.kk"
+"kk.kk.kk.kk.kk"
+"kkkkkkkkkkkkkk"
+"..kwwwwwwwwk.."
+"..kwwwwwwwwk.."
+"..kwwwwwwwwk.."
+"..kwwwkkwwwk.."
+"..kwwwkkwwwk.."
+"..kwwkkkkwwk.."
+"..kwwkkkkwwk.."
+"..kwwkkkkwwk.."
+"..kwwkkkkwwk.."
+"..kkkkkkkkkk.."
+"..kkkkkkkkkk.."
+[end]
+
+[_point]
+Type=0x2c04
+String=0x02,Aussichtsturm
+String=0x01,Tour panoramique
+String=0x05,Torre panoramica
+String=0x04,Observation tower
+FontStyle=NormalFont
+DayXpm="14 14 3 1"
+"k c #000000"
+"w c #FFFFFF"
+". c none"
+"kk..........kk"
+"kk..........kk"
+"..k........k.."
+"...kkkkkkkk..."
+"...kkkkkkkk..."
+"...kkwwwwkk..."
+"...kkwkkwkk..."
+"...kkwkkwkk..."
+"...kkwwwwkk..."
+"...kkkkkkkk..."
+"...kkkkkkkk..."
+"..k........k.."
+"kk..........kk"
+"kk..........kk"
+NightXpm="14 14 3 1"
+"k c #C8C8C8"
+"w c #202020"
+". c none"
+"kk..........kk"
+"kk..........kk"
+"..k........k.."
+"...kkkkkkkk..."
+"...kkkkkkkk..."
+"...kkwwwwkk..."
+"...kkwkkwkk..."
+"...kkwkkwkk..."
+"...kkwwwwkk..."
+"...kkkkkkkk..."
+"...kkkkkkkk..."
+"..k........k.."
+"kk..........kk"
+"kk..........kk"
+[end]
+
+[_point]
+Type=0x11501
+String=0x02,Antenne
+String=0x01,Antenne
+String=0x05,Antenna
+String=0x04,Antenna
+FontStyle=SmallFont
+DayXpm="7 11 2 1"
+"k c #000000"
+". c none"
+"k.....k"
+".k...k."
+"..kkk.."
+"...k..."
+"..kkk.."
+"...k..."
+"..k.k.."
+"..k.k.."
+".k...k."
+".k...k."
+"kkkkkkk"
+NightXpm="7 11 2 1"
+"k c #C8C8C8"
+". c none"
+"k.....k"
+".k...k."
+"..kkk.."
+"...k..."
+"..kkk.."
+"...k..."
+"..k.k.."
+"..k.k.."
+".k...k."
+".k...k."
+"kkkkkkk"
+[end]
+
+[_point]
+Type=0x11507
+String=0x02,Wasserturm
+String=0x01,Château d'eau
+String=0x05,Torre dell'acqua
+String=0x04,Water tower
+FontStyle=SmallFont
+DayXpm="5 5 3 1"
+"b c #0088D0"
+"w c #FFFFFF"
+". c none"
+".bbb."
+"bwwwb"
+"bwbwb"
+"bwwwb"
+".bbb."
+NightXpm="5 5 3 1"
+"b c #0088D0"
+"w c #202020"
+". c none"
+".bbb."
+"bwwwb"
+"bwbwb"
+"bwwwb"
+".bbb."
+[end]
+
+[_point]
+Type=0x11506
+String=0x02,Hochkamin
+String=0x01,Cheminée
+String=0x05,Ciminiera
+String=0x04,Chimney
+FontStyle=SmallFont
+DayXpm="5 7 2 1"
+"k c #000000"
+". c none"
+".kkk."
+".kkk."
+".kkk."
+".kkk."
+"kkkkk"
+"kkkkk"
+"kkkkk"
+NightXpm="5 7 2 1"
+"k c #C8C8C8"
+". c none"
+".kkk."
+".kkk."
+".kkk."
+".kkk."
+"kkkkk"
+"kkkkk"
+"kkkkk"
+[end]
+
+[_point]
+Type=0x6411
+String=0x02,Turm
+String=0x01,Tour
+String=0x05,Torre
+String=0x04,Tower
+FontStyle=SmallFont
+DayXpm="5 5 3 1"
+"k c #000000"
+"w c #FFFFFF"
+". c none"
+".kkk."
+"kwwwk"
+"kwkwk"
+"kwwwk"
+".kkk."
+NightXpm="5 5 3 1"
+"k c #C8C8C8"
+"w c #202020"
+". c none"
+".kkk."
+"kwwwk"
+"kwkwk"
+"kwwwk"
+".kkk."
+[end]
+
+[_point]
+Type=0x11502
+String=0x02,Windturbine
+String=0x01,Éolienne
+String=0x05,Turbina eolica
+String=0x04,Wind turbine
+FontStyle=SmallFont
+DayXpm="9 11 2 1"
+"k c #000000"
+". c none"
+"....k...."
+"....k...."
+"....k...."
+"....k...."
+"...kkk..."
+"..k.k.k.."
+".k..k..k."
+"k...k...k"
+"....k...."
+"....k...."
+"...kkk..."
+NightXpm="9 11 2 1"
+"k c #C8C8C8"
+". c none"
+"....k...."
+"....k...."
+"....k...."
+"....k...."
+"...kkk..."
+"..k.k.k.."
+".k..k..k."
+"k...k...k"
+"....k...."
+"....k...."
+"...kkk..."
+[end]
+
+[_point]
+Type=0x11508
+String=0x02,Triangulationspunkt
+String=0x01,Point de triangulation
+String=0x05,Punto trigonometrico
+String=0x04,Survey point
+FontStyle=SmallFont
+DayXpm="7 6 2 1"
+"k c #000000"
+". c none"
+"...k..."
+"..k.k.."
+"..k.k.."
+".k.k.k."
+".k...k."
+"kkkkkkk"
+NightXpm="7 6 2 1"
+"k c #C8C8C8"
+". c none"
+"...k..."
+"..k.k.."
+"..k.k.."
+".k.k.k."
+".k...k."
+"kkkkkkk"
+[end]
+
+[_point]
+Type=0x5200
+String=0x02,Aussichtspunkt
+String=0x01,Point de vue
+String=0x05,Punto panoramico
+String=0x04,Viewpoint
+FontStyle=NormalFont
+DayXpm="14 10 2 1"
+"k c #000000"
+". c none"
+"kk....kk....kk"
+"kk....kk....kk"
+"..kk..kk..kk.."
+"..kk..kk..kk.."
+".............."
+".............."
+"....kkkkkk...."
+"....kkkkkk...."
+"..kkkkkkkkkk.."
+"..kkkkkkkkkk.."
+NightXpm="14 10 2 1"
+"k c #C8C8C8"
+". c none"
+"kk....kk....kk"
+"kk....kk....kk"
+"..kk..kk..kk.."
+"..kk..kk..kk.."
+".............."
+".............."
+"....kkkkkk...."
+"....kkkkkk...."
+"..kkkkkkkkkk.."
+"..kkkkkkkkkk.."
+[end]
+
+[_point]
+Type=0x2b04
+String=0x02,Berghütte
+String=0x01,Cabane
+String=0x05,Capanna
+String=0x04,Mountain hut
+FontStyle=NormalFont
+DayXpm="14 11 3 1"
+"k c #000000"
+"w c #FFFFFF"
+". c none"
+"......kk......"
+"......kk......"
+".....kkkk....."
+"...kkkkkkkk..."
+"...kkkkkkkk..."
+"..kkkkkkkkkk.."
+"kkkkkkkkkkkkkk"
+"kkkkkkkkkkkkkk"
+"..kkkkwwkkkk.."
+"..kkkkwwkkkk.."
+"..kkkkwwkkkk.."
+NightXpm="14 11 3 1"
+"k c #C8C8C8"
+"w c #202020"
+". c none"
+"......kk......"
+"......kk......"
+".....kkkk....."
+"...kkkkkkkk..."
+"...kkkkkkkk..."
+"..kkkkkkkkkk.."
+"kkkkkkkkkkkkkk"
+"kkkkkkkkkkkkkk"
+"..kkkkwwkkkk.."
+"..kkkkwwkkkk.."
+"..kkkkwwkkkk.."
+[end]
+
+[_point]
+Type=0x2b03
+String=0x02,Camping
+String=0x01,Camping
+String=0x05,Campeggio
+String=0x04,Camp site
+FontStyle=NormalFont
+DayXpm="11 7 2 1"
+"k c #000000"
+". c none"
+".....k....."
+"....kkk...."
+"...kk.kk..."
+"..kk...kk.."
+".kk..k..kk."
+"kk..kkk..kk"
+"kkkkkkkkkkk"
+NightXpm="11 7 2 1"
+"k c #C8C8C8"
+". c none"
+".....k....."
+"....kkk...."
+"...kk.kk..."
+"..kk...kk.."
+".kk..k..kk."
+"kk..kkk..kk"
+"kkkkkkkkkkk"
+[end]
+
+[_point]
+Type=0x2a00
+String=0x02,Gastwirtschaft
+String=0x01,Restaurant
+String=0x05,Ristorante
+String=0x04,Restaurant
+FontStyle=NormalFont
+DayXpm="11 11 3 1"
+"k c #000000"
+"w c #FFFFFF"
+". c none"
+"kkkkkkkkkkk"
+"kwkwkwwwkwk"
+"kwkwkwwkkwk"
+"kwkwkwwkkwk"
+"kwkkkwwkkwk"
+"kwwkwwwkkwk"
+"kwwkwwwwkwk"
+"kwwkwwwwkwk"
+"kwwkwwwwkwk"
+"kwwkwwwwkwk"
+"kkkkkkkkkkk"
+NightXpm="11 11 3 1"
+"k c #C8C8C8"
+"w c #202020"
+". c none"
+"kkkkkkkkkkk"
+"kwkwkwwwkwk"
+"kwkwkwwkkwk"
+"kwkwkwwkkwk"
+"kwkkkwwkkwk"
+"kwwkwwwkkwk"
+"kwwkwwwwkwk"
+"kwwkwwwwkwk"
+"kwwkwwwwkwk"
+"kwwkwwwwkwk"
+"kkkkkkkkkkk"
+[end]
+
+[_point]
+Type=0x2f08
+String=0x02,Bahnhof
+String=0x01,Gare
+String=0x05,Stazione
+String=0x04,Railway station
+FontStyle=NormalFont
+DayCustomColor=#DD1919
+NightCustomColor=#EA7575
+DayXpm="15 9 3 1"
+"r c #DD1919"
+"w c #FFFFFF"
+". c none"
+"wwwwwwwwwwwwwww"
+"wrrrrrrrrrrrrrw"
+"wrrrrrrrrrrrrrw"
+"wrrrrrrrrrrrrrw"
+"wrrrrrrrrrrrrrw"
+"wrrrrrrrrrrrrrw"
+"wrrrrrrrrrrrrrw"
+"wrrrrrrrrrrrrrw"
+"wwwwwwwwwwwwwww"
+NightXpm="15 9 3 1"
+"r c #DD1919"
+"w c #202020"
+". c none"
+"wwwwwwwwwwwwwww"
+"wrrrrrrrrrrrrrw"
+"wrrrrrrrrrrrrrw"
+"wrrrrrrrrrrrrrw"
+"wrrrrrrrrrrrrrw"
+"wrrrrrrrrrrrrrw"
+"wrrrrrrrrrrrrrw"
+"wrrrrrrrrrrrrrw"
+"wwwwwwwwwwwwwww"
+[end]
+
+[_point]
+Type=0x5902
+String=0x02,Flugplatz
+String=0x01,Aérodrome
+String=0x05,Aerodromo
+String=0x04,Airfield
+FontStyle=NormalFont
+DayXpm="14 10 2 1"
+"k c #000000"
+". c none"
+"......kk......"
+"......kk......"
+"......kk......"
+"......kk......"
+"kkkkkkkkkkkkkk"
+"kkkkkkkkkkkkkk"
+"......kk......"
+"......kk......"
+"....kkkkkk...."
+"....kkkkkk...."
+NightXpm="14 10 2 1"
+"k c #C8C8C8"
+". c none"
+"......kk......"
+"......kk......"
+"......kk......"
+"......kk......"
+"kkkkkkkkkkkkkk"
+"kkkkkkkkkkkkkk"
+"......kk......"
+"......kk......"
+"....kkkkkk...."
+"....kkkkkk...."
+[end]
+
+[_point]
+Type=0x5904
+String=0x02,Heliport
+String=0x01,Héliport
+String=0x05,Eliporto
+String=0x04,Heliport
+FontStyle=NormalFont
+DayXpm="11 10 3 1"
+"k c #000000"
+"w c #FFFFFF"
+". c none"
+"...kkkkk..."
+"..kwwwwwk.."
+".kwkwwwkwk."
+"kwwkwwwkwwk"
+"kwwkkkkkwwk"
+"kwwkwwwkwwk"
+"kwwkwwwkwwk"
+".kwkwwwkwk."
+"..kwwwwwk.."
+"...kkkkk..."
+NightXpm="11 10 3 1"
+"k c #C8C8C8"
+"w c #202020"
+". c none"
+"...kkkkk..."
+"..kwwwwwk.."
+".kwkwwwkwk."
+"kwwkwwwkwwk"
+"kwwkkkkkwwk"
+"kwwkwwwkwwk"
+"kwwkwwwkwwk"
+".kwkwwwkwk."
+"..kwwwwwk.."
+"...kkkkk..."
+[end]
+
+[_point]
+Type=0x1150c
+String=0x02,Einzelbaum
+String=0x01,Arbre isolé
+String=0x05,Albero isolato
+String=0x04,Tree
+FontStyle=SmallFont
+DayXpm="3 3 2 1"
+"g c #70B446"
+". c none"
+".g."
+"ggg"
+".g."
+NightXpm="3 3 2 1"
+"g c #70B446"
+". c none"
+".g."
+"ggg"
+".g."
+[end]
+
+[_point]
+Type=0x1150b
+String=0x02,Landesgrenzstein
+String=0x01,Borne frontière
+String=0x05,Cippo di confine
+String=0x04,Boundary stone
+FontStyle=SmallFont
+DayXpm="3 3 2 1"
+"m c #C22976"
+". c none"
+"mmm"
+"mmm"
+"mmm"
+NightXpm="3 3 2 1"
+"m c #C22976"
+". c none"
+"mmm"
+"mmm"
+"mmm"
+[end]
+
+[_point]
+Type=0x1150a
+String=0x02,Durchfahrtssperre
+String=0x01,Barrière
+String=0x05,Sbarra
+String=0x04,Barrier
+FontStyle=SmallFont
+DayXpm="5 2 2 1"
+"r c #DD1919"
+". c none"
+"rrrrr"
+"rrrrr"
+NightXpm="5 2 2 1"
+"r c #DD1919"
+". c none"
+"rrrrr"
+"rrrrr"
+[end]
+
+[_point]
+Type=0x3002
+String=0x02,Spital
+String=0x01,Hôpital
+String=0x05,Ospedale
+String=0x04,Hospital
+FontStyle=NormalFont
+DayXpm="14 14 3 1"
+"b c #0088D0"
+"w c #FFFFFF"
+". c none"
+"bbbbbbbbbbbbbb"
+"bbbbbbbbbbbbbb"
+"bbbbbbwwbbbbbb"
+"bbbbbbwwbbbbbb"
+"bbbbbbwwbbbbbb"
+"bbbbbbwwbbbbbb"
+"bbwwwwwwwwwwbb"
+"bbwwwwwwwwwwbb"
+"bbbbbbwwbbbbbb"
+"bbbbbbwwbbbbbb"
+"bbbbbbwwbbbbbb"
+"bbbbbbwwbbbbbb"
+"bbbbbbbbbbbbbb"
+"bbbbbbbbbbbbbb"
+NightXpm="14 14 3 1"
+"b c #0088D0"
+"w c #202020"
+". c none"
+"bbbbbbbbbbbbbb"
+"bbbbbbbbbbbbbb"
+"bbbbbbwwbbbbbb"
+"bbbbbbwwbbbbbb"
+"bbbbbbwwbbbbbb"
+"bbbbbbwwbbbbbb"
+"bbwwwwwwwwwwbb"
+"bbwwwwwwwwwwbb"
+"bbbbbbwwbbbbbb"
+"bbbbbbwwbbbbbb"
+"bbbbbbwwbbbbbb"
+"bbbbbbwwbbbbbb"
+"bbbbbbbbbbbbbb"
+"bbbbbbbbbbbbbb"
+[end]
+

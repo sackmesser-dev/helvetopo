@@ -1,0 +1,30 @@
+Lizenz und Quellenangaben – Helvetopo (Stand @VERSION@)
+==============================================================
+
+Die Kartendateien in diesem Archiv (gmapsupp.img, BaseCamp/*.gmap) sind abgeleitet aus
+frei verfügbaren Geodaten. Weitergabe und Nutzung, auch kommerziell, sind erlaubt, sofern die
+folgenden Quellenangaben bei jeder Darstellung, Veröffentlichung und Weitergabe erhalten bleiben.
+
+1. swisstopo – Open Government Data
+   Quellenangabe: ©swisstopo
+   Daten: swissTLM3D, swissTLM3D Wanderwege, swissNAMES3D, swissBOUNDARIES3D, swissALTI3D,
+          amtliches Gebäudeadressverzeichnis, amtliches Strassenverzeichnis
+   Bedingungen: https://www.swisstopo.admin.ch/ogd-conditions
+
+2. Bundesamt für Strassen ASTRA – SchweizMobil-Routen (ch.astra.wanderland, veloland,
+   mountainbikeland, skatingland)
+   Quellenangabe: Bundesamt für Strassen, Kanton, Stiftung SchweizMobil
+   Bedingungen: Opendata BY, https://opendata.swiss/terms-of-use#terms_by
+
+3. Stiftung SchweizMobil – Kanuland (falls enthalten)
+   Quellenangabe: Stiftung SchweizMobil
+   Bedingungen: Open Data BY, https://schweizmobil.info/de/geodaten
+
+Die Karten enthalten keine Logos oder Marken von swisstopo oder SchweizMobil und sind keine
+offiziellen Produkte dieser Stellen. Sie enthalten keine Daten aus anderen Quellen.
+
+Haftungsausschluss: Die Karten werden ohne Gewähr bereitgestellt. Insbesondere das Auto-Routing
+ist nur topografisch und nicht zur Fahrzeugnavigation geeignet.
+
+Werkzeuge: mkgmap @MKGMAP@ und splitter (GPL v2), GDAL (MIT), osmium (GPL/Boost).
+Die Werkzeuge sind nicht Teil dieses Archivs.

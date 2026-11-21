@@ -1,0 +1,9 @@
+Helvetopo, Stand @VERSION@ (inoffiziell, keine Karte von swisstopo oder SchweizMobil).
+Basiskarte, Höhenlinien, Höhenkoten, Schummerung: ©swisstopo (Open Government Data,
+https://www.swisstopo.admin.ch/ogd-conditions): swissTLM3D, swissNAMES3D, swissBOUNDARIES3D,
+swissALTI3D, swissTLM3D Wanderwege, amtliches Gebäudeadress- und Strassenverzeichnis.
+Routen Wanderland, Veloland, Mountainbikeland, Skatingland: Bundesamt für Strassen, Kanton,
+Stiftung SchweizMobil (Opendata BY, https://opendata.swiss/terms-of-use#terms_by).
+Kanuland (falls enthalten): Stiftung SchweizMobil (Open Data BY).
+Auto-Routing nur topografisch. Nicht zur Fahrzeugnavigation.
+Erstellt mit mkgmap @MKGMAP@ (GPL). Keine Daten aus anderen Quellen.

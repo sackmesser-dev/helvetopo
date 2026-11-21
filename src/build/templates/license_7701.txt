@@ -1,0 +1,6 @@
+Helvetopo (Basiskarte), Stand @VERSION@ (inoffiziell, keine Karte von swisstopo).
+Kartendaten: ©swisstopo (Open Government Data, https://www.swisstopo.admin.ch/ogd-conditions).
+Datensätze: swissTLM3D, swissNAMES3D, swissBOUNDARIES3D, swissALTI3D (Schummerung, Höhenlinien),
+amtliches Gebäudeadress- und Strassenverzeichnis.
+Auto-Routing nur topografisch (keine Einbahnen, Abbiegeverbote, Tempolimits). Nicht zur Fahrzeugnavigation.
+Erstellt mit mkgmap @MKGMAP@ (GPL). Keine Daten aus anderen Quellen.

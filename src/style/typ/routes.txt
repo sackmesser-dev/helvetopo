@@ -1,0 +1,778 @@
+; -*- coding: utf-8 -*-
+; TYP Routen-Overlay Helvetopo (FID 7702). Generiert von src/routes/make_typ.py.
+; Farben nach den Legenden der Bundes-Geodienste (geo.admin), siehe docs/vektor/routen.md.
+; Keine Logos, keine Marken-Icons.
+
+[_id]
+FID=7702
+ProductCode=1
+CodePage=1252
+[end]
+
+[_drawOrder]
+[end]
+
+[_line]
+Type=0x10e00
+UseOrientation=Y
+Xpm="32 3 2 1"
+"a c #F2A900"
+"b c #FFFFFF"
+"aaaabbbbaaaabbbbaaaabbbbaaaabbbb"
+"aaaabbbbaaaabbbbaaaabbbbaaaabbbb"
+"aaaabbbbaaaabbbbaaaabbbbaaaabbbb"
+String1=0x02,Wanderweg
+String2=0x01,Chemin de randonnée
+String3=0x05,Sentiero escursionistico
+String4=0x04,Hiking trail
+ExtendedLabels=Y
+FontStyle=NoLabel
+[end]
+
+[_line]
+Type=0x10e01
+UseOrientation=Y
+Xpm="32 3 2 1"
+"a c #C83C32"
+"b c #FFFFFF"
+"aaaabbbbaaaabbbbaaaabbbbaaaabbbb"
+"aaaabbbbaaaabbbbaaaabbbbaaaabbbb"
+"aaaabbbbaaaabbbbaaaabbbbaaaabbbb"
+String1=0x02,Bergwanderweg
+String2=0x01,Chemin de randonnée de montagne
+String3=0x05,Sentiero escursionistico di montagna
+String4=0x04,Mountain hiking trail
+ExtendedLabels=Y
+FontStyle=NoLabel
+[end]
+
+[_line]
+Type=0x10e02
+UseOrientation=Y
+Xpm="32 3 2 1"
+"a c #2E6FC0"
+"b c #FFFFFF"
+"aaaabbbbaaaabbbbaaaabbbbaaaabbbb"
+"aaaabbbbaaaabbbbaaaabbbbaaaabbbb"
+"aaaabbbbaaaabbbbaaaabbbbaaaabbbb"
+String1=0x02,Alpinwanderweg
+String2=0x01,Chemin de randonnée alpine
+String3=0x05,Sentiero escursionistico alpino
+String4=0x04,Alpine hiking trail
+ExtendedLabels=Y
+FontStyle=NoLabel
+[end]
+
+[_line]
+Type=0x10e10
+UseOrientation=Y
+Xpm="32 3 2 1"
+"a c #007A2E"
+"  c none"
+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+String1=0x02,Wanderland-Route
+String2=0x01,Route La Suisse à pied
+String3=0x05,Percorso La Svizzera a piedi
+String4=0x04,Wanderland route
+ExtendedLabels=Y
+FontStyle=NormalFont
+DayCustomColor=#007A2E
+NightCustomColor=#007A2E
+[end]
+
+[_line]
+Type=0x10e11
+UseOrientation=Y
+Xpm="32 3 2 1"
+"a c #007A2E"
+"  c none"
+"aaaaaa  aaaaaa  aaaaaa  aaaaaa  "
+"aaaaaa  aaaaaa  aaaaaa  aaaaaa  "
+"aaaaaa  aaaaaa  aaaaaa  aaaaaa  "
+String1=0x02,Hindernisfreier Weg
+String2=0x01,Chemin sans obstacles
+String3=0x05,Percorso senza ostacoli
+String4=0x04,Barrier-free route
+ExtendedLabels=Y
+FontStyle=NormalFont
+DayCustomColor=#007A2E
+NightCustomColor=#007A2E
+[end]
+
+[_line]
+Type=0x10e12
+UseOrientation=Y
+Xpm="32 3 2 1"
+"a c #1F3F99"
+"  c none"
+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+String1=0x02,Veloland-Route
+String2=0x01,Route La Suisse à vélo
+String3=0x05,Percorso La Svizzera in bici
+String4=0x04,Veloland route
+ExtendedLabels=Y
+FontStyle=NormalFont
+DayCustomColor=#1F3F99
+NightCustomColor=#1F3F99
+[end]
+
+[_line]
+Type=0x10e13
+UseOrientation=Y
+Xpm="32 3 2 1"
+"a c #CC6600"
+"  c none"
+"aaaaaaaaaaaa    aaaaaaaaaaaa    "
+"aaaaaaaaaaaa    aaaaaaaaaaaa    "
+"aaaaaaaaaaaa    aaaaaaaaaaaa    "
+String1=0x02,Mountainbikeland-Route
+String2=0x01,Route La Suisse à VTT
+String3=0x05,Percorso La Svizzera in MTB
+String4=0x04,Mountainbikeland route
+ExtendedLabels=Y
+FontStyle=NormalFont
+DayCustomColor=#CC6600
+NightCustomColor=#CC6600
+[end]
+
+[_line]
+Type=0x10e14
+UseOrientation=Y
+Xpm="32 3 2 1"
+"a c #9900CC"
+"  c none"
+"aaaa    aaaa    aaaa    aaaa    "
+"aaaa    aaaa    aaaa    aaaa    "
+"aaaa    aaaa    aaaa    aaaa    "
+String1=0x02,Skatingland-Route
+String2=0x01,Route La Suisse en rollers
+String3=0x05,Percorso La Svizzera sui pattini
+String4=0x04,Skatingland route
+ExtendedLabels=Y
+FontStyle=NormalFont
+DayCustomColor=#9900CC
+NightCustomColor=#9900CC
+[end]
+
+[_line]
+Type=0x10e15
+UseOrientation=Y
+Xpm="32 3 2 1"
+"a c #33B5B8"
+"  c none"
+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+String1=0x02,Kanuland-Route
+String2=0x01,Route La Suisse en canoë
+String3=0x05,Percorso La Svizzera in canoa
+String4=0x04,Kanuland route
+ExtendedLabels=Y
+FontStyle=NormalFont
+DayCustomColor=#00A3A6
+NightCustomColor=#00A3A6
+[end]
+
+[_line]
+Type=0x10e18
+UseOrientation=Y
+Xpm="32 3 2 1"
+"a c #268E4D"
+"  c none"
+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+String1=0x02,Wanderland-Route (Übersicht)
+String2=0x01,Route La Suisse à pied (aperçu)
+String3=0x05,Percorso La Svizzera a piedi (panoramica)
+String4=0x04,Wanderland route (overview)
+ExtendedLabels=Y
+FontStyle=SmallFont
+DayCustomColor=#007A2E
+NightCustomColor=#007A2E
+[end]
+
+[_line]
+Type=0x10e1a
+UseOrientation=Y
+Xpm="32 3 2 1"
+"a c #415CA8"
+"  c none"
+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+String1=0x02,Veloland-Route (Übersicht)
+String2=0x01,Route La Suisse à vélo (aperçu)
+String3=0x05,Percorso La Svizzera in bici (panoramica)
+String4=0x04,Veloland route (overview)
+ExtendedLabels=Y
+FontStyle=SmallFont
+DayCustomColor=#1F3F99
+NightCustomColor=#1F3F99
+[end]
+
+[_line]
+Type=0x10e1b
+UseOrientation=Y
+Xpm="32 3 2 1"
+"a c #D47D26"
+"  c none"
+"aaaaaaaaaaaa    aaaaaaaaaaaa    "
+"aaaaaaaaaaaa    aaaaaaaaaaaa    "
+"aaaaaaaaaaaa    aaaaaaaaaaaa    "
+String1=0x02,Mountainbikeland-Route (Übersicht)
+String2=0x01,Route La Suisse à VTT (aperçu)
+String3=0x05,Percorso La Svizzera in MTB (panoramica)
+String4=0x04,Mountainbikeland route (overview)
+ExtendedLabels=Y
+FontStyle=SmallFont
+DayCustomColor=#CC6600
+NightCustomColor=#CC6600
+[end]
+
+[_line]
+Type=0x10e1c
+UseOrientation=Y
+Xpm="32 3 2 1"
+"a c #A826D4"
+"  c none"
+"aaaa    aaaa    aaaa    aaaa    "
+"aaaa    aaaa    aaaa    aaaa    "
+"aaaa    aaaa    aaaa    aaaa    "
+String1=0x02,Skatingland-Route (Übersicht)
+String2=0x01,Route La Suisse en rollers (aperçu)
+String3=0x05,Percorso La Svizzera sui pattini (panoramica)
+String4=0x04,Skatingland route (overview)
+ExtendedLabels=Y
+FontStyle=SmallFont
+DayCustomColor=#9900CC
+NightCustomColor=#9900CC
+[end]
+
+[_line]
+Type=0x10e1d
+UseOrientation=Y
+Xpm="32 3 2 1"
+"a c #73CCCE"
+"  c none"
+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+String1=0x02,Kanuland-Route (Übersicht)
+String2=0x01,Route La Suisse en canoë (aperçu)
+String3=0x05,Percorso La Svizzera in canoa (panoramica)
+String4=0x04,Kanuland route (overview)
+ExtendedLabels=Y
+FontStyle=SmallFont
+DayCustomColor=#00A3A6
+NightCustomColor=#00A3A6
+[end]
+
+[_point]
+Type=0x10e04
+String1=0x02,Bahnhof, Haltestelle Bahn
+String2=0x01,Gare, halte
+String3=0x05,Stazione, fermata
+String4=0x04,Railway station
+ExtendedLabels=Y
+FontStyle=NoLabel
+DayXpm="13 13 3 1"
+"b c #1F66CC"
+"w c #FFFFFF"
+". c none"
+"....wwwww...."
+"..wwwwwwwww.."
+".wwwbbbbbwww."
+".wwbbbbbbbww."
+"wwbbbbbbbbbww"
+"wwbbbbbbbbbww"
+"wwbbbbbbbbbww"
+"wwbbbbbbbbbww"
+"wwbbbbbbbbbww"
+".wwbbbbbbbww."
+".wwwbbbbbwww."
+"..wwwwwwwww.."
+"....wwwww...."
+NightXpm="13 13 3 1"
+"b c #1F66CC"
+"w c #202020"
+". c none"
+"....wwwww...."
+"..wwwwwwwww.."
+".wwwbbbbbwww."
+".wwbbbbbbbww."
+"wwbbbbbbbbbww"
+"wwbbbbbbbbbww"
+"wwbbbbbbbbbww"
+"wwbbbbbbbbbww"
+"wwbbbbbbbbbww"
+".wwbbbbbbbww."
+".wwwbbbbbwww."
+"..wwwwwwwww.."
+"....wwwww...."
+[end]
+
+[_point]
+Type=0x10e00
+String1=0x02,Bushaltestelle
+String2=0x01,Arrêt de bus
+String3=0x05,Fermata del bus
+String4=0x04,Bus stop
+ExtendedLabels=Y
+FontStyle=NormalFont
+DayCustomColor=#DD1919
+NightCustomColor=#FF6A6A
+DayXpm="13 13 3 1"
+"b c #1F66CC"
+"w c #FFFFFF"
+". c none"
+"....wwwww...."
+"..wwwwwwwww.."
+".wwwbbbbbwww."
+".wwbbbbbbbww."
+"wwbbbbbbbbbww"
+"wwbbbbbbbbbww"
+"wwbbbbbbbbbww"
+"wwbbbbbbbbbww"
+"wwbbbbbbbbbww"
+".wwbbbbbbbww."
+".wwwbbbbbwww."
+"..wwwwwwwww.."
+"....wwwww...."
+NightXpm="13 13 3 1"
+"b c #1F66CC"
+"w c #202020"
+". c none"
+"....wwwww...."
+"..wwwwwwwww.."
+".wwwbbbbbwww."
+".wwbbbbbbbww."
+"wwbbbbbbbbbww"
+"wwbbbbbbbbbww"
+"wwbbbbbbbbbww"
+"wwbbbbbbbbbww"
+"wwbbbbbbbbbww"
+".wwbbbbbbbww."
+".wwwbbbbbwww."
+"..wwwwwwwww.."
+"....wwwww...."
+[end]
+
+[_point]
+Type=0x10e01
+String1=0x02,Tramhaltestelle
+String2=0x01,Arrêt de tram
+String3=0x05,Fermata del tram
+String4=0x04,Tram stop
+ExtendedLabels=Y
+FontStyle=NormalFont
+DayCustomColor=#DD1919
+NightCustomColor=#FF6A6A
+DayXpm="13 13 3 1"
+"b c #1F66CC"
+"w c #FFFFFF"
+". c none"
+"....wwwww...."
+"..wwwwwwwww.."
+".wwwbbbbbwww."
+".wwbbbbbbbww."
+"wwbbbbbbbbbww"
+"wwbbbbbbbbbww"
+"wwbbbbbbbbbww"
+"wwbbbbbbbbbww"
+"wwbbbbbbbbbww"
+".wwbbbbbbbww."
+".wwwbbbbbwww."
+"..wwwwwwwww.."
+"....wwwww...."
+NightXpm="13 13 3 1"
+"b c #1F66CC"
+"w c #202020"
+". c none"
+"....wwwww...."
+"..wwwwwwwww.."
+".wwwbbbbbwww."
+".wwbbbbbbbww."
+"wwbbbbbbbbbww"
+"wwbbbbbbbbbww"
+"wwbbbbbbbbbww"
+"wwbbbbbbbbbww"
+"wwbbbbbbbbbww"
+".wwbbbbbbbww."
+".wwwbbbbbwww."
+"..wwwwwwwww.."
+"....wwwww...."
+[end]
+
+[_point]
+Type=0x10e02
+String1=0x02,Schiffstation
+String2=0x01,Débarcadère
+String3=0x05,Approdo
+String4=0x04,Boat station
+ExtendedLabels=Y
+FontStyle=NormalFont
+DayCustomColor=#DD1919
+NightCustomColor=#FF6A6A
+DayXpm="13 13 3 1"
+"b c #1F66CC"
+"w c #FFFFFF"
+". c none"
+"....wwwww...."
+"..wwwwwwwww.."
+".wwwbbbbbwww."
+".wwbbbbbbbww."
+"wwbbbbbbbbbww"
+"wwbbbbbbbbbww"
+"wwbbbbbbbbbww"
+"wwbbbbbbbbbww"
+"wwbbbbbbbbbww"
+".wwbbbbbbbww."
+".wwwbbbbbwww."
+"..wwwwwwwww.."
+"....wwwww...."
+NightXpm="13 13 3 1"
+"b c #1F66CC"
+"w c #202020"
+". c none"
+"....wwwww...."
+"..wwwwwwwww.."
+".wwwbbbbbwww."
+".wwbbbbbbbww."
+"wwbbbbbbbbbww"
+"wwbbbbbbbbbww"
+"wwbbbbbbbbbww"
+"wwbbbbbbbbbww"
+"wwbbbbbbbbbww"
+".wwbbbbbbbww."
+".wwwbbbbbwww."
+"..wwwwwwwww.."
+"....wwwww...."
+[end]
+
+[_point]
+Type=0x10e03
+String1=0x02,Seilbahn- oder Bergbahnstation
+String2=0x01,Station de téléphérique ou de chemin de fer de montagne
+String3=0x05,Stazione di funivia o ferrovia di montagna
+String4=0x04,Cable car or mountain railway station
+ExtendedLabels=Y
+FontStyle=NormalFont
+DayCustomColor=#DD1919
+NightCustomColor=#FF6A6A
+DayXpm="13 13 3 1"
+"b c #1F66CC"
+"w c #FFFFFF"
+". c none"
+"....wwwww...."
+"..wwwwwwwww.."
+".wwwbbbbbwww."
+".wwbbbbbbbww."
+"wwbbbbbbbbbww"
+"wwbbbbbbbbbww"
+"wwbbbbbbbbbww"
+"wwbbbbbbbbbww"
+"wwbbbbbbbbbww"
+".wwbbbbbbbww."
+".wwwbbbbbwww."
+"..wwwwwwwww.."
+"....wwwww...."
+NightXpm="13 13 3 1"
+"b c #1F66CC"
+"w c #202020"
+". c none"
+"....wwwww...."
+"..wwwwwwwww.."
+".wwwbbbbbwww."
+".wwbbbbbbbww."
+"wwbbbbbbbbbww"
+"wwbbbbbbbbbww"
+"wwbbbbbbbbbww"
+"wwbbbbbbbbbww"
+"wwbbbbbbbbbww"
+".wwbbbbbbbww."
+".wwwbbbbbwww."
+"..wwwwwwwww.."
+"....wwwww...."
+[end]
+
+[_point]
+Type=0x10e05
+String1=0x02,Parkplatz
+String2=0x01,Parking
+String3=0x05,Parcheggio
+String4=0x04,Parking
+ExtendedLabels=Y
+FontStyle=NormalFont
+DayXpm="13 13 4 1"
+"b c #1F66CC"
+"w c #FFFFFF"
+"g c #FFFFFF"
+". c none"
+"wwwwwwwwwwwww"
+"wwwwwwwwwwwww"
+"wwbbbbbbbbbww"
+"wwbbggggbbbww"
+"wwbbggbggbbww"
+"wwbbggbggbbww"
+"wwbbggggbbbww"
+"wwbbggbbbbbww"
+"wwbbggbbbbbww"
+"wwbbggbbbbbww"
+"wwbbbbbbbbbww"
+"wwwwwwwwwwwww"
+"wwwwwwwwwwwww"
+NightXpm="13 13 4 1"
+"b c #1F66CC"
+"w c #202020"
+"g c #FFFFFF"
+". c none"
+"wwwwwwwwwwwww"
+"wwwwwwwwwwwww"
+"wwbbbbbbbbbww"
+"wwbbggggbbbww"
+"wwbbggbggbbww"
+"wwbbggbggbbww"
+"wwbbggggbbbww"
+"wwbbggbbbbbww"
+"wwbbggbbbbbww"
+"wwbbggbbbbbww"
+"wwbbbbbbbbbww"
+"wwwwwwwwwwwww"
+"wwwwwwwwwwwww"
+[end]
+
+[_point]
+Type=0x10e06
+String1=0x02,Restaurant
+String2=0x01,Restaurant
+String3=0x05,Ristorante
+String4=0x04,Restaurant
+ExtendedLabels=Y
+FontStyle=NormalFont
+DayXpm="13 13 4 1"
+"b c #8B4A1C"
+"w c #FFFFFF"
+"g c #FFFFFF"
+". c none"
+"....wwwww...."
+"..wwwwwwwww.."
+".wwwbbbbbwww."
+".wwbgbgbgbww."
+"wwbbgbgbgbbww"
+"wwbbgggbgbbww"
+"wwbbbgbggbbww"
+"wwbbbgbbgbbww"
+"wwbbbgbbgbbww"
+".wwbbgbbgbww."
+".wwwbbbbbwww."
+"..wwwwwwwww.."
+"....wwwww...."
+NightXpm="13 13 4 1"
+"b c #8B4A1C"
+"w c #202020"
+"g c #FFFFFF"
+". c none"
+"....wwwww...."
+"..wwwwwwwww.."
+".wwwbbbbbwww."
+".wwbgbgbgbww."
+"wwbbgbgbgbbww"
+"wwbbgggbgbbww"
+"wwbbbgbggbbww"
+"wwbbbgbbgbbww"
+"wwbbbgbbgbbww"
+".wwbbgbbgbww."
+".wwwbbbbbwww."
+"..wwwwwwwww.."
+"....wwwww...."
+[end]
+
+[_point]
+Type=0x10e07
+String1=0x02,Rastplatz
+String2=0x01,Aire de repos
+String3=0x05,Area di sosta
+String4=0x04,Rest area
+ExtendedLabels=Y
+FontStyle=NormalFont
+DayXpm="13 13 4 1"
+"b c #2E7D32"
+"w c #FFFFFF"
+"g c #FFFFFF"
+". c none"
+"....wwwww...."
+"..wwwwwwwww.."
+".wwwbbbbbwww."
+".wwbbbbbbbww."
+"wwbgggggggbww"
+"wwbgggggggbww"
+"wwbbgbbbgbbww"
+"wwbgggggggbww"
+"wwbgbbbbbgbww"
+".wwbbbbbbbww."
+".wwwbbbbbwww."
+"..wwwwwwwww.."
+"....wwwww...."
+NightXpm="13 13 4 1"
+"b c #2E7D32"
+"w c #202020"
+"g c #FFFFFF"
+". c none"
+"....wwwww...."
+"..wwwwwwwww.."
+".wwwbbbbbwww."
+".wwbbbbbbbww."
+"wwbgggggggbww"
+"wwbgggggggbww"
+"wwbbgbbbgbbww"
+"wwbgggggggbww"
+"wwbgbbbbbgbww"
+".wwbbbbbbbww."
+".wwwbbbbbwww."
+"..wwwwwwwww.."
+"....wwwww...."
+[end]
+
+[_point]
+Type=0x10e08
+String1=0x02,Raststätte
+String2=0x01,Aire de service
+String3=0x05,Area di servizio
+String4=0x04,Motorway service area
+ExtendedLabels=Y
+FontStyle=NormalFont
+DayXpm="13 13 4 1"
+"b c #C05A00"
+"w c #FFFFFF"
+"g c #FFFFFF"
+". c none"
+"....wwwww...."
+"..wwwwwwwww.."
+".wwwbbbbbwww."
+".wwbgbgbgbww."
+"wwbbgbgbgbbww"
+"wwbbgggbgbbww"
+"wwbbbgbggbbww"
+"wwbbbgbbgbbww"
+"wwbbbgbbgbbww"
+".wwbbgbbgbww."
+".wwwbbbbbwww."
+"..wwwwwwwww.."
+"....wwwww...."
+NightXpm="13 13 4 1"
+"b c #C05A00"
+"w c #202020"
+"g c #FFFFFF"
+". c none"
+"....wwwww...."
+"..wwwwwwwww.."
+".wwwbbbbbwww."
+".wwbgbgbgbww."
+"wwbbgbgbgbbww"
+"wwbbgggbgbbww"
+"wwbbbgbggbbww"
+"wwbbbgbbgbbww"
+"wwbbbgbbgbbww"
+".wwbbgbbgbww."
+".wwwbbbbbwww."
+"..wwwwwwwww.."
+"....wwwww...."
+[end]
+
+[_point]
+Type=0x10e09
+String1=0x02,Toilette
+String2=0x01,Toilettes
+String3=0x05,Servizi igienici
+String4=0x04,Toilets
+ExtendedLabels=Y
+FontStyle=NormalFont
+DayXpm="13 13 4 1"
+"b c #555555"
+"w c #FFFFFF"
+"g c #FFFFFF"
+". c none"
+"wwwwwwwwwwwww"
+"wwwwwwwwwwwww"
+"wwbbbbbbbbbww"
+"wwbbbbbbbbbww"
+"wwgbbbgbgggww"
+"wwgbbbgbgbbww"
+"wwgbgbgbgbbww"
+"wwggbggbgbbww"
+"wwgbbbgbgggww"
+"wwbbbbbbbbbww"
+"wwbbbbbbbbbww"
+"wwwwwwwwwwwww"
+"wwwwwwwwwwwww"
+NightXpm="13 13 4 1"
+"b c #555555"
+"w c #202020"
+"g c #FFFFFF"
+". c none"
+"wwwwwwwwwwwww"
+"wwwwwwwwwwwww"
+"wwbbbbbbbbbww"
+"wwbbbbbbbbbww"
+"wwgbbbgbgggww"
+"wwgbbbgbgbbww"
+"wwgbgbgbgbbww"
+"wwggbggbgbbww"
+"wwgbbbgbgggww"
+"wwbbbbbbbbbww"
+"wwbbbbbbbbbww"
+"wwwwwwwwwwwww"
+"wwwwwwwwwwwww"
+[end]
+
+[_point]
+Type=0x10e0a
+String1=0x02,Hotel, Gasthaus
+String2=0x01,Hôtel, auberge
+String3=0x05,Albergo, locanda
+String4=0x04,Hotel, guest house
+ExtendedLabels=Y
+FontStyle=NormalFont
+DayXpm="13 13 4 1"
+"b c #8E2A6B"
+"w c #FFFFFF"
+"g c #FFFFFF"
+". c none"
+"wwwwwwwwwwwww"
+"wwwwwwwwwwwww"
+"wwbbbbbbbbbww"
+"wwbbggbggbbww"
+"wwbbggbggbbww"
+"wwbbggbggbbww"
+"wwbbgggggbbww"
+"wwbbggbggbbww"
+"wwbbggbggbbww"
+"wwbbggbggbbww"
+"wwbbbbbbbbbww"
+"wwwwwwwwwwwww"
+"wwwwwwwwwwwww"
+NightXpm="13 13 4 1"
+"b c #8E2A6B"
+"w c #202020"
+"g c #FFFFFF"
+". c none"
+"wwwwwwwwwwwww"
+"wwwwwwwwwwwww"
+"wwbbbbbbbbbww"
+"wwbbggbggbbww"
+"wwbbggbggbbww"
+"wwbbggbggbbww"
+"wwbbgggggbbww"
+"wwbbggbggbbww"
+"wwbbggbggbbww"
+"wwbbggbggbbww"
+"wwbbbbbbbbbww"
+"wwwwwwwwwwwww"
+"wwwwwwwwwwwww"
+[end]
+

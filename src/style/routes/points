@@ -1,0 +1,20 @@
+# Alle ÖV-Haltestellen (swissTLM3D, aus src/routes/convert_routes.py). Blauer Punkt, Name rot wie die
+# Bahnhöfe der Basiskarte. Ab Auflösung 21 (BaseCamp). Das GPSMAP 67 zeigt erweiterte Punkttypen erst ab ca. 80 m
+# (docs/vektor/routen.md, Punkttypen am GPSMAP 67).
+# Bahnhöfe (ch:oev=bahn): Name im Suchindex, im TYP ohne sichtbares Label (Name steht in der Basis).
+# Punkttypen 0x10e00–0x10e04 (eigener Nummernraum, keine Kollision mit den Linien), im Gesamtbuild per ROUTES_TYPE_REMAP verschoben (0x113 statt 0x10e).
+ch:oev=bahn         { name '${name}' } [0x10e04 resolution 21]
+ch:oev=bus          { name '${name}' } [0x10e00 resolution 21]
+ch:oev=tram         { name '${name}' } [0x10e01 resolution 21]
+ch:oev=schiff       { name '${name}' } [0x10e02 resolution 21]
+ch:oev=uebrige_bahn | ch:oev=seilbahn { name '${name}' } [0x10e03 resolution 21]
+
+# POIs, die die Landeskarte nicht zeigt (Tags aus src/vector/pois.py, über src/routes/pois_overlay.py).
+# Die Basiskarte zeichnet diese Arten nicht. Ab Auflösung 24, Name suchbar.
+amenity=parking & access!=private & access!=no { name '${name}' } [0x10e05 resolution 24]
+# Abgelegene Gasthöfe (Fahne der LK) bleiben in der Basis (0x2a00).
+(amenity=restaurant | amenity=cafe | amenity=pub) & swisstopo:nutzung!='Gasthof abgelegen' { name '${name}' } [0x10e06 resolution 24]
+highway=rest_area   { name '${name}' } [0x10e07 resolution 24]
+highway=services    { name '${name}' } [0x10e08 resolution 24]
+amenity=toilets     { name '${name}' } [0x10e09 resolution 24]
+tourism=hotel | tourism=guest_house | tourism=hostel { name '${name}' } [0x10e0a resolution 24]

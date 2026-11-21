@@ -1,0 +1,23 @@
+name: Vorschlag
+description: Idee für eine Verbesserung oder neue Funktion
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: Bitte kurz und sachlich schreiben, ein Gedanke je Satz ([Schreibregeln](../blob/main/docs/schreibregeln.md)).
+  - type: textarea
+    id: idee
+    attributes:
+      label: Was schlägst du vor?
+    validations:
+      required: true
+  - type: textarea
+    id: nutzen
+    attributes:
+      label: Wozu?
+      description: Welches Problem löst es, für welche Geräte oder Anwendungen?
+  - type: textarea
+    id: daten
+    attributes:
+      label: Benötigte Daten
+      description: Falls neue Daten nötig sind – welcher Datensatz, welche Lizenz? Erlaubt sind nur swisstopo-OGD und SchweizMobil (Open Data BY).

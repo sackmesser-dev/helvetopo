@@ -1,0 +1,144 @@
+# Routen-Overlay FID 7702 – GENERIERT von src/routes/make_style.py, nicht von Hand ändern.
+# Erweiterte Linientypen (0x10e00–0x10e1f, Subtyp max. 0x1f), Darstellung im TYP
+# src/style/typ/routes.txt (aus src/routes/make_typ.py). Nichts ist routingfähig.
+# Im Gesamt-Build (Familie 7701) verschiebt ROUTES_TYPE_REMAP die Codes nach 0x113xx.
+#
+# Alle Routen und Wanderwege ab Auflösung 21, Breite 3 px auf allen Stufen.
+# Grob (21 bis 22): Übersichtstyp, stärker aufgehellt, Label erst ab 22 (nur Nummer im Schild).
+# Nah (ab 23): Routentyp, Label Schild, Name erst ab 24.
+# Schild: `oval` mit Präfix W/V/M/S/K, z. B. „W24“, „V7“, „M95“.
+# interstate/shield/box gehören den Strassen der Basis.
+
+ch:route=wanderland & ch:network=national { delete name; delete ref } [0x10e18 resolution 21-21 continue]
+ch:route=wanderland & ch:network=national & ref=* { set ch:rref='W${ref}'; name '${ch:rref|highway-symbol:oval}' } [0x10e18 resolution 22-22 continue]
+ch:route=wanderland & ch:network=national & ref!=* { delete name } [0x10e18 resolution 22-22 continue]
+ch:route=wanderland & ch:network=national & ref=* { set ch:rref='W${ref}'; name '${ch:rref|highway-symbol:oval}' } [0x10e10 resolution 23-23 continue]
+ch:route=wanderland & ch:network=national & ref!=* { delete name } [0x10e10 resolution 23-23 continue]
+ch:route=wanderland & ch:network=national & ref=* { set ch:rref='W${ref}'; name '${ch:rref|highway-symbol:oval} ${name}' } [0x10e10 resolution 24]
+ch:route=wanderland & ch:network=national & ref!=* { name '${name}' } [0x10e10 resolution 24]
+
+ch:route=wanderland & ch:network=regional { delete name; delete ref } [0x10e18 resolution 21-21 continue]
+ch:route=wanderland & ch:network=regional & ref=* { set ch:rref='W${ref}'; name '${ch:rref|highway-symbol:oval}' } [0x10e18 resolution 22-22 continue]
+ch:route=wanderland & ch:network=regional & ref!=* { delete name } [0x10e18 resolution 22-22 continue]
+ch:route=wanderland & ch:network=regional & ref=* { set ch:rref='W${ref}'; name '${ch:rref|highway-symbol:oval}' } [0x10e10 resolution 23-23 continue]
+ch:route=wanderland & ch:network=regional & ref!=* { delete name } [0x10e10 resolution 23-23 continue]
+ch:route=wanderland & ch:network=regional & ref=* { set ch:rref='W${ref}'; name '${ch:rref|highway-symbol:oval} ${name}' } [0x10e10 resolution 24]
+ch:route=wanderland & ch:network=regional & ref!=* { name '${name}' } [0x10e10 resolution 24]
+
+ch:route=wanderland & ch:network=local { delete name; delete ref } [0x10e18 resolution 21-21 continue]
+ch:route=wanderland & ch:network=local & ref=* { set ch:rref='W${ref}'; name '${ch:rref|highway-symbol:oval}' } [0x10e18 resolution 22-22 continue]
+ch:route=wanderland & ch:network=local & ref!=* { delete name } [0x10e18 resolution 22-22 continue]
+ch:route=wanderland & ch:network=local & ref=* { set ch:rref='W${ref}'; name '${ch:rref|highway-symbol:oval}' } [0x10e10 resolution 23-23 continue]
+ch:route=wanderland & ch:network=local & ref!=* { delete name } [0x10e10 resolution 23-23 continue]
+ch:route=wanderland & ch:network=local & ref=* { set ch:rref='W${ref}'; name '${ch:rref|highway-symbol:oval} ${name}' } [0x10e10 resolution 24]
+ch:route=wanderland & ch:network=local & ref!=* { name '${name}' } [0x10e10 resolution 24]
+
+ch:route=wanderland & ch:network=handicap { delete name; delete ref } [0x10e18 resolution 21-21 continue]
+ch:route=wanderland & ch:network=handicap & ref=* { set ch:rref='W${ref}'; name '${ch:rref|highway-symbol:oval}' } [0x10e18 resolution 22-22 continue]
+ch:route=wanderland & ch:network=handicap & ref!=* { delete name } [0x10e18 resolution 22-22 continue]
+ch:route=wanderland & ch:network=handicap & ref=* { set ch:rref='W${ref}'; name '${ch:rref|highway-symbol:oval}' } [0x10e11 resolution 23-23 continue]
+ch:route=wanderland & ch:network=handicap & ref!=* { delete name } [0x10e11 resolution 23-23 continue]
+ch:route=wanderland & ch:network=handicap & ref=* { set ch:rref='W${ref}'; name '${ch:rref|highway-symbol:oval} ${name}' } [0x10e11 resolution 24]
+ch:route=wanderland & ch:network=handicap & ref!=* { name '${name}' } [0x10e11 resolution 24]
+
+ch:route=veloland & ch:network=national { delete name; delete ref } [0x10e1a resolution 21-21 continue]
+ch:route=veloland & ch:network=national & ref=* { set ch:rref='V${ref}'; name '${ch:rref|highway-symbol:oval}' } [0x10e1a resolution 22-22 continue]
+ch:route=veloland & ch:network=national & ref!=* { delete name } [0x10e1a resolution 22-22 continue]
+ch:route=veloland & ch:network=national & ref=* { set ch:rref='V${ref}'; name '${ch:rref|highway-symbol:oval}' } [0x10e12 resolution 23-23 continue]
+ch:route=veloland & ch:network=national & ref!=* { delete name } [0x10e12 resolution 23-23 continue]
+ch:route=veloland & ch:network=national & ref=* { set ch:rref='V${ref}'; name '${ch:rref|highway-symbol:oval} ${name}' } [0x10e12 resolution 24]
+ch:route=veloland & ch:network=national & ref!=* { name '${name}' } [0x10e12 resolution 24]
+
+ch:route=veloland & ch:network=regional { delete name; delete ref } [0x10e1a resolution 21-21 continue]
+ch:route=veloland & ch:network=regional & ref=* { set ch:rref='V${ref}'; name '${ch:rref|highway-symbol:oval}' } [0x10e1a resolution 22-22 continue]
+ch:route=veloland & ch:network=regional & ref!=* { delete name } [0x10e1a resolution 22-22 continue]
+ch:route=veloland & ch:network=regional & ref=* { set ch:rref='V${ref}'; name '${ch:rref|highway-symbol:oval}' } [0x10e12 resolution 23-23 continue]
+ch:route=veloland & ch:network=regional & ref!=* { delete name } [0x10e12 resolution 23-23 continue]
+ch:route=veloland & ch:network=regional & ref=* { set ch:rref='V${ref}'; name '${ch:rref|highway-symbol:oval} ${name}' } [0x10e12 resolution 24]
+ch:route=veloland & ch:network=regional & ref!=* { name '${name}' } [0x10e12 resolution 24]
+
+ch:route=veloland & ch:network=local { delete name; delete ref } [0x10e1a resolution 21-21 continue]
+ch:route=veloland & ch:network=local & ref=* { set ch:rref='V${ref}'; name '${ch:rref|highway-symbol:oval}' } [0x10e1a resolution 22-22 continue]
+ch:route=veloland & ch:network=local & ref!=* { delete name } [0x10e1a resolution 22-22 continue]
+ch:route=veloland & ch:network=local & ref=* { set ch:rref='V${ref}'; name '${ch:rref|highway-symbol:oval}' } [0x10e12 resolution 23-23 continue]
+ch:route=veloland & ch:network=local & ref!=* { delete name } [0x10e12 resolution 23-23 continue]
+ch:route=veloland & ch:network=local & ref=* { set ch:rref='V${ref}'; name '${ch:rref|highway-symbol:oval} ${name}' } [0x10e12 resolution 24]
+ch:route=veloland & ch:network=local & ref!=* { name '${name}' } [0x10e12 resolution 24]
+
+ch:route=mountainbikeland & ch:network=national { delete name; delete ref } [0x10e1b resolution 21-21 continue]
+ch:route=mountainbikeland & ch:network=national & ref=* { set ch:rref='M${ref}'; name '${ch:rref|highway-symbol:oval}' } [0x10e1b resolution 22-22 continue]
+ch:route=mountainbikeland & ch:network=national & ref!=* { delete name } [0x10e1b resolution 22-22 continue]
+ch:route=mountainbikeland & ch:network=national & ref=* { set ch:rref='M${ref}'; name '${ch:rref|highway-symbol:oval}' } [0x10e13 resolution 23-23 continue]
+ch:route=mountainbikeland & ch:network=national & ref!=* { delete name } [0x10e13 resolution 23-23 continue]
+ch:route=mountainbikeland & ch:network=national & ref=* { set ch:rref='M${ref}'; name '${ch:rref|highway-symbol:oval} ${name}' } [0x10e13 resolution 24]
+ch:route=mountainbikeland & ch:network=national & ref!=* { name '${name}' } [0x10e13 resolution 24]
+
+ch:route=mountainbikeland & ch:network=regional { delete name; delete ref } [0x10e1b resolution 21-21 continue]
+ch:route=mountainbikeland & ch:network=regional & ref=* { set ch:rref='M${ref}'; name '${ch:rref|highway-symbol:oval}' } [0x10e1b resolution 22-22 continue]
+ch:route=mountainbikeland & ch:network=regional & ref!=* { delete name } [0x10e1b resolution 22-22 continue]
+ch:route=mountainbikeland & ch:network=regional & ref=* { set ch:rref='M${ref}'; name '${ch:rref|highway-symbol:oval}' } [0x10e13 resolution 23-23 continue]
+ch:route=mountainbikeland & ch:network=regional & ref!=* { delete name } [0x10e13 resolution 23-23 continue]
+ch:route=mountainbikeland & ch:network=regional & ref=* { set ch:rref='M${ref}'; name '${ch:rref|highway-symbol:oval} ${name}' } [0x10e13 resolution 24]
+ch:route=mountainbikeland & ch:network=regional & ref!=* { name '${name}' } [0x10e13 resolution 24]
+
+ch:route=mountainbikeland & ch:network=local { delete name; delete ref } [0x10e1b resolution 21-21 continue]
+ch:route=mountainbikeland & ch:network=local & ref=* { set ch:rref='M${ref}'; name '${ch:rref|highway-symbol:oval}' } [0x10e1b resolution 22-22 continue]
+ch:route=mountainbikeland & ch:network=local & ref!=* { delete name } [0x10e1b resolution 22-22 continue]
+ch:route=mountainbikeland & ch:network=local & ref=* { set ch:rref='M${ref}'; name '${ch:rref|highway-symbol:oval}' } [0x10e13 resolution 23-23 continue]
+ch:route=mountainbikeland & ch:network=local & ref!=* { delete name } [0x10e13 resolution 23-23 continue]
+ch:route=mountainbikeland & ch:network=local & ref=* { set ch:rref='M${ref}'; name '${ch:rref|highway-symbol:oval} ${name}' } [0x10e13 resolution 24]
+ch:route=mountainbikeland & ch:network=local & ref!=* { name '${name}' } [0x10e13 resolution 24]
+
+ch:route=skatingland & ch:network=national { delete name; delete ref } [0x10e1c resolution 21-21 continue]
+ch:route=skatingland & ch:network=national & ref=* { set ch:rref='S${ref}'; name '${ch:rref|highway-symbol:oval}' } [0x10e1c resolution 22-22 continue]
+ch:route=skatingland & ch:network=national & ref!=* { delete name } [0x10e1c resolution 22-22 continue]
+ch:route=skatingland & ch:network=national & ref=* { set ch:rref='S${ref}'; name '${ch:rref|highway-symbol:oval}' } [0x10e14 resolution 23-23 continue]
+ch:route=skatingland & ch:network=national & ref!=* { delete name } [0x10e14 resolution 23-23 continue]
+ch:route=skatingland & ch:network=national & ref=* { set ch:rref='S${ref}'; name '${ch:rref|highway-symbol:oval} ${name}' } [0x10e14 resolution 24]
+ch:route=skatingland & ch:network=national & ref!=* { name '${name}' } [0x10e14 resolution 24]
+
+ch:route=skatingland & ch:network=regional { delete name; delete ref } [0x10e1c resolution 21-21 continue]
+ch:route=skatingland & ch:network=regional & ref=* { set ch:rref='S${ref}'; name '${ch:rref|highway-symbol:oval}' } [0x10e1c resolution 22-22 continue]
+ch:route=skatingland & ch:network=regional & ref!=* { delete name } [0x10e1c resolution 22-22 continue]
+ch:route=skatingland & ch:network=regional & ref=* { set ch:rref='S${ref}'; name '${ch:rref|highway-symbol:oval}' } [0x10e14 resolution 23-23 continue]
+ch:route=skatingland & ch:network=regional & ref!=* { delete name } [0x10e14 resolution 23-23 continue]
+ch:route=skatingland & ch:network=regional & ref=* { set ch:rref='S${ref}'; name '${ch:rref|highway-symbol:oval} ${name}' } [0x10e14 resolution 24]
+ch:route=skatingland & ch:network=regional & ref!=* { name '${name}' } [0x10e14 resolution 24]
+
+ch:route=skatingland & ch:network=local { delete name; delete ref } [0x10e1c resolution 21-21 continue]
+ch:route=skatingland & ch:network=local & ref=* { set ch:rref='S${ref}'; name '${ch:rref|highway-symbol:oval}' } [0x10e1c resolution 22-22 continue]
+ch:route=skatingland & ch:network=local & ref!=* { delete name } [0x10e1c resolution 22-22 continue]
+ch:route=skatingland & ch:network=local & ref=* { set ch:rref='S${ref}'; name '${ch:rref|highway-symbol:oval}' } [0x10e14 resolution 23-23 continue]
+ch:route=skatingland & ch:network=local & ref!=* { delete name } [0x10e14 resolution 23-23 continue]
+ch:route=skatingland & ch:network=local & ref=* { set ch:rref='S${ref}'; name '${ch:rref|highway-symbol:oval} ${name}' } [0x10e14 resolution 24]
+ch:route=skatingland & ch:network=local & ref!=* { name '${name}' } [0x10e14 resolution 24]
+
+ch:route=kanuland & ch:network=national { delete name; delete ref } [0x10e1d resolution 21-21 continue]
+ch:route=kanuland & ch:network=national & ref=* { set ch:rref='K${ref}'; name '${ch:rref|highway-symbol:oval}' } [0x10e1d resolution 22-22 continue]
+ch:route=kanuland & ch:network=national & ref!=* { delete name } [0x10e1d resolution 22-22 continue]
+ch:route=kanuland & ch:network=national & ref=* { set ch:rref='K${ref}'; name '${ch:rref|highway-symbol:oval}' } [0x10e15 resolution 23-23 continue]
+ch:route=kanuland & ch:network=national & ref!=* { delete name } [0x10e15 resolution 23-23 continue]
+ch:route=kanuland & ch:network=national & ref=* { set ch:rref='K${ref}'; name '${ch:rref|highway-symbol:oval} ${name}' } [0x10e15 resolution 24]
+ch:route=kanuland & ch:network=national & ref!=* { name '${name}' } [0x10e15 resolution 24]
+
+ch:route=kanuland & ch:network=regional { delete name; delete ref } [0x10e1d resolution 21-21 continue]
+ch:route=kanuland & ch:network=regional & ref=* { set ch:rref='K${ref}'; name '${ch:rref|highway-symbol:oval}' } [0x10e1d resolution 22-22 continue]
+ch:route=kanuland & ch:network=regional & ref!=* { delete name } [0x10e1d resolution 22-22 continue]
+ch:route=kanuland & ch:network=regional & ref=* { set ch:rref='K${ref}'; name '${ch:rref|highway-symbol:oval}' } [0x10e15 resolution 23-23 continue]
+ch:route=kanuland & ch:network=regional & ref!=* { delete name } [0x10e15 resolution 23-23 continue]
+ch:route=kanuland & ch:network=regional & ref=* { set ch:rref='K${ref}'; name '${ch:rref|highway-symbol:oval} ${name}' } [0x10e15 resolution 24]
+ch:route=kanuland & ch:network=regional & ref!=* { name '${name}' } [0x10e15 resolution 24]
+
+ch:route=kanuland & ch:network=local { delete name; delete ref } [0x10e1d resolution 21-21 continue]
+ch:route=kanuland & ch:network=local & ref=* { set ch:rref='K${ref}'; name '${ch:rref|highway-symbol:oval}' } [0x10e1d resolution 22-22 continue]
+ch:route=kanuland & ch:network=local & ref!=* { delete name } [0x10e1d resolution 22-22 continue]
+ch:route=kanuland & ch:network=local & ref=* { set ch:rref='K${ref}'; name '${ch:rref|highway-symbol:oval}' } [0x10e15 resolution 23-23 continue]
+ch:route=kanuland & ch:network=local & ref!=* { delete name } [0x10e15 resolution 23-23 continue]
+ch:route=kanuland & ch:network=local & ref=* { set ch:rref='K${ref}'; name '${ch:rref|highway-symbol:oval} ${name}' } [0x10e15 resolution 24]
+ch:route=kanuland & ch:network=local & ref!=* { name '${name}' } [0x10e15 resolution 24]
+
+# Wanderwege swissTLM3D, LK-artig über dem Weg: gelb-weiss = Wanderweg,
+# rot-weiss = Bergwanderweg, blau-weiss = Alpinwanderweg
+ch:wanderweg=alpinwanderweg [0x10e02 resolution 21]
+ch:wanderweg=bergwanderweg [0x10e01 resolution 21]
+ch:wanderweg=wanderweg [0x10e00 resolution 21]

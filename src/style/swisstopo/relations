@@ -1,0 +1,14 @@
+# -------------------------------------------------------------------
+# Helvetopo – Relationen (mkgmap-Style "swisstopo")
+# -------------------------------------------------------------------
+
+# Multipolygone werden von mkgmap selbst zusammengesetzt (type=multipolygon).
+
+# Verwaltungsgrenzen: Ebene auf die Mitglieds-Wege übertragen (eine Linie je Ebene)
+type=boundary & boundary=administrative & admin_level=2 { apply { set tmp:adm2=yes } }
+type=boundary & boundary=administrative & admin_level=4 { apply { set tmp:adm4=yes } }
+type=boundary & boundary=administrative & admin_level=6 { apply { set tmp:adm6=yes } }
+type=boundary & boundary=administrative & admin_level=8 { apply { set tmp:adm8=yes } }
+
+# Fähren und Routen: keine Sonderbehandlung. Wander-, Velo- und MTB-Routen gehören ins
+# Overlay FID 7702 (src/routes/), nicht in die Basiskarte.

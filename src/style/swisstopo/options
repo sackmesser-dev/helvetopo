@@ -1,0 +1,13 @@
+# Zoomstufen (Garmin-Auflösung). Grobe Zuordnung zu den swisstopo-Massstäben:
+#   24  ~ LK 1:10'000–1:25'000   (Gebäude, Wege, Einzelobjekte)
+#   23  ~ LK 1:25'000            (alle Strassen, Fusswege, Flächen fein)
+#   22  ~ LK 1:50'000            (Nebenstrassen, Bäche, Wald)
+#   21  ~ LK 1:100'000           (Verbindungsstrassen, kleinere Flüsse)
+#   20  ~ LK 1:200'000           (Hauptstrassen, Seen, Gemeinden)
+#   19  Zwischenstufe (Review 1, A1): Inhalt wie 18, halb so grobes Raster
+#   18  ~ 1:500'000              (Autobahnen, grosse Flüsse, Städte)
+#   16  ~ 1:1'000'000            (Übersicht)
+levels = 0:24, 1:23, 2:22, 3:21, 4:20, 5:19, 6:18, 7:16
+
+# Übersichtskarte (nur für BaseCamp/MapSource relevant)
+overview-levels = 8:14, 9:12

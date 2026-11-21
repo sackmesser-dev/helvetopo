@@ -1,0 +1,3 @@
+version 0.1
+summary Höhenlinien aus swissALTI3D (©swisstopo) im Stil der Landeskarte 1:25'000
+description Nur Höhenlinien. Als eigenes transparentes Overlay (FID 7703) oder per include in der Basiskarte.

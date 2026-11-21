@@ -1,0 +1,4 @@
+# Zoomstufen wie die Basiskarte (src/style/swisstopo/options), damit Overlay und Basis
+# auf denselben Stufen umschalten. 24 ≈ LK 1:10 000, 23 ≈ 1:25 000, 22 ≈ 1:50 000,
+# 21 ≈ 1:100 000, 20 ≈ 1:200 000, 18 ≈ 1:500 000.
+levels = 0:24, 1:23, 2:22, 3:21, 4:20, 5:18

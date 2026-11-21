@@ -1,0 +1,524 @@
+# -------------------------------------------------------------------
+# Helvetopo – Linien (mkgmap-Style "swisstopo")
+# Vorbild: Swiss Map Vector 25 (SMV25), Farben siehe docs/stil/stil.md
+#
+# Eingabe: Standard-OSM-Tags plus swisstopo:*-Zusatztags nach docs/daten/tag-schema.md
+# (Konverter src/vector/). Für die Darstellung zählen vor allem:
+#   swisstopo:objektart            TLM-Objektart im Originalwortlaut, z. B. '6m Strasse', '1m Weg'
+#   swisstopo:verkehrsbedeutung    'Hochleistungsstrasse' | 'Durchgangsstrasse' | 'Verbindungsstrasse'
+#   swisstopo:belagsart            'Hart' | 'Natur'
+#   swisstopo:untergrund           bei Höhenkurven: 'fels' | 'gletscher' | 'see' (Annahme, Overlay 7703)
+# highway=* bestimmt Routing-Klasse und Geschwindigkeit, nicht die Signatur.
+#
+# Typcodes: 0x01–0x13, 0x16, 0x1a, 0x1b sind routingfähig (road_class/road_speed),
+# alle anderen Linien sind reine Darstellung.
+# -------------------------------------------------------------------
+
+# Strassenname für Adresssuche und Hausnummern
+# Adresspunkte ohne eigenes Symbol trotzdem durch die Finalize-Regeln schicken (Hausnummernsuche)
+addr:housenumber=* { set mkgmap:execute_finalize_rules=true }
+
+highway=* & name=* { set mkgmap:street='${name}' }
+
+# Geplante oder abgebrochene Wege nicht zeigen
+highway=proposed | highway=planned | highway=abandoned | highway=razed | highway=dismantled { delete highway }
+highway=construction { set tmp:inbau=yes }
+
+include 'inc/access';
+
+# ------------------------------------------------------------------
+# 1. Routing-Klasse und Geschwindigkeit aus dem Strassentyp (nicht aus der Breite)
+#    road_class 4..0, road_speed 7..0 (siehe Style-Manual 4.6.4/4.6.5)
+# ------------------------------------------------------------------
+highway=motorway                       { set mkgmap:road-class=4; set mkgmap:road-speed-class=7 }
+highway=motorway_link                  { set mkgmap:road-class=4; set mkgmap:road-speed-class=4 }
+highway=trunk                          { set mkgmap:road-class=4; set mkgmap:road-speed-class=6 }
+highway=trunk_link                     { set mkgmap:road-class=3; set mkgmap:road-speed-class=4 }
+highway=primary                        { set mkgmap:road-class=3; set mkgmap:road-speed-class=5 }
+highway=primary_link                   { set mkgmap:road-class=3; set mkgmap:road-speed-class=3 }
+highway=secondary                      { set mkgmap:road-class=2; set mkgmap:road-speed-class=4 }
+highway=secondary_link                 { set mkgmap:road-class=2; set mkgmap:road-speed-class=3 }
+highway=tertiary | highway=tertiary_link { set mkgmap:road-class=1; set mkgmap:road-speed-class=3 }
+highway=unclassified                   { set mkgmap:road-class=0; set mkgmap:road-speed-class=3 }
+highway=residential                    { set mkgmap:road-class=0; set mkgmap:road-speed-class=2 }
+highway=living_street                  { set mkgmap:road-class=0; set mkgmap:road-speed-class=1 }
+highway=service                        { set mkgmap:road-class=0; set mkgmap:road-speed-class=1 }
+highway=track                          { set mkgmap:road-class=0; set mkgmap:road-speed-class=1 }
+highway=pedestrian | highway=cycleway  { set mkgmap:road-class=0; set mkgmap:road-speed-class=1 }
+highway=path | highway=footway | highway=bridleway | highway=steps | highway=via_ferrata
+                                       { set mkgmap:road-class=0; set mkgmap:road-speed-class=0 }
+
+# Routing-Präferenz Wanderwege/Veloland (nur autofreie Kanten; Schalter --style-option=routing_pref=…)
+include 'inc/routing_pref';
+
+# ------------------------------------------------------------------
+# 2. Darstellungsklasse tmp:look (bestimmt den Typcode / die TYP-Signatur)
+# ------------------------------------------------------------------
+# Farbige Strassen (SMV: Autobahn/Autostrasse orange, Durchgangsstrasse rot, Verbindungsstrasse gelb)
+swisstopo:objektart=Autobahn                                    { set tmp:look=autobahn }
+swisstopo:objektart=Autostrasse                                 { set tmp:look=autostrasse }
+swisstopo:objektart~'Ausfahrt|Einfahrt|Zufahrt|Raststaette'     { set tmp:look=rampe }
+swisstopo:objektart=Verbindung & highway=motorway               { set tmp:look=autobahn }
+swisstopo:objektart=Verbindung & highway=trunk & motorroad=yes  { set tmp:look=autostrasse }
+tmp:look!=* & swisstopo:verkehrsbedeutung=Hochleistungsstrasse & highway~'motorway.*|trunk.*' { set tmp:look=rampe }
+tmp:look!=* & swisstopo:verkehrsbedeutung=Durchgangsstrasse & swisstopo:objektart!='2m Weg' { set tmp:look=durchgang }
+tmp:look!=* & swisstopo:verkehrsbedeutung=Verbindungsstrasse & swisstopo:objektart!='2m Weg' { set tmp:look=verbindung }
+
+# Rückfall für Daten ohne swisstopo:*-Tags (reine OSM-Daten)
+tmp:look!=* & swisstopo:objektart!=* & highway=motorway                          { set tmp:look=autobahn }
+tmp:look!=* & swisstopo:objektart!=* & highway=trunk                             { set tmp:look=autostrasse }
+tmp:look!=* & swisstopo:objektart!=* & highway~'motorway_link|trunk_link'        { set tmp:look=rampe }
+tmp:look!=* & swisstopo:objektart!=* & highway~'primary|primary_link'            { set tmp:look=durchgang }
+tmp:look!=* & swisstopo:objektart!=* & highway~'secondary|secondary_link'        { set tmp:look=verbindung }
+
+# Weisse Strassen und Wege: Breitenklasse aus der TLM-Objektart
+tmp:look!=* & swisstopo:objektart~'(10m|8m|6m) Strasse'  { set tmp:look=w6 }
+tmp:look!=* & swisstopo:objektart='4m Strasse'           { set tmp:look=w4 }
+tmp:look!=* & swisstopo:objektart='3m Strasse'           { set tmp:look=w3 }
+tmp:look!=* & swisstopo:objektart='2m Weg'               { set tmp:look=weg2 }
+tmp:look!=* & swisstopo:objektart='1m Weg'               { set tmp:look=weg1 }
+tmp:look!=* & swisstopo:objektart~'.*Wegfragment|Markierte Spur' { set tmp:look=spur }
+tmp:look!=* & swisstopo:objektart~'Platz|Dienstzufahrt'  { set tmp:look=w3 }
+# Verbindung (kurze Netz-Verbinder): erbt highway, Signatur unten aus dem Rückfall
+
+# Rückfall ohne Breitenklasse: aus OSM-Tags ableiten
+tmp:look!=* & (highway=tertiary | highway=tertiary_link)               { set tmp:look=w6 }
+tmp:look!=* & (highway=unclassified | highway=residential | highway=living_street) { set tmp:look=w4 }
+tmp:look!=* & (highway=service | highway=pedestrian)                   { set tmp:look=w3 }
+tmp:look!=* & highway=track & (tracktype=grade4 | tracktype=grade5)   { set tmp:look=weg2 }
+tmp:look!=* & highway=track                                           { set tmp:look=w3 }
+tmp:look!=* & highway=cycleway                                        { set tmp:look=weg2 }
+tmp:look!=* & (highway=path | highway=footway | highway=bridleway) & trail_visibility~'bad|horrible|no' { set tmp:look=spur }
+tmp:look!=* & (highway=path | highway=footway | highway=bridleway)    { set tmp:look=weg1 }
+tmp:look!=* & highway~'motorway.*|trunk.*'                            { set tmp:look=rampe }
+tmp:look!=* & highway~'primary.*|secondary.*'                         { set tmp:look=w6 }
+
+# Belag: Naturbelag macht aus weissen Strassen den "Fahrweg" (weiss, punktierte Ränder)
+(swisstopo:belagsart=Natur | surface~'unpaved|gravel|fine_gravel|compacted|dirt|ground|grass|earth|mud|sand' |
+ tracktype~'grade[2-5]') & highway=* { set mkgmap:unpaved=1; set tmp:natur=yes }
+# Routing-Präferenz A6 (docs/vektor/routing.md): Veloland ist mit dem Tourenvelo befahrbar, auch auf
+# Naturbelag. Ohne Unpaved-Flag bleibt die Route dort, wenn das Velo-Profil „unbefestigt vermeiden“
+# aktiv hat (BaseCamp-Standard). Die Signatur (tmp:natur, Fahrweg) bleibt unverändert.
+mkgmap:option:routing_pref!=off & route_bicycle=* & mkgmap:unpaved=1 { delete mkgmap:unpaved }
+tmp:natur=yes & tmp:look~'w[346]'  { set tmp:look=fahrweg }
+# 2m Weg: mit Hartbelag als schmale Strasse, sonst schwarzer Strich
+tmp:look=weg2 & (swisstopo:belagsart=Hart | surface~'asphalt|paved|concrete.*|paving_stones|sett') { set tmp:look=w2 }
+highway=cycleway & tmp:natur!=yes & tmp:look=weg2 { set tmp:look=w2 }
+# 2m Weg nicht befahrbar (SMV gestrichelt 3,0/0,3 mm)
+tmp:look=weg2 & swisstopo:befahrbarkeit=Falsch { set tmp:look=weg2n }
+# Treppen und Klettersteige haben eigene Signaturen, unabhängig von der Breite
+highway=steps { set tmp:look=treppe }
+highway=via_ferrata | via_ferrata=yes | swisstopo:verkehrsbeschraenkung='Gesicherte Kletterpartie' { set tmp:look=klettersteig }
+
+# ------------------------------------------------------------------
+# 3. Fähren (routingfähig)
+# ------------------------------------------------------------------
+route=ferry & (motorcar=yes | motor_vehicle=yes | swisstopo:objektart=Autofaehre | swisstopo:objektart='Autofähre')
+    { set mkgmap:ferry=1; name '${name}' } [0x1a road_class=1 road_speed=1 resolution 20]
+route=ferry
+    { set mkgmap:ferry=1; set mkgmap:car=no; name '${name}' } [0x1b road_class=0 road_speed=0 resolution 22]
+
+# ------------------------------------------------------------------
+# 4. Strassen und Wege (routingfähig)
+# ------------------------------------------------------------------
+# Etappe 8: Jede Strasse zweimal.
+#  - Auflösung 24: Routingtyp (0x01–0x16), LK-Geländebreite, Strassennamen.
+#  - Auflösung <= 23: Übersichtstyp 0x10a00|Typ, nicht routingfähig, LK-Strichbreite am Gerät,
+#    nur Routennummern (LK beschriftet Strassen fast nur mit Nummern). Routing und Adresssuche
+#    laufen auf den Daten der Auflösung 24.
+# Grobstufen LK100/LK200 (Auflösung 12–20, Etappe 26): eigene Typen 0x10900|Typ, auch für Tunnel
+# (vorher Lücken, z. B. A9 im Wallis); Routennummern nur an Autobahn und Autostrasse, und erst ab 18
+# (Etappe 27). Durchgangs- und Verbindungsstrassen auch in 21 ohne Nummer (Platz für Stadtnamen).
+# Review 1: Shields aus vector-convert (swisstopo:shield_autobahn „A1“, swisstopo:shield_hauptstrasse „7“,
+# nur signalisierte Hauptstrassen; B/C-Nummern aus ref erhalten keinen Shield). Autobahn und
+# Autostrasse box (Gerätetest Review 1: S5), Hauptstrasse hbox (S4), dreistellig round (S3); die Routen nutzen oval. ref nur noch als Rückfall für alte PBF.
+# Review 3 (Benutzer): dreistellige Hauptstrassen (z. B. 447) mit rundem Schild (S3, round), ein- und
+# zweistellige weiter hbox (S4). Die dreistelligen Nummern der Hauptstrassen B/C liefert vector-convert
+# als swisstopo:hauptstrasse_nr_intern (nicht signalisiert). Die signalisierte Nummer hat Vorrang.
+# tmp:hs_sym trägt die Nummer samt Schild-Präfix.
+swisstopo:shield_hauptstrasse=* { set tmp:hs='${swisstopo:shield_hauptstrasse|part:;:1}' }
+tmp:hs!=* & swisstopo:hauptstrasse_nr_intern=* { set tmp:hs='${swisstopo:hauptstrasse_nr_intern|part:;:1}' }
+tmp:hs~'[0-9]{3}'                { set tmp:hs_sym='${tmp:hs|highway-symbol:round}' }
+tmp:hs=* & tmp:hs_sym!=*         { set tmp:hs_sym='${tmp:hs|highway-symbol:hbox}' }
+# Nummern erst ab 19 und bis 21 nicht in der Nähe einer Stadt (swisstopo:stadtabstand: Meter bis zum
+# nächsten Stadtpunkt ab 10 000 Einwohnern, 0x1150d ab 18). Grenze je Stufe wie die Breite des
+# Stadtnamens am Gerät: 18 4 km, 19 3 km, 20 2 km, 21 1,5 km. Das GPSMAP 67 setzt Schilder und
+# Flussnamen vor die Ortsnamen: Bei 3 km stand ein A1-Schild an der Stelle von „St. Gallen“, bei 8 km
+# fehlten St. Gallen, Rorschach und Herisau (Gerätetest 7794-klassen2).
+tmp:look=autobahn    { delete mkgmap:label:1 } [0x10905 resolution 12-18 continue]
+tmp:look=autobahn & swisstopo:stadtabstand<3000 { delete mkgmap:label:1 } [0x10901 resolution 19-19 continue]
+tmp:look=autobahn & (swisstopo:stadtabstand!=* | swisstopo:stadtabstand>=3000) { delete mkgmap:label:1; name '${swisstopo:shield_autobahn|highway-symbol:box}' | '${ref|highway-symbol:box}' } [0x10901 resolution 19-19 continue]
+tmp:look=autobahn & swisstopo:stadtabstand<2000 { delete mkgmap:label:1 } [0x10901 resolution 20-20 continue]
+tmp:look=autobahn & (swisstopo:stadtabstand!=* | swisstopo:stadtabstand>=2000) { delete mkgmap:label:1; name '${swisstopo:shield_autobahn|highway-symbol:box}' | '${ref|highway-symbol:box}' } [0x10901 resolution 20-20 continue]
+tmp:look=autostrasse { delete mkgmap:label:1 } [0x10906 resolution 14-18 continue]
+tmp:look=autostrasse & swisstopo:stadtabstand<3000 { delete mkgmap:label:1 } [0x10902 resolution 19-19 continue]
+tmp:look=autostrasse & (swisstopo:stadtabstand!=* | swisstopo:stadtabstand>=3000) { delete mkgmap:label:1; name '${swisstopo:shield_autobahn|highway-symbol:box}' | '${tmp:hs_sym}' } [0x10902 resolution 19-19 continue]
+tmp:look=autostrasse & swisstopo:stadtabstand<2000 { delete mkgmap:label:1 } [0x10902 resolution 20-20 continue]
+tmp:look=autostrasse & (swisstopo:stadtabstand!=* | swisstopo:stadtabstand>=2000) { delete mkgmap:label:1; name '${swisstopo:shield_autobahn|highway-symbol:box}' | '${tmp:hs_sym}' } [0x10902 resolution 20-20 continue]
+tmp:look=durchgang   { delete mkgmap:label:1 } [0x10903 resolution 16-21 continue]
+tmp:look=verbindung  { delete mkgmap:label:1 } [0x10904 resolution 18-21 continue]
+# Review 2 (Übersicht zu leer, Mass SMR200): übrige Kantonsstrassen in 19–20 als feine Doppellinie (LK200).
+# Nicht nach Breite (6 m wechselt abschnittweise mit 4 m → Stücke ohne Anschluss), sondern nach
+# Eigentümer: Kantonsstrassen ohne Verkehrsbedeutung bilden das zusammenhängende Netz zwischen den Dörfern.
+(tmp:look=w6 | tmp:look=w4) & swisstopo:netz_res!=* & swisstopo:eigentuemer=Kanton & swisstopo:verkehrsbedeutung!=*
+                     { delete mkgmap:label:1 } [0x10907 resolution 19-20 continue]
+
+# Strassentunnel (alle Klassen): gestrichelte Signatur, Routing bleibt
+highway=* & tmp:look~'autobahn|autostrasse|rampe|durchgang|verbindung|w6|w4|w3|w2|fahrweg' & (tunnel=yes | tunnel=building_passage | tunnel=covered)
+    { name '${name}' | '${swisstopo:shield_autobahn}' | '${swisstopo:shield_hauptstrasse|part:;:1}' } [0x13 road_class=0 road_speed=1 resolution 24 continue]
+# Review 2: Tunnel kleiner Klassen erst ab ihrer Netzstufe (swisstopo:netz_res), sonst isolierte Stücke in 21.
+highway=* & tmp:look~'w6|w4|w3|w2|fahrweg' & (tunnel=yes | tunnel=building_passage | tunnel=covered) & swisstopo:netz_res=23
+    { delete mkgmap:label:1; name '${swisstopo:shield_autobahn}' | '${swisstopo:shield_hauptstrasse|part:;:1}' } [0x10a13 resolution 23-23]
+highway=* & tmp:look~'w6|w4|w3|w2|fahrweg' & (tunnel=yes | tunnel=building_passage | tunnel=covered) & swisstopo:netz_res=22
+    { delete mkgmap:label:1; name '${swisstopo:shield_autobahn}' | '${swisstopo:shield_hauptstrasse|part:;:1}' } [0x10a13 resolution 22-23]
+highway=* & tmp:look~'autobahn|autostrasse|rampe|durchgang|verbindung|w6|w4|w3|w2|fahrweg' & (tunnel=yes | tunnel=building_passage | tunnel=covered)
+    { delete mkgmap:label:1; name '${swisstopo:shield_autobahn}' | '${swisstopo:shield_hauptstrasse|part:;:1}' } [0x10a13 resolution 21-23]
+
+tmp:look=autobahn { name '${swisstopo:shield_autobahn|highway-symbol:box}' | '${ref|highway-symbol:box}' | '${name}' } [0x01 road_class=4 road_speed=7 resolution 24 continue]
+tmp:look=autobahn & swisstopo:stadtabstand<1500 { delete mkgmap:label:1 } [0x10a01 resolution 21-21 continue]
+tmp:look=autobahn & (swisstopo:stadtabstand!=* | swisstopo:stadtabstand>=1500) { delete mkgmap:label:1; name '${swisstopo:shield_autobahn|highway-symbol:box}' | '${ref|highway-symbol:box}' } [0x10a01 resolution 21-21 continue]
+tmp:look=autobahn { delete mkgmap:label:1; name '${swisstopo:shield_autobahn|highway-symbol:box}' | '${ref|highway-symbol:box}' } [0x10a01 resolution 22-23]
+tmp:look=autostrasse { name '${swisstopo:shield_autobahn|highway-symbol:box} ${name}' | '${tmp:hs_sym} ${name}' | '${swisstopo:shield_autobahn|highway-symbol:box}' | '${tmp:hs_sym}' | '${name}' } [0x02 road_class=4 road_speed=6 resolution 24 continue]
+tmp:look=autostrasse & swisstopo:stadtabstand<1500 { delete mkgmap:label:1 } [0x10a02 resolution 21-21 continue]
+tmp:look=autostrasse & (swisstopo:stadtabstand!=* | swisstopo:stadtabstand>=1500) { delete mkgmap:label:1; name '${swisstopo:shield_autobahn|highway-symbol:box}' | '${tmp:hs_sym}' } [0x10a02 resolution 21-21 continue]
+tmp:look=autostrasse { delete mkgmap:label:1; name '${swisstopo:shield_autobahn|highway-symbol:box}' | '${tmp:hs_sym}' } [0x10a02 resolution 22-23]
+tmp:look=rampe { name '${destination}' | '${name}' } [0x09 road_class=3 road_speed=4 resolution 24 continue]
+tmp:look=rampe { delete mkgmap:label:1 } [0x10a09 resolution 21-23]
+tmp:look=durchgang { name '${tmp:hs_sym} ${name}' | '${name}' | '${tmp:hs_sym}' } [0x03 road_class=3 road_speed=5 resolution 24 continue]
+tmp:look=durchgang { delete mkgmap:label:1; name '${tmp:hs_sym}' } [0x10a03 resolution 22-23]
+tmp:look=verbindung { name '${name}' | '${tmp:hs_sym}' } [0x04 road_class=2 road_speed=4 resolution 24 continue]
+tmp:look=verbindung { delete mkgmap:label:1; name '${tmp:hs_sym}' } [0x10a04 resolution 22-23]
+tmp:look=w6 { name '${name}' } [0x05 road_class=1 road_speed=3 resolution 24 continue]
+tmp:look=w6 & swisstopo:netz_res!=* { delete mkgmap:label:1; name '${tmp:hs_sym}' } [0x10a05 resolution 21-23]
+tmp:look=w4 { name '${name}' } [0x06 road_class=0 road_speed=2 resolution 24 continue]
+tmp:look=w4 & swisstopo:netz_res!=* { delete mkgmap:label:1 } [0x10a06 resolution 23-23 continue]
+tmp:look=w4 & swisstopo:netz_res!=* [0x10b06 resolution 21-22]
+tmp:look=w3 { name '${name}' } [0x07 road_class=0 road_speed=1 resolution 24 continue]
+tmp:look=w3 & swisstopo:netz_res!=* { delete mkgmap:label:1 } [0x10a07 resolution 23-23 continue]
+tmp:look=w3 & swisstopo:netz_res!=* [0x10b07 resolution 22-22]
+tmp:look=w2 { name '${name}' } [0x08 road_class=0 road_speed=1 resolution 24 continue]
+tmp:look=w2 & swisstopo:netz_res!=* { delete mkgmap:label:1 } [0x10a08 resolution 23-23 continue]
+tmp:look=w2 & swisstopo:netz_res!=* [0x10b08 resolution 22-22]
+tmp:look=fahrweg { name '${name}' } [0x0a road_class=0 road_speed=1 resolution 24 continue]
+tmp:look=fahrweg & swisstopo:netz_res!=* { delete mkgmap:label:1 } [0x10a0a resolution 23-23 continue]
+tmp:look=fahrweg & swisstopo:netz_res!=* [0x10b0a resolution 22-22]
+tmp:look=weg2 { name '${name}' } [0x0e road_class=0 road_speed=0 resolution 24 continue]
+tmp:look=weg2 & swisstopo:netz_res!=* { delete mkgmap:label:1 } [0x10a0e resolution 23-23 continue]
+tmp:look=weg2 & swisstopo:netz_res!=* [0x10b0e resolution 22-22]
+tmp:look=weg2n { name '${name}' } [0x10 road_class=0 road_speed=0 resolution 24 continue]
+tmp:look=weg2n & swisstopo:netz_res!=* { delete mkgmap:label:1 } [0x10a10 resolution 23-23 continue]
+tmp:look=weg2n & swisstopo:netz_res!=* [0x10b10 resolution 22-22]
+tmp:look=weg1 { name '${name}' } [0x16 road_class=0 road_speed=0 resolution 24 continue]
+tmp:look=weg1 & swisstopo:netz_res!=* { delete mkgmap:label:1 } [0x10a16 resolution 23-23 continue]
+tmp:look=weg1 & swisstopo:netz_res!=* [0x10b16 resolution 22-22]
+tmp:look=spur { name '${name}' } [0x0f road_class=0 road_speed=0 resolution 24 continue]
+tmp:look=spur & swisstopo:netz_res!=* { delete mkgmap:label:1 } [0x10a0f resolution 22-23]
+
+# Review 2 (Strassen hängen in der Luft): swisstopo:netz_res von vector-convert = tiefste Auflösung, ab
+# der ein Weg gezeichnet wird, so dass das Netz je Stufe zusammenhängt (isolierte Stücke versteckt,
+# kurze Anschlüsse hochgestuft). Gilt statt der Klassen-Startstufe; ohne Tag gelten die Regeln oben.
+# 19–20: 0x10907 (feine Doppellinie), 21–22: LK50-Typ der Klasse, 23: Übersichtstyp der Klasse.
+# Review 2: 3-m-Strassen in 21–22 als Doppellinie wie 4 m (0x10b06), damit sie zwei Stufen früher als
+# Strasse lesbar sind (vector-convert: Basis 21 für 3m Strasse mit Hartbelag).
+tmp:look=w6 & swisstopo:netz_res=19 { delete mkgmap:label:1 } [0x10907 resolution 19-20 continue]
+tmp:look=w6 & swisstopo:netz_res=19 { delete mkgmap:label:1; name '${tmp:hs_sym}' } [0x10a05 resolution 21-23]
+tmp:look=w6 & swisstopo:netz_res=20 { delete mkgmap:label:1 } [0x10907 resolution 20-20 continue]
+tmp:look=w6 & swisstopo:netz_res=20 { delete mkgmap:label:1; name '${tmp:hs_sym}' } [0x10a05 resolution 21-23]
+tmp:look=w6 & swisstopo:netz_res=21 { delete mkgmap:label:1; name '${tmp:hs_sym}' } [0x10a05 resolution 21-23]
+tmp:look=w6 & swisstopo:netz_res=22 { delete mkgmap:label:1; name '${tmp:hs_sym}' } [0x10a05 resolution 22-23]
+tmp:look=w6 & swisstopo:netz_res=23 { delete mkgmap:label:1; name '${tmp:hs_sym}' } [0x10a05 resolution 23-23]
+tmp:look=w4 & swisstopo:netz_res=19 { delete mkgmap:label:1 } [0x10907 resolution 19-20 continue]
+tmp:look=w4 & swisstopo:netz_res=19 { delete mkgmap:label:1 } [0x10b06 resolution 21-22 continue]
+tmp:look=w4 & swisstopo:netz_res=19 { delete mkgmap:label:1 } [0x10a06 resolution 23-23]
+tmp:look=w4 & swisstopo:netz_res=20 { delete mkgmap:label:1 } [0x10907 resolution 20-20 continue]
+tmp:look=w4 & swisstopo:netz_res=20 { delete mkgmap:label:1 } [0x10b06 resolution 21-22 continue]
+tmp:look=w4 & swisstopo:netz_res=20 { delete mkgmap:label:1 } [0x10a06 resolution 23-23]
+tmp:look=w4 & swisstopo:netz_res=21 { delete mkgmap:label:1 } [0x10b06 resolution 21-22 continue]
+tmp:look=w4 & swisstopo:netz_res=21 { delete mkgmap:label:1 } [0x10a06 resolution 23-23]
+tmp:look=w4 & swisstopo:netz_res=22 { delete mkgmap:label:1 } [0x10b06 resolution 22-22 continue]
+tmp:look=w4 & swisstopo:netz_res=22 { delete mkgmap:label:1 } [0x10a06 resolution 23-23]
+tmp:look=w4 & swisstopo:netz_res=23 { delete mkgmap:label:1 } [0x10a06 resolution 23-23]
+tmp:look=w3 & swisstopo:netz_res=19 { delete mkgmap:label:1 } [0x10907 resolution 19-20 continue]
+tmp:look=w3 & swisstopo:netz_res=19 { delete mkgmap:label:1 } [0x10b06 resolution 21-22 continue]
+tmp:look=w3 & swisstopo:netz_res=19 { delete mkgmap:label:1 } [0x10a07 resolution 23-23]
+tmp:look=w3 & swisstopo:netz_res=20 { delete mkgmap:label:1 } [0x10907 resolution 20-20 continue]
+tmp:look=w3 & swisstopo:netz_res=20 { delete mkgmap:label:1 } [0x10b06 resolution 21-22 continue]
+tmp:look=w3 & swisstopo:netz_res=20 { delete mkgmap:label:1 } [0x10a07 resolution 23-23]
+tmp:look=w3 & swisstopo:netz_res=21 { delete mkgmap:label:1 } [0x10b06 resolution 21-22 continue]
+tmp:look=w3 & swisstopo:netz_res=21 { delete mkgmap:label:1 } [0x10a07 resolution 23-23]
+tmp:look=w3 & swisstopo:netz_res=22 { delete mkgmap:label:1 } [0x10b06 resolution 22-22 continue]
+tmp:look=w3 & swisstopo:netz_res=22 { delete mkgmap:label:1 } [0x10a07 resolution 23-23]
+tmp:look=w3 & swisstopo:netz_res=23 { delete mkgmap:label:1 } [0x10a07 resolution 23-23]
+tmp:look=w2 & swisstopo:netz_res=19 { delete mkgmap:label:1 } [0x10907 resolution 19-20 continue]
+tmp:look=w2 & swisstopo:netz_res=19 { delete mkgmap:label:1 } [0x10b08 resolution 21-22 continue]
+tmp:look=w2 & swisstopo:netz_res=19 { delete mkgmap:label:1 } [0x10a08 resolution 23-23]
+tmp:look=w2 & swisstopo:netz_res=20 { delete mkgmap:label:1 } [0x10907 resolution 20-20 continue]
+tmp:look=w2 & swisstopo:netz_res=20 { delete mkgmap:label:1 } [0x10b08 resolution 21-22 continue]
+tmp:look=w2 & swisstopo:netz_res=20 { delete mkgmap:label:1 } [0x10a08 resolution 23-23]
+tmp:look=w2 & swisstopo:netz_res=21 { delete mkgmap:label:1 } [0x10b08 resolution 21-22 continue]
+tmp:look=w2 & swisstopo:netz_res=21 { delete mkgmap:label:1 } [0x10a08 resolution 23-23]
+tmp:look=w2 & swisstopo:netz_res=22 { delete mkgmap:label:1 } [0x10b08 resolution 22-22 continue]
+tmp:look=w2 & swisstopo:netz_res=22 { delete mkgmap:label:1 } [0x10a08 resolution 23-23]
+tmp:look=w2 & swisstopo:netz_res=23 { delete mkgmap:label:1 } [0x10a08 resolution 23-23]
+tmp:look=fahrweg & swisstopo:netz_res=19 { delete mkgmap:label:1 } [0x10907 resolution 19-20 continue]
+tmp:look=fahrweg & swisstopo:netz_res=19 { delete mkgmap:label:1 } [0x10b0a resolution 21-22 continue]
+tmp:look=fahrweg & swisstopo:netz_res=19 { delete mkgmap:label:1 } [0x10a0a resolution 23-23]
+tmp:look=fahrweg & swisstopo:netz_res=20 { delete mkgmap:label:1 } [0x10907 resolution 20-20 continue]
+tmp:look=fahrweg & swisstopo:netz_res=20 { delete mkgmap:label:1 } [0x10b0a resolution 21-22 continue]
+tmp:look=fahrweg & swisstopo:netz_res=20 { delete mkgmap:label:1 } [0x10a0a resolution 23-23]
+tmp:look=fahrweg & swisstopo:netz_res=21 { delete mkgmap:label:1 } [0x10b0a resolution 21-22 continue]
+tmp:look=fahrweg & swisstopo:netz_res=21 { delete mkgmap:label:1 } [0x10a0a resolution 23-23]
+tmp:look=fahrweg & swisstopo:netz_res=22 { delete mkgmap:label:1 } [0x10b0a resolution 22-22 continue]
+tmp:look=fahrweg & swisstopo:netz_res=22 { delete mkgmap:label:1 } [0x10a0a resolution 23-23]
+tmp:look=fahrweg & swisstopo:netz_res=23 { delete mkgmap:label:1 } [0x10a0a resolution 23-23]
+tmp:look=weg2 & swisstopo:netz_res=21 { delete mkgmap:label:1 } [0x10b0e resolution 21-22 continue]
+tmp:look=weg2 & swisstopo:netz_res=21 { delete mkgmap:label:1 } [0x10a0e resolution 23-23]
+tmp:look=weg2 & swisstopo:netz_res=22 { delete mkgmap:label:1 } [0x10b0e resolution 22-22 continue]
+tmp:look=weg2 & swisstopo:netz_res=22 { delete mkgmap:label:1 } [0x10a0e resolution 23-23]
+tmp:look=weg2 & swisstopo:netz_res=23 { delete mkgmap:label:1 } [0x10a0e resolution 23-23]
+tmp:look=weg2n & swisstopo:netz_res=21 { delete mkgmap:label:1 } [0x10b10 resolution 21-22 continue]
+tmp:look=weg2n & swisstopo:netz_res=21 { delete mkgmap:label:1 } [0x10a10 resolution 23-23]
+tmp:look=weg2n & swisstopo:netz_res=22 { delete mkgmap:label:1 } [0x10b10 resolution 22-22 continue]
+tmp:look=weg2n & swisstopo:netz_res=22 { delete mkgmap:label:1 } [0x10a10 resolution 23-23]
+tmp:look=weg2n & swisstopo:netz_res=23 { delete mkgmap:label:1 } [0x10a10 resolution 23-23]
+tmp:look=weg1 & swisstopo:netz_res=21 { delete mkgmap:label:1 } [0x10b16 resolution 21-22 continue]
+tmp:look=weg1 & swisstopo:netz_res=21 { delete mkgmap:label:1 } [0x10a16 resolution 23-23]
+tmp:look=weg1 & swisstopo:netz_res=22 { delete mkgmap:label:1 } [0x10b16 resolution 22-22 continue]
+tmp:look=weg1 & swisstopo:netz_res=22 { delete mkgmap:label:1 } [0x10a16 resolution 23-23]
+tmp:look=weg1 & swisstopo:netz_res=23 { delete mkgmap:label:1 } [0x10a16 resolution 23-23]
+tmp:look=spur & swisstopo:netz_res=21 { delete mkgmap:label:1 } [0x10a0f resolution 21-23]
+tmp:look=spur & swisstopo:netz_res=22 { delete mkgmap:label:1 } [0x10a0f resolution 22-23]
+tmp:look=spur & swisstopo:netz_res=23 { delete mkgmap:label:1 } [0x10a0f resolution 23-23]
+tmp:look=treppe { name '${name}' } [0x11 road_class=0 road_speed=0 resolution 24]
+tmp:look=klettersteig { name '${name}' } [0x12 road_class=0 road_speed=0 resolution 24 continue]
+tmp:look=klettersteig { delete mkgmap:label:1 } [0x10a12 resolution 22-23]
+
+# ------------------------------------------------------------------
+# 5. Bahn und Seilbahnen (SMV: Bahn rot #DD1919, Skilift braun #D7963C)
+#    Etappe 13: je Regel Typ bis Auflösung 23 (LK-Strich) und eigener 24er-Typ (LK-Geländebreite),
+#    Zuordnung D24 in src/style/tools/make_typ.py. Gilt auch für Gewässer, Grenzen, Leitungen.
+# ------------------------------------------------------------------
+railway~'disused|abandoned|razed|proposed|construction' { delete railway }
+# Review 2: swissTLM3D führt zweigleisige Strecken teils als zwei parallele Achsen (tracks=2 plus
+# Einzelachse ~4 m daneben, z. B. Uzwil–Flawil); SMV25 zeigt dort eine Mehrspur-Signatur. vector-convert
+# markiert die überzählige Parallelachse mit swisstopo:parallelachse=yes, sie wird nicht gezeichnet.
+railway=rail & swisstopo:parallelachse=yes { delete railway }
+railway=* & (tunnel=yes | tunnel=covered) & railway~'rail|narrow_gauge|funicular|light_rail|subway'
+    [0x10e07 resolution 21-23 continue]
+railway=* & (tunnel=yes | tunnel=covered) & railway~'rail|narrow_gauge|funicular|light_rail|subway'
+    [0x10d07 resolution 24]
+railway=tram | railway=miniature | (railway=* & embedded=yes)  [0x10e03 resolution 22-23 continue]
+railway=tram | railway=miniature | (railway=* & embedded=yes)  [0x10d03 resolution 24]
+railway=rail & service=*                                      [0x10e02 resolution 22-23 continue]
+railway=rail & service=*                                      [0x10d02 resolution 24]
+# Mehrspur (8 px) nur in den Detailstufen, in der Übersicht wie Einspur
+railway=rail & (tracks>1 | swisstopo:anzahl_spuren>1)        [0x10e00 resolution 22-23 continue]
+railway=rail & (tracks>1 | swisstopo:anzahl_spuren>1)        [0x10d00 resolution 24 continue]
+railway=rail & (tracks>1 | swisstopo:anzahl_spuren>1)        [0x14 resolution 16-21]
+railway=rail | railway=light_rail                             [0x14 resolution 16-23 continue]
+railway=rail | railway=light_rail                             [0x10c14 resolution 24]
+railway=narrow_gauge | railway=funicular | railway=rack | railway=monorail [0x10e01 resolution 18-23 continue]
+railway=narrow_gauge | railway=funicular | railway=rack | railway=monorail [0x10d01 resolution 24]
+railway=subway                                                [0x10e07 resolution 22-23 continue]
+railway=subway                                                [0x10d07 resolution 24]
+
+aerialway=cable_car | aerialway=gondola | aerialway=mixed_lift | aerialway=chair_lift
+    { name '${name}' } [0x10e04 resolution 21-23 continue]
+aerialway=cable_car | aerialway=gondola | aerialway=mixed_lift | aerialway=chair_lift
+    { name '${name}' } [0x10d04 resolution 24]
+aerialway=drag_lift | aerialway=t-bar | aerialway=j-bar | aerialway=platter | aerialway=rope_tow | aerialway=magic_carpet
+    { name '${name}' } [0x10e05 resolution 22-23 continue]
+aerialway=drag_lift | aerialway=t-bar | aerialway=j-bar | aerialway=platter | aerialway=rope_tow | aerialway=magic_carpet
+    { name '${name}' } [0x10d05 resolution 24]
+aerialway=goods | aerialway=zip_line | man_made=goods_conveyor [0x10e08 resolution 23-23 continue]
+aerialway=goods | aerialway=zip_line | man_made=goods_conveyor [0x10d08 resolution 24]
+
+# ------------------------------------------------------------------
+# 6. Gewässer (SMV: Linien #0088D0, Beschriftung blau via TYP)
+# ------------------------------------------------------------------
+# Eingedolte Gewässer zeigt die LK nicht; Linie wird verworfen (TYP 0x10e12 bleibt für Tests)
+waterway=* & (tunnel=yes | tunnel=culvert) { delete waterway }
+waterway=waterfall                                            { name '${name}' } [0x10e11 resolution 22-23 continue]
+waterway=waterfall                                            { name '${name}' } [0x10d11 resolution 24]
+(waterway=* | man_made=pipeline) & swisstopo:objektart='Druckleitung' [0x10e10 resolution 23-23 continue]
+(waterway=* | man_made=pipeline) & swisstopo:objektart='Druckleitung' [0x10d10 resolution 24]
+man_made=pipeline & substance=water                           [0x10e10 resolution 23-23 continue]
+man_made=pipeline & substance=water                           [0x10d10 resolution 24]
+waterway=* & intermittent=yes                                 { name '${name}' } [0x26 resolution 22-23 continue]
+waterway=* & intermittent=yes                                 { name '${name}' } [0x10c06 resolution 24]
+# Review 1: Dicke und Zoomstufe nach Flussordnung (vector-convert, src/vector/rivers.py, je Abschnitt):
+# swisstopo:gewaesserklasse 1–6 aus der Länge oberhalb (robust für die Übersicht), swisstopo:strahler 1–10
+# für die Feinstufen. Klasse 6 (Thur, Reuss, Rhein …) ab 14, Klasse 5 (Sitter, Glatt, Urnäsch …) ab 18,
+# Strahler ≥ 5 ab 21 (2 px), 3–4 ab 22 (1 px), 1–2 erst ab 23 (in 24 dünner, 0x10c17).
+# Flussnamen bis 21 nicht in der Nähe einer Stadt (swisstopo:stadtabstand, Grenzen wie bei den
+# Strassennummern). Bei 3 km stand die Sitter dreimal neben St. Gallen (Gerätetest 7794-klassen2).
+(waterway=river | waterway=stream | waterway=canal | waterway=ditch | waterway=drain) & swisstopo:gewaesserklasse=6 & swisstopo:stadtabstand<4000
+    [0x1f resolution 14-18 continue]
+(waterway=river | waterway=stream | waterway=canal | waterway=ditch | waterway=drain) & swisstopo:gewaesserklasse=6 & (swisstopo:stadtabstand!=* | swisstopo:stadtabstand>=4000)
+    { name '${name}' } [0x1f resolution 14-18 continue]
+(waterway=river | waterway=stream | waterway=canal | waterway=ditch | waterway=drain) & swisstopo:gewaesserklasse=6 & swisstopo:stadtabstand<3000
+    [0x1f resolution 19-19 continue]
+(waterway=river | waterway=stream | waterway=canal | waterway=ditch | waterway=drain) & swisstopo:gewaesserklasse=6 & (swisstopo:stadtabstand!=* | swisstopo:stadtabstand>=3000)
+    { name '${name}' } [0x1f resolution 19-19 continue]
+(waterway=river | waterway=stream | waterway=canal | waterway=ditch | waterway=drain) & swisstopo:gewaesserklasse=6 & swisstopo:stadtabstand<2000
+    [0x1f resolution 20-20 continue]
+(waterway=river | waterway=stream | waterway=canal | waterway=ditch | waterway=drain) & swisstopo:gewaesserklasse=6 & (swisstopo:stadtabstand!=* | swisstopo:stadtabstand>=2000)
+    { name '${name}' } [0x1f resolution 20-20 continue]
+(waterway=river | waterway=stream | waterway=canal | waterway=ditch | waterway=drain) & swisstopo:gewaesserklasse=6 & swisstopo:stadtabstand<1500
+    [0x1f resolution 21-21 continue]
+(waterway=river | waterway=stream | waterway=canal | waterway=ditch | waterway=drain) & swisstopo:gewaesserklasse=6 & (swisstopo:stadtabstand!=* | swisstopo:stadtabstand>=1500)
+    { name '${name}' } [0x1f resolution 21-21 continue]
+(waterway=river | waterway=stream | waterway=canal | waterway=ditch | waterway=drain) & swisstopo:gewaesserklasse=6
+    { name '${name}' } [0x1f resolution 22-23 continue]
+(waterway=river | waterway=stream | waterway=canal | waterway=ditch | waterway=drain) & swisstopo:gewaesserklasse=6
+    { name '${name}' } [0x10c1f resolution 24]
+(waterway=river | waterway=stream | waterway=canal | waterway=ditch | waterway=drain) & swisstopo:gewaesserklasse=5 & swisstopo:stadtabstand<4000
+    [0x1f resolution 18-18 continue]
+(waterway=river | waterway=stream | waterway=canal | waterway=ditch | waterway=drain) & swisstopo:gewaesserklasse=5 & (swisstopo:stadtabstand!=* | swisstopo:stadtabstand>=4000)
+    { name '${name}' } [0x1f resolution 18-18 continue]
+(waterway=river | waterway=stream | waterway=canal | waterway=ditch | waterway=drain) & swisstopo:gewaesserklasse=5 & swisstopo:stadtabstand<3000
+    [0x1f resolution 19-19 continue]
+(waterway=river | waterway=stream | waterway=canal | waterway=ditch | waterway=drain) & swisstopo:gewaesserklasse=5 & (swisstopo:stadtabstand!=* | swisstopo:stadtabstand>=3000)
+    { name '${name}' } [0x1f resolution 19-19 continue]
+(waterway=river | waterway=stream | waterway=canal | waterway=ditch | waterway=drain) & swisstopo:gewaesserklasse=5 & swisstopo:stadtabstand<2000
+    [0x1f resolution 20-20 continue]
+(waterway=river | waterway=stream | waterway=canal | waterway=ditch | waterway=drain) & swisstopo:gewaesserklasse=5 & (swisstopo:stadtabstand!=* | swisstopo:stadtabstand>=2000)
+    { name '${name}' } [0x1f resolution 20-20 continue]
+(waterway=river | waterway=stream | waterway=canal | waterway=ditch | waterway=drain) & swisstopo:gewaesserklasse=5 & swisstopo:stadtabstand<1500
+    [0x1f resolution 21-21 continue]
+(waterway=river | waterway=stream | waterway=canal | waterway=ditch | waterway=drain) & swisstopo:gewaesserklasse=5 & (swisstopo:stadtabstand!=* | swisstopo:stadtabstand>=1500)
+    { name '${name}' } [0x1f resolution 21-21 continue]
+(waterway=river | waterway=stream | waterway=canal | waterway=ditch | waterway=drain) & swisstopo:gewaesserklasse=5
+    { name '${name}' } [0x1f resolution 22-23 continue]
+(waterway=river | waterway=stream | waterway=canal | waterway=ditch | waterway=drain) & swisstopo:gewaesserklasse=5
+    { name '${name}' } [0x10c1f resolution 24]
+# Review 2: Gewässerklasse 4 (Steinach, Goldach …) schon in 19–20, 1 px ohne Namen.
+(waterway=river | waterway=stream | waterway=canal | waterway=ditch | waterway=drain) & swisstopo:gewaesserklasse=4
+    [0x10e1b resolution 19-20 continue]
+# Gewässerklasse 4 in 21 mit Namen, nicht in der Nähe einer Stadt (Klasse 5 ab 18, übrige erst ab 22)
+(waterway=river | waterway=stream | waterway=canal | waterway=ditch | waterway=drain) & swisstopo:gewaesserklasse=4 & swisstopo:stadtabstand<1500
+    [0x10e1a resolution 21-21 continue]
+(waterway=river | waterway=stream | waterway=canal | waterway=ditch | waterway=drain) & swisstopo:gewaesserklasse=4 & (swisstopo:stadtabstand!=* | swisstopo:stadtabstand>=1500)
+    { name '${name}' } [0x10e1a resolution 21-21 continue]
+(waterway=river | waterway=stream | waterway=canal | waterway=ditch | waterway=drain) & swisstopo:strahler>=5 & swisstopo:gewaesserklasse!=4
+    [0x10e1a resolution 21-21 continue]
+(waterway=river | waterway=stream | waterway=canal | waterway=ditch | waterway=drain) & swisstopo:strahler>=5
+    { name '${name}' } [0x1f resolution 22-23 continue]
+(waterway=river | waterway=stream | waterway=canal | waterway=ditch | waterway=drain) & swisstopo:strahler>=5
+    { name '${name}' } [0x10c1f resolution 24]
+(waterway=river | waterway=stream | waterway=canal | waterway=ditch | waterway=drain) & swisstopo:strahler>=3
+    { name '${name}' } [0x18 resolution 22-23 continue]
+(waterway=river | waterway=stream | waterway=canal | waterway=ditch | waterway=drain) & swisstopo:strahler>=3
+    { name '${name}' } [0x10c18 resolution 24]
+(waterway=river | waterway=stream | waterway=canal | waterway=ditch | waterway=drain) & swisstopo:strahler=*
+    { name '${name}' } [0x18 resolution 23-23 continue]
+(waterway=river | waterway=stream | waterway=canal | waterway=ditch | waterway=drain) & swisstopo:strahler=*
+    { name '${name}' } [0x10c17 resolution 24]
+# Ohne Flussordnung (ältere PBF): jedes Gewässer mit Gewässernummer ist river (sehr viele). Nur die
+# grossen Flüsse erscheinen schon in der Übersicht (Heuristik über den Namen).
+waterway=river & name~'Rhein|Hochrhein|Alpenrhein|Aare|Reuss|Limmat|Rhone|Le Rhône|Inn|En|Ticino|Thur|Sitter|Linth|Saane|La Sarine|Emme|Doubs|Töss|Glatt|Kleine Emme|Broye|Birs|Muota|Sihl|Necker|Urnäsch'
+    { name '${name}' } [0x1f resolution 14-23 continue]
+waterway=river & name~'Rhein|Hochrhein|Alpenrhein|Aare|Reuss|Limmat|Rhone|Le Rhône|Inn|En|Ticino|Thur|Sitter|Linth|Saane|La Sarine|Emme|Doubs|Töss|Glatt|Kleine Emme|Broye|Birs|Muota|Sihl|Necker|Urnäsch'
+    { name '${name}' } [0x10c1f resolution 24]
+waterway=river | waterway=canal                               [0x10e1a resolution 21-21 continue]
+waterway=river | waterway=canal                               { name '${name}' } [0x1f resolution 22-23 continue]
+waterway=river | waterway=canal                               { name '${name}' } [0x10c1f resolution 24]
+waterway=stream                                               { name '${name}' } [0x18 resolution 22-23 continue]
+waterway=stream                                               { name '${name}' } [0x10c18 resolution 24]
+waterway=ditch | waterway=drain                               { name '${name}' } [0x18 resolution 23-23 continue]
+waterway=ditch | waterway=drain                               { name '${name}' } [0x10c18 resolution 24]
+waterway=dam & area!=yes                                      [0x10f0b resolution 22]
+waterway=weir & area!=yes                                     [0x10f07 resolution 24]
+
+# ------------------------------------------------------------------
+# 7. Höhenkurven (falls in der Basiskarte; sonst Overlay FID 7703)
+#    braun #D7963C Boden, schwarz #3E3E3E Fels/Geröll, blau #0088D0 Gletscher/See
+#    Standard-Konturtypen 0x20–0x22 erwarten die Höhe in Fuss.
+#    Review 2: ab 22 10/20 m 1 px aufgehellt, 100 m 2 px; in 21 (nur 100 m) 1 px (0x10f15/17/19);
+#    10 m Fels/Gletscher 0x10f12/0x10f13.
+# ------------------------------------------------------------------
+contour=elevation & (contour_ext=elevation_major | swisstopo:kurvenart=Zaehlkurve | swisstopo:kurvenart='Zählkurve') { set tmp:kurve=major }
+contour=elevation & (contour_ext=elevation_medium | swisstopo:kurvenart=Zwischenkurve) { set tmp:kurve=medium }
+contour=elevation & tmp:kurve!=*                                { set tmp:kurve=minor }
+
+# Nachtrag Review 2: ab 22 Nah-Stil (10/20 m 1 px hell, 100 m 2 px); in 21 nur 100 m, 1 px (eigene Typen).
+# Test 24: Zahlen nur an den 100-m-Zählkurven wie die LK; die Zahlen der 10/20-m-Kurven verdrängten in BaseCamp
+# Objektnamen (z. B. „Burgruine Helfenberg“).
+contour=elevation & swisstopo:untergrund=fels & tmp:kurve=major { name '${ele}' } [0x10f17 resolution 21-21 continue]
+contour=elevation & swisstopo:untergrund=fels & tmp:kurve=major { name '${ele}' } [0x10f01 resolution 22]
+contour=elevation & swisstopo:untergrund=fels & tmp:kurve=medium { delete mkgmap:label:1 } [0x10f00 resolution 22]
+contour=elevation & swisstopo:untergrund=fels                   { delete mkgmap:label:1 } [0x10f12 resolution 23]
+contour=elevation & swisstopo:untergrund~'gletscher|see' & tmp:kurve=major { name '${ele}' } [0x10f19 resolution 21-21 continue]
+contour=elevation & swisstopo:untergrund~'gletscher|see' & tmp:kurve=major { name '${ele}' } [0x10f03 resolution 22]
+contour=elevation & swisstopo:untergrund~'gletscher|see' & tmp:kurve=medium { delete mkgmap:label:1 } [0x10f02 resolution 22]
+contour=elevation & swisstopo:untergrund~'gletscher|see'        { delete mkgmap:label:1 } [0x10f13 resolution 23]
+contour=elevation & tmp:kurve=major                             { name '${ele}' } [0x10f15 resolution 21-21 continue]
+contour=elevation & tmp:kurve=major                             { name '${ele|conv:m=>ft}' } [0x22 resolution 22]
+contour=elevation & tmp:kurve=medium                            { delete mkgmap:label:1 } [0x21 resolution 22]
+contour=elevation                                               { delete mkgmap:label:1 } [0x20 resolution 23]
+
+# Review 3: Felsschraffen aus swissALTI3D (src/dem/rock_relief.py), kurze Linien entlang der Falllinie
+# in swissTLM3D-Fels, je nach Beleuchtung hell oder dunkel. Nur nahe Stufen wie die LK-Felszeichnung.
+swisstopo:felsschraffe=licht    [0x10f1a resolution 23]
+swisstopo:felsschraffe=schatten [0x10f1b resolution 23]
+
+# ------------------------------------------------------------------
+# 8. Grenzen (SMV: Band #ECA8C8, Linie #C22976)
+#    tmp:adm<n> wird in relations aus Grenz-Relationen übernommen.
+# ------------------------------------------------------------------
+boundary=administrative & admin_level=2 { set tmp:adm2=yes }
+boundary=administrative & admin_level=4 { set tmp:adm4=yes }
+boundary=administrative & admin_level=6 { set tmp:adm6=yes }
+boundary=administrative & admin_level=8 { set tmp:adm8=yes }
+# Breite Grenzbänder (2 mm / 1 mm) nur in den Detailstufen, in der Übersicht schmale Varianten
+tmp:adm2=yes [0x1e resolution 22-23 continue]
+tmp:adm2=yes [0x10c1e resolution 24 continue]
+tmp:adm2=yes [0x10f10 resolution 16-21]
+tmp:adm4=yes [0x1c resolution 22-23 continue]
+tmp:adm4=yes [0x10c1c resolution 24 continue]
+tmp:adm4=yes [0x10f11 resolution 20-21]
+tmp:adm6=yes [0x10f04 resolution 22-23 continue]
+tmp:adm6=yes [0x11104 resolution 24]
+tmp:adm8=yes [0x10f05 resolution 22-23 continue]
+tmp:adm8=yes [0x11105 resolution 24]
+(boundary=national_park | (boundary=protected_area & protect_class=2)) & area!=yes [0x10f06 resolution 20-23 continue]
+(boundary=national_park | (boundary=protected_area & protect_class=2)) & area!=yes [0x11106 resolution 24]
+
+# ------------------------------------------------------------------
+# 9. Bauten, Morphologie, Leitungen
+# ------------------------------------------------------------------
+power=line | power=minor_line | power=cable & location!=underground [0x29 resolution 22-23 continue]
+power=line | power=minor_line | power=cable & location!=underground [0x10c09 resolution 24]
+(barrier=wall | barrier=retaining_wall | barrier=city_wall | man_made=wall | man_made=avalanche_protection) & area!=yes [0x10f07 resolution 22]
+# Review 2: „Historische Baute“ (building=ruins) wie SMV25 weiss mit dunklem Rand → nur Umriss.
+(building=ruins | tmp:ruine=yes) & area!=no                   [0x10f0d resolution 23]
+# Gewässerverbauung und Hafensteg: SMV blau #0088D0
+(man_made=embankment | man_made=pier) & area!=yes             [0x10f0e resolution 23-23 continue]
+(man_made=embankment | man_made=pier) & area!=yes             [0x1110e resolution 24]
+(man_made=dyke | swisstopo:objektart='Boeschung' | swisstopo:objektart='Böschung') & area!=yes [0x10f08 resolution 24]
+natural=cliff                                                 [0x10f09 resolution 23]
+natural=ridge | natural=arete                                 { name '${name}' } [0x10f0a resolution 22]
+(man_made=dam | swisstopo:objektart=Staumauer) & area!=yes    [0x10f0b resolution 22]
+aeroway=runway & area!=yes                                    { name '${ref}' } [0x27 resolution 20]
+aeroway=taxiway & area!=yes                                   [0x27 resolution 23]
+leisure=track & area!=yes                                     [0x10f07 resolution 24]
+
+# Flächenumrisse wie in SMV (Areale mit grüner bzw. dunkler Randlinie)
+# Review 2: Arealflächen tragen keine POI-Tags mehr (vector-convert), deshalb auch über swisstopo:objektart.
+# Grosse Parkplätze (Parkplatz weiss auf weiss, nur der Rand zeigt ihn) schon ab 23.
+(leisure=park | landuse=cemetery | amenity=grave_yard | tourism=camp_site | leisure=golf_course |
+ leisure=pitch | leisure=sports_centre | landuse=allotments | leisure=garden |
+ swisstopo:objektart=Friedhof | swisstopo:objektart=Campingplatzareal | swisstopo:objektart=Standplatzareal |
+ swisstopo:objektart=Golfplatzareal | swisstopo:objektart=Sportplatzareal | swisstopo:objektart=Schrebergartenareal |
+ swisstopo:objektart='Oeffentliches Parkareal' | swisstopo:objektart=Freizeitanlagenareal) & area!=no
+    [0x10f0c resolution 24 continue]
+(amenity=parking | swisstopo:objektart='Oeffentliches Parkplatzareal' | swisstopo:objektart='Privates Parkplatzareal')
+ & area!=no & area_size() > 2500
+    [0x10f0d resolution 23 continue]
+(amenity=parking | swisstopo:objektart='Oeffentliches Parkplatzareal' | swisstopo:objektart='Privates Parkplatzareal' |
+ power=substation | swisstopo:objektart=Unterwerkareal | aeroway=runway & area=yes) & area!=no
+    [0x10f0d resolution 24 continue]
+
+<finalize>
+# Läuft für jedes Element, für das oben ein Typ gefunden wurde (bzw. execute_finalize_rules=true)
+include 'inc/address';

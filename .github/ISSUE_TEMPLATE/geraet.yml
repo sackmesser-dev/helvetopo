@@ -1,0 +1,94 @@
+name: Gerätetest melden
+description: Rückmeldung zum Betatest – läuft die Karte auf deinem Gerät?
+labels: [geraetetest]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Danke für den Test. Bitte je Gerät und Karte ein Formular ausfüllen.
+        Bitte kurz und sachlich schreiben, ein Gedanke je Satz ([Schreibregeln](../blob/main/docs/schreibregeln.md)).
+  - type: input
+    id: geraet
+    attributes:
+      label: Gerät
+      placeholder: eTrex 30x
+    validations:
+      required: true
+  - type: input
+    id: firmware
+    attributes:
+      label: Firmware-Version
+      description: Einstellungen → Info
+      placeholder: "4.80"
+    validations:
+      required: true
+  - type: input
+    id: karte
+    attributes:
+      label: Karte und Version (Dateiname)
+      placeholder: Helvetopo_Vektor_Testgebiet_2026-11.img
+    validations:
+      required: true
+  - type: dropdown
+    id: speicher
+    attributes:
+      label: Speicherort
+      options:
+        - interner Speicher, Ordner Garmin
+        - microSD-Karte, Ordner Garmin
+    validations:
+      required: true
+  - type: dropdown
+    id: erscheint
+    attributes:
+      label: Erscheint die Karte unter Karteninformation?
+      options:
+        - ja
+        - nein
+    validations:
+      required: true
+  - type: dropdown
+    id: darstellung
+    attributes:
+      label: Darstellung (Farben, Linien, Flächen, Beschriftung)
+      options:
+        - wie erwartet
+        - kleine Fehler
+        - grosse Fehler
+        - nicht geprüft
+  - type: dropdown
+    id: zoom
+    attributes:
+      label: Zoomstufen (keine Lücken, kein leerer Bildschirm)
+      options:
+        - wie erwartet
+        - Lücken oder leere Stufen
+        - nicht geprüft
+  - type: dropdown
+    id: routing
+    attributes:
+      label: Routing (nur Vektorkarte)
+      options:
+        - funktioniert
+        - falsche Route
+        - keine Route
+        - nicht geprüft
+  - type: dropdown
+    id: suche
+    attributes:
+      label: Suche nach Orten, Gipfeln, Adressen (nur Vektorkarte)
+      options:
+        - funktioniert
+        - teilweise
+        - funktioniert nicht
+        - nicht geprüft
+  - type: input
+    id: ladezeit
+    attributes:
+      label: Ladezeit beim Start und beim Verschieben der Karte
+      placeholder: Start 20 s, Verschieben flüssig
+  - type: textarea
+    id: bemerkungen
+    attributes:
+      label: Bemerkungen, Screenshots, Ort
+      description: Was ist falsch, und wo? Koordinaten oder Link auf map.geo.admin.ch. Screenshot am Gerät mit der Taste für Bildschirmfotos.

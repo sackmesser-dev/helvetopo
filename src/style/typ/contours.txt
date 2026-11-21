@@ -1,0 +1,133 @@
+; TYP für das Höhenlinien-Overlay (FID 7703). Farben aus der Swiss-Map-Vector-25-Symbolik
+; (T62_DKM25_HOEHENKURVE): braun #D7963C, schwarz #3E3E3E; Gletscher blau #0088D0
+; (wie T55_DKM25_TIEFENLINIE). Linienbreiten in Gerätepixeln.
+; Beim Einbau in die Basiskarte (FID 7701) die [_line]-Blöcke in deren TYP übernehmen.
+
+[_id]
+FID=7703
+ProductCode=1
+CodePage=1252
+[end]
+
+; ---------------- braun: Normal-, 50-m- und Zählkurve
+[_line]
+Type=0x20
+UseOrientation=N
+LineWidth=1
+Xpm="0 0 1 0"
+"1 c #D7963C"
+String1=0x02,Höhenkurve
+String2=0x01,Courbe de niveau
+String3=0x04,Contour line
+ExtendedLabels=Y
+FontStyle=NoLabel (invisible)
+[end]
+
+[_line]
+Type=0x21
+UseOrientation=N
+LineWidth=1
+Xpm="0 0 1 0"
+"1 c #D7963C"
+String1=0x02,Höhenkurve (50 m)
+String2=0x01,Courbe de niveau (50 m)
+String3=0x04,Contour line (50 m)
+ExtendedLabels=Y
+FontStyle=NoLabel (invisible)
+[end]
+
+[_line]
+Type=0x22
+UseOrientation=N
+LineWidth=2
+Xpm="0 0 1 0"
+"1 c #D7963C"
+String1=0x02,Zählkurve
+String2=0x01,Courbe maîtresse
+String3=0x04,Index contour
+ExtendedLabels=Y
+FontStyle=SmallFont
+[end]
+
+; ---------------- braun gestrichelt: Zwischenkurve (flache Stellen im Gebirge)
+[_line]
+Type=0x11005
+UseOrientation=Y
+Xpm="32 1 2 1"
+"! c #D7963C"
+"  c none"
+"!!!!!!!!!!!!!!!!!!!!!!!!    !!!!"
+String1=0x02,Zwischenkurve
+String2=0x01,Courbe intermédiaire
+String3=0x04,Auxiliary contour
+ExtendedLabels=Y
+FontStyle=NoLabel (invisible)
+[end]
+
+; ---------------- schwarz: Fels und Geröll
+[_line]
+Type=0x11001
+UseOrientation=N
+LineWidth=1
+Xpm="0 0 1 0"
+"1 c #3E3E3E"
+String1=0x02,Felskurve
+String2=0x01,Courbe de niveau (rocher)
+String3=0x04,Contour line (rock)
+ExtendedLabels=Y
+FontStyle=NoLabel (invisible)
+[end]
+
+[_line]
+Type=0x11002
+UseOrientation=N
+LineWidth=2
+Xpm="0 0 1 0"
+"1 c #3E3E3E"
+String1=0x02,Zählkurve (Fels)
+String2=0x01,Courbe maîtresse (rocher)
+String3=0x04,Index contour (rock)
+ExtendedLabels=Y
+FontStyle=SmallFont
+[end]
+
+[_line]
+Type=0x11006
+UseOrientation=Y
+Xpm="32 1 2 1"
+"! c #3E3E3E"
+"  c none"
+"!!!!!!!!!!!!!!!!!!!!!!!!    !!!!"
+String1=0x02,Zwischenkurve (Fels)
+String2=0x01,Courbe intermédiaire (rocher)
+String3=0x04,Auxiliary contour (rock)
+ExtendedLabels=Y
+FontStyle=NoLabel (invisible)
+[end]
+
+; ---------------- blau: Gletscher und Firn
+[_line]
+Type=0x11003
+UseOrientation=N
+LineWidth=1
+Xpm="0 0 1 0"
+"1 c #0088D0"
+String1=0x02,Gletscherkurve
+String2=0x01,Courbe de niveau (glacier)
+String3=0x04,Contour line (glacier)
+ExtendedLabels=Y
+FontStyle=NoLabel (invisible)
+[end]
+
+[_line]
+Type=0x11004
+UseOrientation=N
+LineWidth=2
+Xpm="0 0 1 0"
+"1 c #0088D0"
+String1=0x02,Zählkurve (Gletscher)
+String2=0x01,Courbe maîtresse (glacier)
+String3=0x04,Index contour (glacier)
+ExtendedLabels=Y
+FontStyle=SmallFont
+[end]

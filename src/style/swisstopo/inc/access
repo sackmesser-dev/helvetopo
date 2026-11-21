@@ -1,0 +1,56 @@
+# Zugangsregeln (Routing Auto/Velo/Fuss).
+# Ergebnis sind die mkgmap:*-Flags; "no" sperrt den Weg für die jeweilige Klasse.
+# Grundlage: OSM-Zugangsbaum. Der Konverter (docs/daten/tag-schema.md) setzt Fahrverbote schon als
+# motor_vehicle=no/destination und access=no; hier nur Vorgaben je Wegtyp.
+#   swisstopo:objektart='...'     TLM-Objektart, z. B. '1m Weg', 'Markierte Spur'
+
+# Autobahn/Autostrasse: kein Velo, kein Fuss
+highway=motorway | highway=motorway_link | motorroad=yes { add bicycle=no; add foot=no }
+highway=trunk | highway=trunk_link { add bicycle=no; add foot=no }
+
+(access=agricultural | access=forestry) { set access=no; add foot=yes; add bicycle=yes }
+
+# Vorgaben je Wegtyp (nur wenn nicht schon explizit gesetzt). Steht VOR dem Ausrollen,
+# damit access=no auf Fusswegen auch motor_vehicle=no ergibt, foot/bicycle aber erhalten bleiben.
+highway=steps                         { add foot=yes; add bicycle=no; add access=no }
+highway=via_ferrata                   { add foot=yes; add bicycle=no; add access=no }
+highway=path | highway=footway        { add foot=yes; add bicycle=yes; add access=no }
+highway=pedestrian                    { add foot=yes; add bicycle=yes; add access=no }
+highway=cycleway                      { add bicycle=yes; add foot=yes; add access=no }
+highway=bridleway                     { add foot=yes; add access=no }
+highway=track                         { add foot=yes; add bicycle=yes }
+
+# Schmale TLM-Wege: kein Auto, auch wenn der Converter highway=track liefert
+swisstopo:objektart='1m Weg' | swisstopo:objektart='1m Wegfragment' | swisstopo:objektart='Markierte Spur'
+    { add motorcar=no; add motor_vehicle=no; add goods=no; add hgv=no; add psv=no; add emergency=no }
+via_ferrata=yes { add bicycle=no; add motor_vehicle=no; add motorcar=no }
+
+# Zugangsbaum ausrollen
+access=*        { add foot='${access}'; add vehicle='${access}' }
+vehicle=*       { add bicycle='${vehicle}'; add motor_vehicle='${vehicle}' }
+motor_vehicle=* { add motorcar='${motor_vehicle}'; add goods='${motor_vehicle}'; add hgv='${motor_vehicle}'; add psv='${motor_vehicle}'; add emergency='${motor_vehicle}' }
+psv=*           { add taxi='${psv}'; add bus='${psv}' }
+
+# Ausnahmen (destination/customers usw. gelten als befahrbar)
+foot=*      & foot!=no & foot!=private                 { set foot=yes }
+bicycle=*   & bicycle!=no & bicycle!=private & bicycle!=dismount { set bicycle=yes }
+bicycle=dismount { set bicycle=yes }
+
+# mkgmap-Flags setzen
+foot=no | foot=private               { set mkgmap:foot=no }
+bicycle=no | bicycle=private         { set mkgmap:bicycle=no }
+motorcar=no | motorcar=private       { set mkgmap:car=no; set mkgmap:taxi=no }
+goods=no | goods=private             { set mkgmap:delivery=no }
+hgv=no | hgv=private                 { set mkgmap:truck=no }
+bus=no | bus=private                 { set mkgmap:bus=no }
+taxi=no | taxi=private               { set mkgmap:taxi=no }
+emergency=no | emergency=private     { set mkgmap:emergency=no }
+access=private                       { set mkgmap:throughroute=no }
+motorcar=destination | motor_vehicle=destination | access=destination { set mkgmap:throughroute=no }
+
+# Einbahn
+oneway=yes | oneway=true | oneway=1  { set oneway=yes }
+oneway=-1 | oneway=reverse           { set oneway=-1 }
+junction=roundabout                  { add oneway=yes }
+# Offen: "Einbahn ausgenommen Velo" (oneway:bicycle=no) kann mkgmap nicht abbilden;
+# die Einbahn gilt dann auch für Velos (konservativ).

@@ -1,0 +1,4 @@
+# Style für das Routen-Overlay (FID 7702): Wanderwege swissTLM3D und SchweizMobil-Routen.
+# Eingabe: work/routes/routes.osm.pbf aus src/routes/convert_routes.py (Tag-Schema in docs/vektor/routen.md).
+version 0.1
+summary Helvetopo Routen-Overlay (transparent, nicht routend)

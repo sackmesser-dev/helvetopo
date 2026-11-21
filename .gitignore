@@ -1,0 +1,33 @@
+# Arbeits-/Spielwiesenordner von Claude bzw. Agenten
+.claude/
+scratch/
+tmp/
+work/
+downloads/
+data/raw/
+
+# Grosse Geodaten (nicht versionieren)
+*.tif
+*.tiff
+*.gpkg
+*.zip
+*.img
+*.mbtiles
+
+# OS / Editor
+.DS_Store
+.vscode/
+.idea/
+
+# Werkzeuge (lokal geladen)
+tools/mkgmap-*/
+tools/splitter-*/
+.venv/
+
+# Python
+__pycache__/
+*.pyc
+
+# Lokale Agent-Regeln des eigenen Arbeitsplatzes
+AGENTS.local.md
+CLAUDE.local.md

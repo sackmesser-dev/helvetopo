@@ -1,0 +1,9 @@
+# Style-Information für mkgmap
+summary: swisstopo-ähnlicher Style (SMV25/LK25) für Helvetopo
+version=0.1
+description {
+Darstellung nach Vorbild Swiss Map Vector 25 / Landeskarte 1:25'000.
+Eingabe: OSM-PBF aus swisstopo-OGD (swissTLM3D, swissNAMES3D, swissBOUNDARIES3D),
+Standard-OSM-Tags plus swisstopo:*-Zusatztags (siehe docs/daten/tag-schema.md).
+Farben und Typcodes: docs/stil/stil.md. Daten: ©swisstopo.
+}

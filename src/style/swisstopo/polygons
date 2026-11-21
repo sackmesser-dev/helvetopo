@@ -1,0 +1,110 @@
+# -------------------------------------------------------------------
+# Helvetopo – Flächen (mkgmap-Style "swisstopo")
+# Vorbild SMV25: weisser Grund, Wald #CDE6BE, Seen #D2EEFF, Flüsse #9CD5F8,
+# Gebäude schwarz, Areale #E7F3E1. Zeichenreihenfolge: [_drawOrder] in der TYP-Datei.
+# Annahme: swisstopo:objektart enthält die TLM-Objektart der Bodenbedeckung bzw. des Areals.
+# -------------------------------------------------------------------
+
+# Adresspunkte ohne eigenes Symbol trotzdem durch die Finalize-Regeln schicken (Hausnummernsuche)
+addr:housenumber=* { set mkgmap:execute_finalize_rules=true }
+
+area=no { delete natural; delete landuse; delete leisure; delete building }
+location=underground | layer<0 & building=* { delete building }
+
+# ---------- Gewässer ----------
+natural=water & (water=river | water=canal | water=stream | swisstopo:objektart~'Fliessgewaesser|Fliessgewässer')
+    { name '${name}' } [0x48 resolution 18]
+waterway=riverbank                                    { name '${name}' } [0x48 resolution 18]
+natural=water & intermittent=yes                      { name '${name}' } [0x4c resolution 22]
+# area_size() in Garmin-Einheiten² (1 Einheit ≈ 2,39 m): 877000 ≈ 5 km², 35000 ≈ 0,2 km²
+# Etappe 28 (Test 22): Seen zerfallen in TLM-Teilflächen, jede trug den Namen (4× Lac de Neuchâtel).
+# In 12–20 eigene Typen ohne Namen, Namen erst ab 21.
+natural=water & area_size() > 877000                  { delete mkgmap:label:1 } [0x3d resolution 12-20 continue]
+natural=water & area_size() > 877000                  { name '${name}' } [0x3c resolution 21]
+natural=water & area_size() > 35000                   { delete mkgmap:label:1 } [0x3f resolution 18-20 continue]
+natural=water & area_size() > 35000                   { name '${name}' } [0x3e resolution 21]
+natural=water                                         { name '${name}' } [0x41 resolution 22]
+landuse=reservoir | landuse=basin                     { name '${name}' } [0x41 resolution 22]
+leisure=swimming_pool                                 [0x11004 resolution 24]
+man_made=basin | man_made=wastewater_plant & water=*  [0x41 resolution 24]
+
+# ---------- Bodenbedeckung (TLM_BODENBEDECKUNG) ----------
+natural=glacier                                        { name '${name}' } [0x4d resolution 16]
+natural=bare_rock | swisstopo:objektart=Fels           [0x11001 resolution 21]
+# Review 3: Schattenflächen aus swissALTI3D (src/dem/rock_relief.py), steile Hänge im Schatten
+# (Licht von Nordwesten). Verstärken die Garmin-Schummerung, transparentes Muster im TYP.
+swisstopo:schatten=mittel [0x11010 resolution 21]
+swisstopo:schatten=stark  [0x11011 resolution 21]
+natural=scree | natural=shingle | swisstopo:objektart~'Geroell.*|Geröll.*|Felsbloecke.*|Felsblöcke.*' [0x11002 resolution 22]
+natural=wetland | swisstopo:objektart=Feuchtgebiet     [0x51 resolution 22]
+(natural=wood | landuse=forest) & (wood=open | swisstopo:objektart='Wald offen') [0x11000 resolution 21]
+natural=scrub | swisstopo:objektart=Gebueschwald | swisstopo:objektart='Gebüschwald' [0x4f resolution 21]
+natural=wood | landuse=forest | swisstopo:objektart=Wald { name '${name}' } [0x50 resolution 16]
+
+# ---------- Nutzungs-, Freizeit- und Verkehrsareale ----------
+# Review 1 (vector-convert): Arealflächen tragen keine POI-Tags mehr (die stehen am POI-Knoten),
+# nur swisstopo:objektart und Flächen-Tags wie landuse=recreation_ground. Deshalb zuerst über objektart.
+swisstopo:objektart=Spitalareal | landuse=healthcare   [0x0b resolution 23]
+(swisstopo:objektart='Oeffentliches Parkplatzareal' | swisstopo:objektart='Privates Parkplatzareal') & area_size() > 2500 [0x05 resolution 23]
+swisstopo:objektart='Oeffentliches Parkplatzareal' | swisstopo:objektart='Privates Parkplatzareal' [0x05 resolution 24]
+swisstopo:objektart=Campingplatzareal | swisstopo:objektart=Standplatzareal [0x11003 resolution 23]
+swisstopo:objektart=Golfplatzareal                     [0x18 resolution 22]
+swisstopo:objektart=Sportplatzareal | swisstopo:objektart=Schwimmbadareal [0x19 resolution 23]
+swisstopo:objektart=Zooareal | swisstopo:objektart=Rastplatzareal | swisstopo:objektart='Oeffentliches Parkareal' | swisstopo:objektart=Schrebergartenareal | swisstopo:objektart=Freizeitanlagenareal [0x17 resolution 23]
+swisstopo:objektart=Kraftwerkareal | swisstopo:objektart=Unterwerkareal [0x0c resolution 23]
+swisstopo:objektart=Abbauareal | swisstopo:objektart=Deponieareal [0x11005 resolution 22]
+swisstopo:objektart=Flugfeldareal | swisstopo:objektart=Flugplatzareal | swisstopo:objektart=Flughafenareal [0x11009 resolution 20]
+landuse=vineyard | swisstopo:objektart=Reben           [0x11006 resolution 22]
+landuse=orchard | swisstopo:objektart=Obstanlage       [0x4e resolution 22]
+landuse=plant_nursery | swisstopo:objektart=Baumschule [0x11007 resolution 22]
+landuse=cemetery | amenity=grave_yard                  { name '${name}' } [0x1a resolution 23]
+leisure=golf_course                                    { name '${name}' } [0x18 resolution 22]
+tourism=camp_site | tourism=caravan_site              { name '${name}' } [0x11003 resolution 23]
+leisure=park | leisure=garden | landuse=allotments | landuse=recreation_ground | tourism=zoo | highway=rest_area
+    { name '${name}' } [0x17 resolution 23]
+leisure=pitch | leisure=sports_centre | leisure=stadium | leisure=water_park { name '${name}' } [0x19 resolution 23]
+landuse=landfill | landuse=quarry                      { name '${name}' } [0x11005 resolution 22]
+power=substation | power=plant                         [0x0c resolution 23]
+amenity=hospital                                       { name '${name}' } [0x0b resolution 23]
+amenity=parking                                        [0x05 resolution 24]
+aeroway=runway & area=yes & surface~'grass|unpaved'    [0x11008 resolution 21]
+aeroway=runway & area=yes                              [0x0e resolution 21]
+aeroway=aerodrome                                      { name '${name}' } [0x11009 resolution 20]
+area:highway=* | (highway=pedestrian & area=yes) | (railway=platform & area=yes) [0x1100a resolution 24]
+man_made=solar_panel | power=generator & generator:source=solar [0x1100b resolution 24]
+
+# ---------- Gebäude (schwarz) ----------
+building=greenhouse | building=roof | building=carport  [0x1100c resolution 24]
+building=bridge | man_made=bridge                       [0x1100d resolution 24]
+# SMV/LK: Gebäude schwarz. LK25 (Auflösung 23) zeigt alle Gebäude; gröbere Stufen generalisiert
+# nach Grösse (area_size in Garmin-Einheiten², 1 Einheit² ≈ 3,9 m² bei 47° N), damit die Siedlung
+# beim Herauszoomen schrittweise ausdünnt (BaseCamp-Test 7: harter Sprung 1 km → 700 m):
+#   Auflösung 20: ≥ ca. 4000 m², 21: ≥ ca. 400 m², 22: ≥ ca. 50 m² (QA: LK50-Fläche), 23: alle.
+# mkgmap verwirft sonst kleine Flächen: Build mit --polygon-size-limits (siehe Doku).
+# Review 2: TLM-Footprints „Mauer gross“ (vector-convert: barrier=wall, area=yes, swisstopo:mauer=gross,
+# gedeckte mit covered=yes). Die TLM-Mauern sind ~1 m breit; SMV25 zeichnet stattdessen eine verbreiterte,
+# generalisierte Fläche schwarz ohne Rand. Als Umriss ergeben die schmalen Footprints Zickzackfiguren
+# (Burgruine Helfenberg). Deshalb: in Historischen Arealen weglassen (dort steht das Ruinensymbol),
+# sonst schwarz gefüllt wie SMV25 (0x13 ab 23). „Historische Baute“ (building=ruins): nur Umriss (lines).
+(swisstopo:mauer=gross | swisstopo:objektart='Mauer gross') & covered!=yes & swisstopo:historisches_areal=*
+    { delete building; delete barrier; delete swisstopo:mauer; delete swisstopo:objektart }
+building=ruins { delete building; delete barrier; set tmp:ruine=yes }
+(swisstopo:mauer=gross | swisstopo:objektart='Mauer gross') & covered!=yes [0x13 resolution 23]
+building=* & building!=no & area_size() > 1000          [0x13 resolution 20]
+building=* & building!=no & area_size() > 38            [0x13 resolution 21]
+building=* & building!=no & area_size() > 12            [0x13 resolution 22]
+building=* & building!=no                               [0x13 resolution 23]
+(barrier=wall | man_made=storage_tank | man_made=reservoir_covered | waterway=weir) & area!=no [0x13 resolution 24]
+(man_made=dam | waterway=dam | man_made=dyke) & area=yes [0x1100d resolution 22]
+
+# ---------- Schutzgebiete (nur Rand, siehe lines) und Siedlung ----------
+# SMV hat keinen Siedlungston; für Übersichtsstufen hellgrau, nur falls geliefert
+# Generalisierte Siedlungsfläche (vector-convert: gepufferte Gebäude, swisstopo:generalisiert=siedlung)
+# nur in den groben Stufen; ab Auflösung 22 zeigen die Gebäude selbst das Siedlungsbild.
+landuse=residential | place=city | place=town          [0x1100e resolution 14-21 continue]
+# Auflösung 22: sehr heller Siedlungston unter den Gebäuden (Test 10: Stadt bei 500 m zu licht)
+landuse=residential & swisstopo:generalisiert=siedlung [0x1100f resolution 22-22]
+
+<finalize>
+# Läuft für jedes Element, für das oben ein Typ gefunden wurde (bzw. execute_finalize_rules=true)
+include 'inc/address';
